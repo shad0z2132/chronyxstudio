@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
 import { PartnersSection } from "@/components/partners-section"
 import { SandsOfAvalonSection } from "@/components/sands-of-avalon-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
@@ -43,6 +44,8 @@ export default function App() {
       <main>
         <Navbar />
         <HeroSection />
+        <SectionDivider />
+        <AboutSection />
         <SectionDivider />
         <PartnersSection />
         <SectionDivider />

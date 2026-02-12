@@ -44,10 +44,9 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Dark gradient overlays — balanced tint */}
-        <div className="absolute inset-0 bg-[#0a0a0f]/55 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/95 via-[#0a0a0f]/65 to-[#0a0a0f]/35 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/95 via-[#0a0a0f]/15 to-[#0a0a0f]/40 z-[1]" />
+        {/* Dark gradient overlays — clean editorial */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/60 z-[1]" />
 
         {/* Main content — two column layout */}
         <motion.div
