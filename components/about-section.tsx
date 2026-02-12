@@ -11,6 +11,32 @@ const highlights = [
 export function AboutSection() {
   return (
     <section id="about" className="relative py-20 lg:py-28 bg-background overflow-hidden">
+      {/* ── Golden flare orbs ── */}
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          top: "20%",
+          right: "8%",
+          width: "480px",
+          height: "480px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
+          animation: "flare-breathe 8s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          bottom: "10%",
+          left: "12%",
+          width: "420px",
+          height: "420px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 65%)",
+          animation: "flare-breathe-slow 10s ease-in-out infinite",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left — image composition */}
@@ -21,6 +47,7 @@ export function AboutSection() {
                 <img
                   src="/HighresScreenshot00084.webp"
                   alt="Chronyx Studio — in-engine screenshot"
+                  loading="lazy"
                   className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/60 via-transparent to-transparent" />
@@ -49,6 +76,7 @@ export function AboutSection() {
                 <img
                   src="/HighresScreenshot00108.webp"
                   alt="Game environment detail"
+                  loading="lazy"
                   className="w-full aspect-[3/2] object-cover"
                 />
               </motion.div>
@@ -117,7 +145,7 @@ export function AboutSection() {
                         suffix={stat.suffix ?? ""}
                         className="text-gold font-heading font-bold text-xl"
                       />
-                      <span className="text-muted-foreground/40 text-[10px] tracking-wider uppercase block mt-0.5">
+                      <span className="text-muted-foreground/50 text-[10px] tracking-wider uppercase block mt-0.5">
                         {stat.label}
                       </span>
                     </div>

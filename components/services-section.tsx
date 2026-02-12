@@ -92,8 +92,9 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
             isFirst ? "lg:w-[55%] min-h-[260px] lg:min-h-0" : "min-h-[220px]"
           }`}>
             <img
-              src={game.image}
+               src={game.image}
               alt={game.title}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
             />
             {/* Gradients */}
@@ -223,7 +224,7 @@ function PillarCard({ pillar, index }: { pillar: typeof pillars[0]; index: numbe
           <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/10 transition-colors duration-500">
             <div className="flex items-baseline gap-2">
               <span className="text-gold font-heading font-bold text-lg">{pillar.stat.value}</span>
-              <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">{pillar.stat.label}</span>
+              <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">{pillar.stat.label}</span>
             </div>
           </div>
         </div>

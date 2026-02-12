@@ -25,7 +25,7 @@ const pillars = [
 
 export function AwardsSection() {
   return (
-    <section className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold-top">
+    <section id="milestones" className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold-top">
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none"
@@ -90,7 +90,7 @@ export function AwardsSection() {
                     </div>
                     <div className="min-w-0">
                       <span className="text-foreground text-sm font-medium block">{milestone.label}</span>
-                      <span className="text-gold/40 text-[10px] tracking-wider uppercase">{milestone.status}</span>
+                      <span className="text-gold/60 text-[10px] tracking-wider uppercase">{milestone.status}</span>
                     </div>
                   </motion.div>
                 </StaggerItem>
@@ -131,7 +131,7 @@ export function AwardsSection() {
                         {pillar}
                       </span>
                       <div className="h-px flex-1 bg-white/[0.04] group-hover:bg-gold/10 transition-colors duration-300" />
-                      <span className="text-gold/20 text-xs font-heading font-bold tabular-nums">
+                      <span className="text-gold/40 text-xs font-heading font-bold tabular-nums">
                         0{i + 1}
                       </span>
                     </motion.div>

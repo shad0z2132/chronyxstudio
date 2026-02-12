@@ -56,7 +56,33 @@ const coreValues = [
 
 export function CooperationSection() {
   return (
-    <section className="relative py-24 lg:py-36 overflow-hidden">
+    <section id="approach" className="relative py-24 lg:py-36 overflow-hidden">
+      {/* ── Golden flare orbs ── */}
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          top: "10%",
+          left: "12%",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
+          animation: "flare-breathe 8s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          bottom: "15%",
+          right: "10%",
+          width: "450px",
+          height: "450px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 65%)",
+          animation: "flare-breathe-slow 10s ease-in-out infinite",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
@@ -134,7 +160,7 @@ export function CooperationSection() {
                      <div className="shrink-0 flex flex-col gap-2 lg:min-w-[240px]">
                        {approach.points.map((point) => (
                          <div key={point} className="flex items-center gap-2">
-                           <ChevronRight className="w-3 h-3 text-gold/40 shrink-0" />
+                            <ChevronRight className="w-3 h-3 text-gold/60 shrink-0" />
                            <span className="text-foreground/60 text-xs">{point}</span>
                          </div>
                        ))}
@@ -144,7 +170,7 @@ export function CooperationSection() {
                      <div className="shrink-0 lg:border-l lg:border-white/[0.06] lg:pl-8 group-hover:lg:border-gold/10 transition-colors duration-500">
                        <div className="flex items-baseline gap-2">
                          <span className="text-gold font-heading font-bold text-2xl">{approach.stat.value}</span>
-                         <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">{approach.stat.label}</span>
+                          <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">{approach.stat.label}</span>
                        </div>
                      </div>
                    </div>
@@ -181,7 +207,7 @@ export function CooperationSection() {
               {coreValues.map((value, i) => (
                 <StaggerItem key={value}>
                   <div className="flex items-center gap-6 lg:gap-10">
-                    <span className="text-muted-foreground/30 text-sm font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors duration-300 cursor-default">
+                    <span className="text-muted-foreground/50 text-sm font-semibold tracking-[0.15em] uppercase hover:text-gold transition-colors duration-300 cursor-default">
                       {value}
                     </span>
                     {i < coreValues.length - 1 && (

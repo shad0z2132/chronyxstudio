@@ -47,7 +47,7 @@ const dna = [
 
 export function WhyChooseUs() {
   return (
-    <section className="relative py-24 lg:py-36 bg-card overflow-hidden">
+    <section id="studio" className="relative py-24 lg:py-36 bg-card overflow-hidden">
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none"
@@ -161,7 +161,7 @@ export function WhyChooseUs() {
                       <span className="text-gold font-heading font-bold text-lg">
                         {item.stat.value}
                       </span>
-                      <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">
+                      <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">
                         {item.stat.label}
                       </span>
                     </div>
@@ -187,7 +187,7 @@ export function WhyChooseUs() {
                     suffix={stat.suffix ?? ""}
                     className="text-gold font-heading font-bold text-2xl"
                   />
-                  <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                   <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                     {stat.label}
                   </span>
                 </div>

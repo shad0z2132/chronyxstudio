@@ -116,12 +116,13 @@ export function ProjectsSection() {
                     {/* Image side */}
                     <div className="relative lg:w-[50%] min-h-[260px] lg:min-h-0 overflow-hidden">
                       <img
-                        src={world.image}
+                         src={world.image}
                         alt={world.title}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       {/* Directional fade into content */}
-                      <div className={`absolute inset-0 bg-gradient-to-${isReversed ? "l" : "r"} from-transparent via-[#0d0d14]/50 to-[#0d0d14] hidden lg:block`} />
+                      <div className={`absolute inset-0 ${isReversed ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-transparent via-[#0d0d14]/50 to-[#0d0d14] hidden lg:block`} />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/40 to-transparent lg:hidden" />
 
                       {/* Accent gradient */}
@@ -138,8 +139,9 @@ export function ProjectsSection() {
                       {world.characterImage && (
                         <div className={`absolute bottom-0 ${isReversed ? "left-4" : "right-4"} w-[45%] max-w-[220px] hidden lg:block`}>
                           <img
-                            src={world.characterImage}
+                             src={world.characterImage}
                             alt=""
+                            loading="lazy"
                             className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:translate-y-[-4px]"
                           />
                         </div>

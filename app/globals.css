@@ -195,3 +195,9 @@ main::before {
   50% { opacity: 0.065; transform: scale(1.2); }
 }
 
+/* ─── Preloader Pulse ────────────────────────────────────────────────── */
+@keyframes preloader-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.3); }
+}
+

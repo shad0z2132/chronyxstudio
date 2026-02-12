@@ -133,7 +133,7 @@ export function TestimonialsSection() {
                   <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/10 transition-colors duration-500">
                     <div className="flex items-baseline gap-2">
                       <span className="text-gold font-heading font-bold text-lg">{item.focus.value}</span>
-                      <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">{item.focus.label}</span>
+                      <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">{item.focus.label}</span>
                     </div>
                   </div>
                 </div>

@@ -39,7 +39,33 @@ export function BlogSection() {
   const [featured, ...rest] = posts
 
   return (
-    <section className="relative py-24 lg:py-36 bg-card overflow-hidden">
+    <section id="news" className="relative py-24 lg:py-36 bg-card overflow-hidden">
+      {/* ── Golden flare orbs ── */}
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          top: "15%",
+          right: "10%",
+          width: "480px",
+          height: "480px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
+          animation: "flare-breathe 8s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          bottom: "10%",
+          left: "15%",
+          width: "420px",
+          height: "420px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 65%)",
+          animation: "flare-breathe-slow 10s ease-in-out infinite",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
@@ -91,7 +117,7 @@ export function BlogSection() {
                     <featured.icon className="w-3 h-3" />
                     {featured.tag}
                   </span>
-                  <div className="flex items-center gap-1.5 text-muted-foreground/40 text-xs">
+                  <div className="flex items-center gap-1.5 text-muted-foreground/50 text-xs">
                     <Clock className="w-3 h-3" />
                     {featured.readTime}
                   </div>
@@ -106,7 +132,7 @@ export function BlogSection() {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                   <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                     {featured.date}
                   </span>
                   <a
@@ -139,7 +165,7 @@ export function BlogSection() {
                         <post.icon className="w-3 h-3" />
                         {post.tag}
                       </span>
-                      <div className="flex items-center gap-1.5 text-muted-foreground/40 text-xs">
+                      <div className="flex items-center gap-1.5 text-muted-foreground/50 text-xs">
                         <Clock className="w-3 h-3" />
                         {post.readTime}
                       </div>
@@ -154,7 +180,7 @@ export function BlogSection() {
                     </p>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                      <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                         {post.date}
                       </span>
                       <a

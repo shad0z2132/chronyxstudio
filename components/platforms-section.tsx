@@ -61,14 +61,40 @@ export function PlatformsSection() {
     },
     future: {
       border: "border-white/[0.04]",
-      iconColor: "text-muted-foreground/30 group-hover:text-muted-foreground/60",
+      iconColor: "text-muted-foreground/50 group-hover:text-muted-foreground/60",
       nameColor: "text-foreground/50",
       dot: "bg-white/15",
     },
   }
 
   return (
-    <section className="relative py-16 lg:py-24 bg-background overflow-hidden">
+    <section id="technology" className="relative py-16 lg:py-24 bg-background overflow-hidden">
+      {/* ── Golden flare orbs ── */}
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          top: "15%",
+          left: "10%",
+          width: "450px",
+          height: "450px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.07) 0%, rgba(212,168,83,0) 70%)",
+          animation: "flare-breathe 8s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          bottom: "10%",
+          right: "12%",
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.05) 0%, rgba(212,168,83,0) 65%)",
+          animation: "flare-breathe-slow 10s ease-in-out infinite",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* ── Header — inline ──────────────────────────────────────────── */}
@@ -107,7 +133,7 @@ export function PlatformsSection() {
                     <span className={`font-heading font-bold text-sm tracking-tight ${style.nameColor}`}>
                       {platform.name}
                     </span>
-                    <span className="text-muted-foreground/30 text-[10px] tracking-wider uppercase">
+                    <span className="text-muted-foreground/50 text-[10px] tracking-wider uppercase">
                       {platform.subtitle}
                     </span>
                   </div>
@@ -124,8 +150,9 @@ export function PlatformsSection() {
               {/* Image side */}
               <div className="relative lg:w-[38%] min-h-[180px] lg:min-h-0 overflow-hidden">
                 <img
-                  src="/HighresScreenshot00105.webp"
+                   src="/HighresScreenshot00105.webp"
                   alt="Unreal Engine 5 in-game screenshot"
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card hidden lg:block" />
@@ -175,7 +202,7 @@ export function PlatformsSection() {
                       </div>
                       <div>
                         <span className="text-foreground text-xs font-semibold block leading-tight">{tech.label}</span>
-                        <span className="text-muted-foreground/40 text-[10px] leading-tight">{tech.description}</span>
+                        <span className="text-muted-foreground/50 text-[10px] leading-tight">{tech.description}</span>
                       </div>
                     </div>
                   ))}

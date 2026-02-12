@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
@@ -13,7 +14,8 @@ import { AwardsSection } from "@/components/awards-section"
 import { BlogSection } from "@/components/blog-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
-import { motion, useScroll, useSpring } from "framer-motion"
+import { Preloader } from "@/components/preloader"
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
 
 function SectionDivider() {
   return (
@@ -26,6 +28,9 @@ function SectionDivider() {
 }
 
 export default function App() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const handlePreloaderComplete = useCallback(() => setIsLoaded(true), [])
+
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -35,41 +40,53 @@ export default function App() {
 
   return (
     <>
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left"
-        style={{ scaleX }}
-      />
+      <Preloader onComplete={handlePreloaderComplete} />
 
-      <main>
-        <Navbar />
-        <HeroSection />
-        <SectionDivider />
-        <AboutSection />
-        <SectionDivider />
-        <PartnersSection />
-        <SectionDivider />
-        <SandsOfAvalonSection />
-        <SectionDivider />
-        <WhyChooseUs />
-        <SectionDivider />
-        <ServicesSection />
-        <SectionDivider />
-        <PlatformsSection />
-        <SectionDivider />
-        <ProjectsSection />
-        <SectionDivider />
-        <CooperationSection />
-        <SectionDivider />
-        <TestimonialsSection />
-        <SectionDivider />
-        <AwardsSection />
-        <SectionDivider />
-        <BlogSection />
-        <SectionDivider />
-        <ContactSection />
-        <Footer />
-      </main>
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            {/* Scroll progress bar */}
+            <motion.div
+              className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left"
+              style={{ scaleX }}
+            />
+
+            <main>
+              <Navbar />
+              <HeroSection />
+              <SectionDivider />
+              <AboutSection />
+              <SectionDivider />
+              <PartnersSection />
+              <SectionDivider />
+              <SandsOfAvalonSection />
+              <SectionDivider />
+              <WhyChooseUs />
+              <SectionDivider />
+              <ServicesSection />
+              <SectionDivider />
+              <PlatformsSection />
+              <SectionDivider />
+              <ProjectsSection />
+              <SectionDivider />
+              <CooperationSection />
+              <SectionDivider />
+              <TestimonialsSection />
+              <SectionDivider />
+              <AwardsSection />
+              <SectionDivider />
+              <BlogSection />
+              <SectionDivider />
+              <ContactSection />
+              <Footer />
+            </main>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

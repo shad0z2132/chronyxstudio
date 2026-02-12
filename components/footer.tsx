@@ -106,14 +106,14 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground/40 text-sm">
+          <p className="text-muted-foreground/50 text-sm">
             &copy; 2026 Chronyx Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-muted-foreground/40 text-sm hover:text-foreground transition-colors duration-200">
+            <a href="#" className="text-muted-foreground/50 text-sm hover:text-foreground transition-colors duration-200">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground/40 text-sm hover:text-foreground transition-colors duration-200">
+            <a href="#" className="text-muted-foreground/50 text-sm hover:text-foreground transition-colors duration-200">
               Terms of Service
             </a>
             <motion.button

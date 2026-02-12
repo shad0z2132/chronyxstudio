@@ -51,8 +51,8 @@ export function PartnersSection() {
               key={`${partner.name}-${i}`}
               className="inline-flex items-center gap-3 mx-12 group cursor-default select-none"
             >
-              <partner.icon className="w-7 h-7 text-muted-foreground/40 transition-colors duration-300 group-hover:text-gold" />
-              <span className="text-muted-foreground/40 text-base font-semibold tracking-wide transition-colors duration-300 group-hover:text-foreground/80">
+              <partner.icon className="w-7 h-7 text-muted-foreground/50 transition-colors duration-300 group-hover:text-gold" />
+              <span className="text-muted-foreground/50 text-base font-semibold tracking-wide transition-colors duration-300 group-hover:text-foreground/80">
                 {partner.name}
               </span>
             </div>

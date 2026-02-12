@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const navLinks = [
   { label: "Games", href: "#games" },
   { label: "Studio", href: "#about" },
-  { label: "Careers", href: "#careers" },
+  { label: "Technology", href: "#technology" },
   { label: "News", href: "#news" },
   { label: "Contact", href: "#contact" },
 ]
@@ -235,7 +235,7 @@ export function Navbar() {
                       </a>
                     ))}
                   </div>
-                  <span className="text-muted-foreground/30 text-xs">&copy; 2026</span>
+                  <span className="text-muted-foreground/50 text-xs">&copy; 2026</span>
                 </div>
               </motion.div>
             </div>

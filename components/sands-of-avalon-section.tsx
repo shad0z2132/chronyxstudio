@@ -82,7 +82,7 @@ function ProgressBar({ label, progress, status, delay }: {
           </span>
         </div>
         <span className={`text-xs font-semibold tracking-wide ${
-          status === "active" ? "text-gold" : "text-muted-foreground/30"
+          status === "active" ? "text-gold" : "text-muted-foreground/50"
         }`}>
           {progress}%
         </span>
@@ -160,9 +160,10 @@ export function SandsOfAvalonSection() {
       {/* Parallax background image — very faint */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
-          src="/Anubismonolith.webp"
+           src="/Anubismonolith.webp"
           alt=""
           aria-hidden="true"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.06] scale-110"
         />
       </motion.div>
@@ -179,6 +180,7 @@ export function SandsOfAvalonSection() {
               <img
                 src="/image (27).webp"
                 alt="Sands of Avalon — ancient Egyptian landscape"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
               />
               {/* Gradient overlays */}
@@ -236,6 +238,7 @@ export function SandsOfAvalonSection() {
                 <img
                   src={shot.src}
                   alt={shot.alt}
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
@@ -258,7 +261,7 @@ export function SandsOfAvalonSection() {
                     Development Progress
                   </span>
                 </div>
-                <span className="text-muted-foreground/30 text-xs tracking-wider uppercase">
+                <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                   Q1 2026
                 </span>
               </div>
@@ -298,7 +301,7 @@ export function SandsOfAvalonSection() {
                     suffix={stat.suffix}
                     className="text-gold font-heading font-bold text-3xl lg:text-4xl block mb-1"
                   />
-                  <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                  <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                     {stat.label}
                   </span>
                 </div>
@@ -331,7 +334,7 @@ export function SandsOfAvalonSection() {
                 <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/10 transition-colors duration-500">
                   <div className="flex items-baseline gap-2">
                     <span className="text-gold font-heading font-bold text-lg">{feature.stat.value}</span>
-                    <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">{feature.stat.label}</span>
+                    <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">{feature.stat.label}</span>
                   </div>
                 </div>
               </div>

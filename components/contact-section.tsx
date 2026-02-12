@@ -144,7 +144,7 @@ export function ContactSection() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
                       placeholder="Your name"
                     />
                   </div>
@@ -158,7 +158,7 @@ export function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -195,7 +195,7 @@ export function ContactSection() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 resize-none"
+                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 resize-none"
                     placeholder="Tell us what you're interested in..."
                   />
                 </div>

@@ -72,7 +72,7 @@ export function HeroSection() {
               {/* Heading — enhanced hierarchy */}
               <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7">
                 <FadeIn delay={0.3}>
-                  <span className="block text-lg md:text-xl lg:text-2xl text-white/40 mb-4 font-medium tracking-[0.08em] uppercase">
+                  <span className="block text-lg md:text-xl lg:text-2xl text-white/50 mb-4 font-medium tracking-[0.08em] uppercase">
                     We Build
                   </span>
                 </FadeIn>
@@ -152,7 +152,7 @@ export function HeroSection() {
                             suffix={stat.suffix}
                             className="text-gold font-heading font-bold text-2xl"
                           />
-                          <span className="text-white/30 text-[11px] uppercase tracking-wider">
+                          <span className="text-white/50 text-[11px] uppercase tracking-wider">
                             {stat.label}
                           </span>
                         </div>
@@ -165,7 +165,7 @@ export function HeroSection() {
                         alt="Unreal Engine"
                         className="w-5 h-5 rounded-full object-cover invert opacity-70"
                       />
-                      <span className="text-white/30 text-[11px] font-medium tracking-wider uppercase">
+                      <span className="text-white/50 text-[11px] font-medium tracking-wider uppercase">
                         Powered by UE5
                       </span>
                     </div>
@@ -198,7 +198,7 @@ export function HeroSection() {
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <Gamepad2 className="w-3.5 h-3.5 text-gold/50" />
-                          <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">
+                          <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">
                             Action RPG
                           </span>
                         </div>
@@ -206,7 +206,7 @@ export function HeroSection() {
                           Sands of Avalon
                         </h3>
                       </div>
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
                 </a>
@@ -233,8 +233,8 @@ export function HeroSection() {
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <Crosshair className="w-3.5 h-3.5 text-muted-foreground/40" />
-                          <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">
+                          <Crosshair className="w-3.5 h-3.5 text-muted-foreground/50" />
+                          <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">
                             Competitive FPS
                           </span>
                         </div>
@@ -242,7 +242,7 @@ export function HeroSection() {
                           Untitled Project
                         </h3>
                       </div>
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
                 </a>
@@ -263,7 +263,7 @@ export function HeroSection() {
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ChevronDown className="w-5 h-5 text-muted-foreground/40" />
+            <ChevronDown className="w-5 h-5 text-muted-foreground/50" />
           </motion.div>
         </motion.div>
       </div>

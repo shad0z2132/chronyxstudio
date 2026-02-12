@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView, useMotionValue, useSpring, AnimatePresence, type Variants } from "framer-motion"
+import { motion, useInView, useMotionValue, useSpring, useReducedMotion, AnimatePresence, type Variants } from "framer-motion"
 import { useRef, useEffect, useState, type ReactNode } from "react"
 
 // ─── Fade In on Scroll ───────────────────────────────────────────────────────
@@ -25,6 +25,7 @@ export function FadeIn({
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once, margin: "-80px" })
+  const prefersReducedMotion = useReducedMotion()
 
   const directionMap = {
     up: { y: distance, x: 0 },
@@ -34,7 +35,7 @@ export function FadeIn({
     none: { x: 0, y: 0 },
   }
 
-  const { x, y } = directionMap[direction]
+  const { x, y } = prefersReducedMotion ? { x: 0, y: 0 } : directionMap[direction]
 
   return (
     <motion.div
@@ -43,8 +44,8 @@ export function FadeIn({
       initial={{ opacity: 0, x, y }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
       transition={{
-        duration,
-        delay,
+        duration: prefersReducedMotion ? 0.01 : duration,
+        delay: prefersReducedMotion ? 0 : delay,
         ease: [0.25, 0.4, 0.25, 1],
       }}
     >
@@ -80,6 +81,7 @@ export function StaggerContainer({
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once, margin: "-80px" })
+  const prefersReducedMotion = useReducedMotion()
 
   return (
     <motion.div
@@ -91,8 +93,8 @@ export function StaggerContainer({
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: staggerDelay,
-            delayChildren: delay,
+            staggerChildren: prefersReducedMotion ? 0 : staggerDelay,
+            delayChildren: prefersReducedMotion ? 0 : delay,
           },
         },
       }}
@@ -116,6 +118,8 @@ export function StaggerItem({
   direction = "up",
   distance = 30,
 }: StaggerItemProps) {
+  const prefersReducedMotion = useReducedMotion()
+
   const directionMap = {
     up: { y: distance, x: 0 },
     down: { y: -distance, x: 0 },
@@ -124,7 +128,7 @@ export function StaggerItem({
     none: { x: 0, y: 0 },
   }
 
-  const { x, y } = directionMap[direction]
+  const { x, y } = prefersReducedMotion ? { x: 0, y: 0 } : directionMap[direction]
 
   return (
     <motion.div
@@ -136,7 +140,7 @@ export function StaggerItem({
           x: 0,
           y: 0,
           transition: {
-            duration: 0.5,
+            duration: prefersReducedMotion ? 0.01 : 0.5,
             ease: [0.25, 0.4, 0.25, 1],
           },
         },
@@ -165,8 +169,13 @@ export function TextReveal({
 }: TextRevealProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once, margin: "-80px" })
+  const prefersReducedMotion = useReducedMotion()
 
   const parts = mode === "word" ? text.split(" ") : text.split("")
+
+  if (prefersReducedMotion) {
+    return <span className={className}>{text}</span>
+  }
 
   return (
     <motion.span
@@ -230,6 +239,7 @@ export function Counter({
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once, margin: "-80px" })
+  const prefersReducedMotion = useReducedMotion()
   const motionValue = useMotionValue(0)
   const springValue = useSpring(motionValue, {
     damping: 40,
@@ -239,21 +249,29 @@ export function Counter({
 
   useEffect(() => {
     if (isInView) {
-      motionValue.set(target)
+      if (prefersReducedMotion) {
+        // Skip animation — show final value immediately
+        if (ref.current) {
+          ref.current.textContent = `${prefix}${target}${suffix}`
+        }
+      } else {
+        motionValue.set(target)
+      }
     }
-  }, [isInView, target, motionValue])
+  }, [isInView, target, motionValue, prefersReducedMotion, prefix, suffix])
 
   useEffect(() => {
+    if (prefersReducedMotion) return
     const unsubscribe = springValue.on("change", (latest) => {
       if (ref.current) {
         ref.current.textContent = `${prefix}${Math.round(latest)}${suffix}`
       }
     })
     return unsubscribe
-  }, [springValue, prefix, suffix])
+  }, [springValue, prefix, suffix, prefersReducedMotion])
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={className} aria-live="polite">
       {prefix}0{suffix}
     </span>
   )
@@ -396,6 +414,7 @@ export function RotatingWords({
   interval = 3000,
 }: RotatingWordsProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -405,16 +424,16 @@ export function RotatingWords({
   }, [words.length, interval])
 
   return (
-    <span className={`relative inline-block ${className || ""}`}>
+    <span className={`relative inline-block ${className || ""}`} aria-live="polite" aria-atomic="true">
       <AnimatePresence mode="wait">
         <motion.span
           key={words[currentIndex]}
           className="inline-block"
-          initial={{ y: 30, opacity: 0, filter: "blur(6px)" }}
-          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-          exit={{ y: -30, opacity: 0, filter: "blur(6px)" }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { y: 30, opacity: 0, filter: "blur(6px)" }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={prefersReducedMotion ? { opacity: 0 } : { y: -30, opacity: 0, filter: "blur(6px)" }}
           transition={{
-            duration: 0.5,
+            duration: prefersReducedMotion ? 0.15 : 0.5,
             ease: [0.25, 0.4, 0.25, 1],
           }}
         >
