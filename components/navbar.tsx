@@ -62,7 +62,7 @@ export function Navbar() {
       >
         <a href="/" className="flex items-center gap-3 group">
           <img
-            src="/images/logo.png"
+            src="/Untitled design (55)-Photoroom.webp"
             alt="Chronyx Studio logo"
             width={40}
             height={40}

@@ -63,7 +63,7 @@ export function Footer() {
             <div className="lg:col-span-2 flex flex-col gap-6">
               <a href="/" className="flex items-center gap-3 w-fit group">
                 <img
-                  src="/images/logo.png"
+                  src="/Untitled design (55)-Photoroom.webp"
                   alt="Chronyx Studio logo"
                   width={48}
                   height={48}
