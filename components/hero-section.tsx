@@ -38,8 +38,8 @@ export function HeroSection() {
             <source src={heroVideo} type="video/mp4" />
           </video>
           <img
-            src={heroBackground}
-            alt="Epic fantasy landscape"
+            src="/Anubismonolith.webp"
+            alt="Anubis monolith — Sands of Avalon"
             className="absolute inset-0 w-full h-full object-cover md:hidden"
           />
         </motion.div>
