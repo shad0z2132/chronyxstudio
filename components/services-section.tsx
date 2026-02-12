@@ -82,19 +82,35 @@ const accentMap = {
     iconBg: "bg-gold/10",
     line: "from-gold to-gold/0",
     badge: "genre-badge-arpg",
-    dot: "status-dot-gold",
+    dot: "status-dot-arpg",
     glow: "rgba(212, 168, 83, 0.15)",
+    cornersClass: "arpg-corners",
+    cornerTR: "arpg-corner-tr",
+    cornerBL: "arpg-corner-bl",
+    cornerBR: "arpg-corner-br",
+    cardClass: "arpg-card",
+    textureBg: "sand-grain-bg",
+    imageTint: "arpg-image-tint",
+    toneBg: "linear-gradient(135deg, hsl(30 20% 6%), hsl(30 15% 5%))",
   },
   cyan: {
-    text: "text-cyan",
-    border: "border-cyan/20",
-    hoverBorder: "hover:border-cyan/40",
-    bg: "bg-cyan/5",
-    iconBg: "bg-cyan/10",
-    line: "from-cyan to-cyan/0",
+    text: "text-steel",
+    border: "border-steel/20",
+    hoverBorder: "hover:border-steel/40",
+    bg: "bg-steel/5",
+    iconBg: "bg-steel/10",
+    line: "from-steel to-steel/0",
     badge: "genre-badge-fps",
-    dot: "status-dot-cyan",
-    glow: "rgba(0, 240, 255, 0.15)",
+    dot: "status-dot-fps",
+    glow: "rgba(74, 168, 192, 0.15)",
+    cornersClass: "fps-corners",
+    cornerTR: "",
+    cornerBL: "fps-corner-bl",
+    cornerBR: "fps-corner-br",
+    cardClass: "fps-card",
+    textureBg: "carbon-fiber-bg",
+    imageTint: "fps-image-tint",
+    toneBg: "linear-gradient(135deg, hsl(210 18% 5%), hsl(210 15% 4%))",
   },
   purple: {
     text: "text-purple",
@@ -106,6 +122,14 @@ const accentMap = {
     badge: "genre-badge-studio",
     dot: "status-dot-purple",
     glow: "rgba(139, 92, 246, 0.15)",
+    cornersClass: "hud-corners",
+    cornerTR: "",
+    cornerBL: "hud-corner-bl",
+    cornerBR: "hud-corner-br",
+    cardClass: "",
+    textureBg: "",
+    imageTint: "",
+    toneBg: undefined as string | undefined,
   },
 } as const
 
@@ -120,15 +144,22 @@ function FeaturedIPCard({
   const accent = accentMap[card.accentColor as keyof typeof accentMap]
   const Icon = card.icon
 
+  const toneClass = card.accentColor === "gold" ? "tone-arpg" : card.accentColor === "cyan" ? "tone-fps" : ""
+
   return (
     <motion.div
-      className={`service-card hud-corners group relative overflow-hidden border ${accent.border} bg-card transition-all duration-500 ${accent.hoverBorder}`}
+      className={`service-card ${accent.cornersClass} group relative overflow-hidden border ${accent.border} transition-all duration-500 ${accent.hoverBorder} ${accent.cardClass} ${toneClass}`}
+      style={accent.toneBg ? { background: accent.toneBg } : undefined}
       whileHover={{ y: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      {/* HUD bottom corners */}
-      <div className="hud-corner-bl" />
-      <div className="hud-corner-br" />
+      {/* IP-specific corners */}
+      {accent.cornerTR && <div className={accent.cornerTR} />}
+      <div className={accent.cornerBL} />
+      <div className={accent.cornerBR} />
+
+      {/* IP-specific background texture */}
+      {accent.textureBg && <div className={`absolute inset-0 ${accent.textureBg} pointer-events-none`} />}
 
       <div className="flex flex-col lg:flex-row min-h-[280px] lg:min-h-[320px]">
         {/* Text content */}
@@ -171,6 +202,8 @@ function FeaturedIPCard({
             />
             <div className="absolute inset-0 bg-gradient-to-r from-card via-card/60 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-card/50 via-transparent to-card/30 lg:from-transparent lg:to-transparent" />
+            {/* IP tone tint */}
+            <div className={`absolute inset-0 ${accent.imageTint}`} />
           </div>
         )}
       </div>
@@ -192,15 +225,22 @@ function PillarCard({
   const accent = accentMap[card.accentColor as keyof typeof accentMap]
   const Icon = card.icon
 
+  const toneClass = card.accentColor === "gold" ? "tone-arpg" : card.accentColor === "cyan" ? "tone-fps" : ""
+
   return (
     <motion.div
-      className={`service-card hud-corners group relative overflow-hidden border ${accent.border} bg-card transition-all duration-500 ${accent.hoverBorder}`}
+      className={`service-card ${accent.cornersClass} group relative overflow-hidden border ${accent.border} transition-all duration-500 ${accent.hoverBorder} ${accent.cardClass} ${toneClass}`}
+      style={accent.toneBg ? { background: accent.toneBg } : undefined}
       whileHover={{ y: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      {/* HUD bottom corners */}
-      <div className="hud-corner-bl" />
-      <div className="hud-corner-br" />
+      {/* IP-specific corners */}
+      {accent.cornerTR && <div className={accent.cornerTR} />}
+      <div className={accent.cornerBL} />
+      <div className={accent.cornerBR} />
+
+      {/* IP-specific background texture */}
+      {accent.textureBg && <div className={`absolute inset-0 ${accent.textureBg} pointer-events-none`} />}
 
       <div className="flex flex-col lg:flex-row min-h-[200px] lg:min-h-[230px]">
         <div className="relative z-10 flex flex-col justify-center p-8 lg:p-12 w-full">
@@ -251,8 +291,8 @@ function PillarCard({
 export function ServicesSection() {
   return (
     <section id="games" className="relative py-28 lg:py-40 overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
         {/* Content margin lines */}

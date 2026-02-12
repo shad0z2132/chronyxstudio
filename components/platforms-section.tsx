@@ -58,9 +58,9 @@ export function PlatformsSection() {
           <FadeIn direction="left">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="status-dot status-dot-cyan" />
-                <span className="text-sm font-mono tracking-[0.3em] text-cyan/50 uppercase">Technology</span>
-                <div className="h-px w-16 bg-gradient-to-r from-cyan/30 to-transparent" />
+                <div className="status-dot status-dot-steel" />
+                <span className="text-sm font-mono tracking-[0.3em] text-steel/50 uppercase">Technology</span>
+                <div className="h-px w-16 bg-gradient-to-r from-steel/30 to-transparent" />
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight max-w-xl text-balance font-heading">
                 ENGINES THAT POWER OUR WORLDS
@@ -78,7 +78,7 @@ export function PlatformsSection() {
           {/* Unity card */}
           <StaggerItem>
             <motion.div
-              className="hud-corners relative group overflow-hidden border border-cyan/20 aspect-[4/3] hover:border-cyan/40 transition-all duration-500"
+              className="hud-corners relative group overflow-hidden border border-steel/20 aspect-[4/3] hover:border-steel/40 transition-all duration-500"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
@@ -91,12 +91,12 @@ export function PlatformsSection() {
               />
               <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-500" />
               {/* Corner accent */}
-              <div className="absolute bottom-0 left-0 w-12 h-px bg-cyan group-hover:w-24 transition-all duration-500" />
-              <div className="absolute bottom-0 left-0 h-12 w-px bg-cyan group-hover:h-24 transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 w-12 h-px bg-steel group-hover:w-24 transition-all duration-500" />
+              <div className="absolute bottom-0 left-0 h-12 w-px bg-steel group-hover:h-24 transition-all duration-500" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <span className="text-foreground text-4xl lg:text-5xl font-black tracking-wider block font-heading">Unity</span>
-                  <span className="text-cyan text-xs tracking-[0.3em] font-tactical mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">GAME ENGINE</span>
+                  <span className="text-steel text-xs tracking-[0.3em] font-tactical mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">GAME ENGINE</span>
                 </div>
               </div>
             </motion.div>

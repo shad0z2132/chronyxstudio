@@ -49,6 +49,12 @@ const config: Config = {
           dark: '#00bcd4',
           light: '#66f7ff',
         },
+        steel: {
+          DEFAULT: '#4aa8c0',
+          dark: '#2d6e83',
+          light: '#7ec8d8',
+          muted: '#3a8a9e',
+        },
         pink: {
           DEFAULT: '#ff2d78',
           dark: '#d4145a',

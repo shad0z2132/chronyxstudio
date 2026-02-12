@@ -33,7 +33,7 @@ function FloatingParticles() {
             : i % 5 === 0
               ? "bg-purple"
               : i % 3 === 0
-                ? "bg-cyan"
+                ? "bg-steel"
                 : "bg-white",
       })),
     []
@@ -77,8 +77,8 @@ function GeometricOverlay() {
       <div className="scan-line" />
 
       {/* HUD corner brackets — top left */}
-      <div className="absolute top-[12%] left-[6%] w-20 h-20 border-l-2 border-t-2 border-cyan/10" />
-      <div className="absolute top-[12%] left-[6%] w-3 h-3 bg-cyan/20" />
+      <div className="absolute top-[12%] left-[6%] w-20 h-20 border-l-2 border-t-2 border-steel/10" />
+      <div className="absolute top-[12%] left-[6%] w-3 h-3 bg-steel/20" />
 
       {/* HUD corner brackets — bottom right */}
       <div className="absolute bottom-[18%] right-[6%] w-20 h-20 border-r-2 border-b-2 border-gold/10" />
@@ -86,8 +86,8 @@ function GeometricOverlay() {
 
       {/* Crosshair indicator — center right */}
       <div className="absolute top-1/2 right-[15%] -translate-y-1/2 hidden xl:block">
-        <div className="w-px h-8 bg-gradient-to-b from-transparent to-cyan/15 mx-auto" />
-        <div className="w-8 h-px bg-gradient-to-r from-transparent via-cyan/15 to-transparent -mt-4" />
+        <div className="w-px h-8 bg-gradient-to-b from-transparent to-steel/15 mx-auto" />
+        <div className="w-8 h-px bg-gradient-to-r from-transparent via-steel/15 to-transparent -mt-4" />
       </div>
 
       {/* Diagonal tactical lines */}
@@ -185,7 +185,7 @@ export function HeroSection() {
         <GeometricOverlay />
 
         {/* Top neon accent line — gold → cyan → purple */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-cyan to-purple animate-glow-line z-20" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-steel to-purple animate-glow-line z-20" />
 
         {/* Bracket lines */}
         <div className="bracket-line-left" />
@@ -224,12 +224,12 @@ export function HeroSection() {
           transition={{ delay: 2, duration: 0.8 }}
           style={{ opacity: scrollIndicatorOpacity }}
         >
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-cyan/30" />
-          <span className="hero-vertical-text text-xs font-mono tracking-[0.35em] text-cyan/40 uppercase">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent to-steel/30" />
+          <span className="hero-vertical-text text-xs font-mono tracking-[0.35em] text-steel/40 uppercase">
             Scroll to explore
           </span>
           <motion.div
-            className="w-px h-12 bg-gradient-to-b from-cyan/30 to-transparent"
+            className="w-px h-12 bg-gradient-to-b from-steel/30 to-transparent"
             animate={{ scaleY: [1, 1.5, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -243,7 +243,7 @@ export function HeroSection() {
           {/* ─── Top Status Bar ───────────────────────────────────────── */}
           <FadeIn delay={0.2}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="status-dot status-dot-cyan" />
+              <div className="status-dot status-dot-purple" />
               <motion.div
                 className="h-px bg-gold/50"
                 initial={{ width: 0 }}
@@ -260,8 +260,8 @@ export function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.6 }}
               />
               {/* System status badge */}
-              <span className="hidden sm:inline-flex items-center gap-2 border border-cyan/20 px-3 py-1 text-xs font-mono tracking-[0.2em] text-cyan/50 uppercase genre-badge">
-                <span className="status-dot status-dot-cyan" />
+              <span className="hidden sm:inline-flex items-center gap-2 border border-purple/20 px-3 py-1 text-xs font-mono tracking-[0.2em] text-purple/50 uppercase genre-badge">
+                <span className="status-dot status-dot-purple" />
                 Systems Online
               </span>
             </div>

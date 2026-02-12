@@ -239,6 +239,7 @@
 .status-dot-cyan { color: #00f0ff; background: #00f0ff; }
 .status-dot-gold { color: #d4a853; background: #d4a853; }
 .status-dot-purple { color: #8b5cf6; background: #8b5cf6; }
+.status-dot-steel { color: #4aa8c0; background: #4aa8c0; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    GAME MENU BUTTONS
@@ -279,15 +280,15 @@
   box-shadow: 0 0 20px rgba(212, 168, 83, 0.3), 0 0 40px rgba(212, 168, 83, 0.1);
 }
 
-/* Secondary variant — outlined with cyan glow */
+/* Secondary variant — outlined with purple glow (studio-neutral) */
 .game-btn-secondary {
   background: transparent;
-  color: #00f0ff;
-  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.4);
+  color: #a78bfa;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.4);
 }
 .game-btn-secondary:hover {
-  background: rgba(0, 240, 255, 0.08);
-  box-shadow: inset 0 0 0 1px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
+  background: rgba(139, 92, 246, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.8), 0 0 20px rgba(139, 92, 246, 0.15);
 }
 
 /* Ghost variant — subtle purple glow */
@@ -359,7 +360,7 @@
   animation: glitch-1 0.3s linear infinite;
   opacity: 0.6;
   mix-blend-mode: screen;
-  border-left: 2px solid #00f0ff;
+  border-left: 2px solid #4aa8c0;
 }
 
 .glitch-effect:hover::after {
@@ -441,10 +442,10 @@
 
 /* Multi-color glow pulse — Chronyx signature */
 @keyframes chronyx-glow {
-  0% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.3), 0 0 10px rgba(0, 240, 255, 0.1); }
+  0% { box-shadow: 0 0 5px rgba(74, 168, 192, 0.3), 0 0 10px rgba(74, 168, 192, 0.1); }
   33% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.3), 0 0 10px rgba(139, 92, 246, 0.1); }
   66% { box-shadow: 0 0 5px rgba(212, 168, 83, 0.3), 0 0 10px rgba(212, 168, 83, 0.1); }
-  100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.3), 0 0 10px rgba(0, 240, 255, 0.1); }
+  100% { box-shadow: 0 0 5px rgba(74, 168, 192, 0.3), 0 0 10px rgba(74, 168, 192, 0.1); }
 }
 
 .chronyx-glow {
@@ -540,7 +541,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #d4a853, #00f0ff, transparent);
+  background: linear-gradient(90deg, transparent, #d4a853, #4aa8c0, transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -627,10 +628,10 @@
   }
 }
 
-/* Gradient text effect — gold + cyan (solid color fallback for TextReveal compatibility) */
+/* Gradient text effect — gold + steel (solid color fallback for TextReveal compatibility) */
 .hero-text-gradient {
   color: #d4a853;
-  text-shadow: 0 0 30px rgba(212, 168, 83, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+  text-shadow: 0 0 30px rgba(212, 168, 83, 0.3), 0 0 60px rgba(74, 168, 192, 0.1);
 }
 
 /* Alternate gradient — purple + gold (solid color fallback) */
@@ -641,7 +642,7 @@
 
 /* True CSS gradient text — for elements NOT using TextReveal */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #d4a853, #00f0ff);
+  background: linear-gradient(135deg, #d4a853, #4aa8c0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -943,7 +944,7 @@
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #d4a853, #00f0ff);
+  background: linear-gradient(180deg, #d4a853, #4aa8c0);
 }
 
 *:focus-visible {
@@ -981,13 +982,613 @@
 }
 
 .genre-badge-fps {
-  color: #00f0ff;
-  border-color: rgba(0, 240, 255, 0.3);
-  background: rgba(0, 240, 255, 0.06);
+  color: #4aa8c0;
+  border-color: rgba(74, 168, 192, 0.3);
+  background: rgba(74, 168, 192, 0.06);
 }
 
 .genre-badge-studio {
   color: #8b5cf6;
   border-color: rgba(139, 92, 246, 0.3);
   background: rgba(139, 92, 246, 0.06);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THREE-LAYER VISUAL SYSTEM
+   Layer 1: Studio Neutral — clean, professional, minimal tech
+   Layer 2: Sands of Avalon (ARPG) — Egyptian, ancient, warm sandstone
+   Layer 3: Competitive FPS — tactical, military, cold steel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LAYER 2: SANDS OF AVALON — Egyptian / Ancient / Warm
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ─── ARPG Tone Variables ────────────────────────────────────────────── */
+.tone-arpg {
+  --tone-bg: hsl(30 25% 5%);
+  --tone-card: hsl(30 20% 7%);
+  --tone-border: hsl(35 25% 18% / 0.35);
+  --tone-border-hover: hsl(35 40% 30% / 0.5);
+  --tone-accent: #d4a853;
+  --tone-accent-secondary: #cd7f32;
+  --tone-accent-muted: rgba(212, 168, 83, 0.12);
+  --tone-glow: rgba(212, 168, 83, 0.1);
+  --tone-glow-strong: rgba(212, 168, 83, 0.25);
+  --tone-text: hsl(38 35% 72%);
+  --tone-text-muted: hsl(35 15% 45%);
+  --tone-divider: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.25), rgba(205, 127, 50, 0.15), transparent);
+}
+
+/* ─── Sand Grain Texture — desert / ancient stone feel ───────────────── */
+.sand-grain-bg {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='sand'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23sand)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Hieroglyph Pattern — subtle decorative background ──────────────── */
+.hieroglyph-pattern {
+  background-image:
+    linear-gradient(0deg, rgba(212, 168, 83, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 168, 83, 0.015) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(205, 127, 50, 0.01) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 20px 20px;
+}
+
+/* ─── Stone Brick Pattern — temple wall texture ──────────────────────── */
+.stone-brick-bg {
+  background-image:
+    linear-gradient(0deg, rgba(212, 168, 83, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 168, 83, 0.025) 1px, transparent 1px);
+  background-size: 120px 50px;
+  background-position: 0 0;
+}
+
+/* ─── ARPG Corner Ornaments — Egyptian temple frame ──────────────────── */
+/* Replaces HUD corners with angular pharaonic geometry */
+.arpg-corners {
+  position: relative;
+}
+
+/* Top-left: temple doorframe angle */
+.arpg-corners::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-top: 2px solid rgba(212, 168, 83, 0.45);
+  border-left: 2px solid rgba(212, 168, 83, 0.45);
+  pointer-events: none;
+  z-index: 20;
+}
+/* Top-left inner notch */
+.arpg-corners::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid rgba(205, 127, 50, 0.35);
+  border-left: 1px solid rgba(205, 127, 50, 0.35);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Top-right corner ornament */
+.arpg-corner-tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-top: 2px solid rgba(212, 168, 83, 0.45);
+  border-right: 2px solid rgba(212, 168, 83, 0.45);
+  pointer-events: none;
+  z-index: 20;
+}
+.arpg-corner-tr::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid rgba(205, 127, 50, 0.35);
+  border-right: 1px solid rgba(205, 127, 50, 0.35);
+}
+
+/* Bottom-left corner ornament */
+.arpg-corner-bl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-bottom: 2px solid rgba(205, 127, 50, 0.4);
+  border-left: 2px solid rgba(205, 127, 50, 0.4);
+  pointer-events: none;
+  z-index: 20;
+}
+.arpg-corner-bl::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.3);
+  border-left: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+/* Bottom-right corner ornament */
+.arpg-corner-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-bottom: 2px solid rgba(205, 127, 50, 0.4);
+  border-right: 2px solid rgba(205, 127, 50, 0.4);
+  pointer-events: none;
+  z-index: 20;
+}
+.arpg-corner-br::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.3);
+  border-right: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+/* ─── ARPG Card Style — stone tablet feel ────────────────────────────── */
+.arpg-card {
+  background: var(--tone-card);
+  border: 1px solid var(--tone-border);
+  box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.04), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.arpg-card:hover {
+  border-color: var(--tone-border-hover);
+  box-shadow:
+    0 0 25px var(--tone-glow),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(212, 168, 83, 0.08);
+}
+
+/* Top accent line — warm torch glow */
+.arpg-card-accent {
+  position: relative;
+}
+.arpg-card-accent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4a853, #cd7f32, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.arpg-card-accent:hover::after {
+  opacity: 0.5;
+}
+
+/* ─── ARPG Section Divider — carved stone border ─────────────────────── */
+.arpg-divider {
+  height: 2px;
+  background: var(--tone-divider);
+  position: relative;
+}
+.arpg-divider::before,
+.arpg-divider::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  transform: rotate(45deg);
+  background: var(--tone-bg, hsl(30 25% 5%));
+}
+.arpg-divider::before { left: 20%; }
+.arpg-divider::after { right: 20%; }
+
+/* ─── ARPG Glow Style — warm torch bloom ─────────────────────────────── */
+@keyframes torch-flicker {
+  0%, 100% { opacity: 0.08; }
+  25% { opacity: 0.12; }
+  50% { opacity: 0.06; }
+  75% { opacity: 0.1; }
+}
+
+.arpg-torch-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+  animation: torch-flicker 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ─── ARPG Status Dot — ember pulse ──────────────────────────────────── */
+@keyframes ember-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #d4a853, 0 0 8px rgba(205, 127, 50, 0.4); }
+  50% { opacity: 0.6; box-shadow: 0 0 8px #d4a853, 0 0 16px rgba(205, 127, 50, 0.6); }
+}
+.status-dot-arpg {
+  color: #d4a853;
+  background: #d4a853;
+  animation: ember-pulse 3s ease-in-out infinite;
+}
+
+/* ─── ARPG Genre Badge ────────────────────────────────────────────────── */
+.genre-badge-arpg-full {
+  color: #d4a853;
+  border-color: rgba(212, 168, 83, 0.35);
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(205, 127, 50, 0.04));
+  text-shadow: 0 0 12px rgba(212, 168, 83, 0.2);
+}
+
+/* ─── ARPG Image Tint — warm amber overlay ───────────────────────────── */
+.arpg-image-tint {
+  background: linear-gradient(135deg, rgba(139, 90, 20, 0.15), rgba(212, 168, 83, 0.05));
+}
+
+/* ─── ARPG Glitch Effect Override — sand/gold distortion ─────────────── */
+.tone-arpg .glitch-effect:hover::before {
+  border-left-color: #d4a853;
+}
+.tone-arpg .glitch-effect:hover::after {
+  border-left-color: #cd7f32;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LAYER 3: COMPETITIVE FPS — Tactical / Military / Cold Steel
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ─── FPS Tone Variables ─────────────────────────────────────────────── */
+.tone-fps {
+  --tone-bg: hsl(210 20% 4%);
+  --tone-card: hsl(210 18% 6%);
+  --tone-border: hsl(210 15% 16% / 0.4);
+  --tone-border-hover: hsl(210 25% 25% / 0.5);
+  --tone-accent: #4aa8c0;
+  --tone-accent-secondary: #2d6e83;
+  --tone-accent-muted: rgba(74, 168, 192, 0.1);
+  --tone-glow: rgba(74, 168, 192, 0.08);
+  --tone-glow-strong: rgba(74, 168, 192, 0.2);
+  --tone-text: hsl(200 20% 68%);
+  --tone-text-muted: hsl(210 10% 42%);
+  --tone-danger: #c94040;
+  --tone-divider: linear-gradient(90deg, transparent, rgba(74, 168, 192, 0.2), rgba(45, 110, 131, 0.1), transparent);
+}
+
+/* ─── Carbon Fiber Texture — tactical equipment feel ─────────────────── */
+.carbon-fiber-bg {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(74, 168, 192, 0.012) 2px,
+      rgba(74, 168, 192, 0.012) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(74, 168, 192, 0.008) 2px,
+      rgba(74, 168, 192, 0.008) 4px
+    );
+}
+
+/* ─── Tactical Grid — map / HUD overlay ──────────────────────────────── */
+.tactical-grid-bg {
+  background-image:
+    linear-gradient(0deg, rgba(74, 168, 192, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 168, 192, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(74, 168, 192, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 168, 192, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+}
+
+/* ─── Radar Sweep Background ─────────────────────────────────────────── */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.radar-sweep-bg {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(74, 168, 192, 0.04) 30deg,
+    transparent 60deg
+  );
+  animation: radar-sweep 8s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── FPS Corner Style — tactical bevel / mil-spec edges ─────────────── */
+.fps-corners {
+  position: relative;
+}
+
+/* Top-left: precision bracket with tick marks */
+.fps-corners::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid rgba(74, 168, 192, 0.5);
+  border-left: 2px solid rgba(74, 168, 192, 0.5);
+  pointer-events: none;
+  z-index: 20;
+}
+/* Top-right bracket */
+.fps-corners::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid rgba(74, 168, 192, 0.5);
+  border-right: 2px solid rgba(74, 168, 192, 0.5);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Bottom-left tick bracket */
+.fps-corner-bl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-bottom: 2px solid rgba(45, 110, 131, 0.45);
+  border-left: 2px solid rgba(45, 110, 131, 0.45);
+  pointer-events: none;
+  z-index: 20;
+}
+/* Tick mark on bottom-left */
+.fps-corner-bl::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: -1px;
+  width: 6px;
+  height: 1px;
+  background: rgba(74, 168, 192, 0.3);
+}
+
+/* Bottom-right tick bracket */
+.fps-corner-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-bottom: 2px solid rgba(45, 110, 131, 0.45);
+  border-right: 2px solid rgba(45, 110, 131, 0.45);
+  pointer-events: none;
+  z-index: 20;
+}
+/* Tick mark on bottom-right */
+.fps-corner-br::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right: -1px;
+  width: 6px;
+  height: 1px;
+  background: rgba(74, 168, 192, 0.3);
+}
+
+/* ─── FPS Card Style — loadout / equipment card ──────────────────────── */
+.fps-card {
+  background: var(--tone-card);
+  border: 1px solid var(--tone-border);
+  box-shadow: inset 0 1px 0 rgba(74, 168, 192, 0.03);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.fps-card:hover {
+  border-color: var(--tone-border-hover);
+  box-shadow:
+    0 0 20px var(--tone-glow),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(74, 168, 192, 0.06);
+}
+
+/* Top accent line — precision laser */
+.fps-card-accent {
+  position: relative;
+}
+.fps-card-accent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 10%, var(--tone-accent) 30%, var(--tone-accent) 70%, transparent 90%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.fps-card-accent:hover::after {
+  opacity: 0.5;
+}
+
+/* ─── FPS Section Divider — thin precision line ──────────────────────── */
+.fps-divider {
+  height: 1px;
+  background: var(--tone-divider);
+  position: relative;
+}
+.fps-divider::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--tone-accent);
+  opacity: 0.3;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* ─── FPS Status Dot — sharp digital pulse ───────────────────────────── */
+@keyframes tactical-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 3px currentColor; }
+  50% { opacity: 0.4; box-shadow: 0 0 6px currentColor, 0 0 12px currentColor; }
+}
+.status-dot-fps {
+  color: #4aa8c0;
+  background: #4aa8c0;
+  animation: tactical-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── FPS Genre Badge ─────────────────────────────────────────────────── */
+.genre-badge-fps-full {
+  color: #4aa8c0;
+  border-color: rgba(74, 168, 192, 0.35);
+  background: rgba(74, 168, 192, 0.06);
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.2em;
+}
+
+/* ─── FPS Image Tint — cold steel overlay ────────────────────────────── */
+.fps-image-tint {
+  background: linear-gradient(135deg, rgba(20, 50, 70, 0.2), rgba(74, 168, 192, 0.05));
+}
+
+/* ─── FPS Glitch Effect Override — digital static ────────────────────── */
+.tone-fps .glitch-effect:hover::before {
+  border-left-color: #4aa8c0;
+}
+.tone-fps .glitch-effect:hover::after {
+  border-left-color: #c94040;
+}
+
+/* ─── FPS Mil-Spec Label — stencil-style text treatment ──────────────── */
+.mil-spec-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--tone-text-muted, hsl(210 10% 42%));
+}
+
+/* ─── FPS Crosshair Decorator ────────────────────────────────────────── */
+.fps-crosshair {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.fps-crosshair::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 1px;
+  background: rgba(74, 168, 192, 0.4);
+}
+.fps-crosshair::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  background: rgba(74, 168, 192, 0.4);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SHARED TONE UTILITIES (work with both layers)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Generic tone card — inherits from whichever .tone-* parent */
+.tone-card {
+  background: var(--tone-card);
+  border-color: var(--tone-border);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.tone-card:hover {
+  border-color: var(--tone-border-hover);
+  box-shadow: 0 0 30px var(--tone-glow), inset 0 1px 0 var(--tone-border-hover);
+}
+
+/* Generic top accent line on tone cards */
+.tone-card-accent {
+  position: relative;
+}
+.tone-card-accent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--tone-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.tone-card-accent:hover::after {
+  opacity: 0.6;
+}
+
+/* ─── Section Transition — visual crossing between warm/cold zones ──── */
+.tone-transition-warm-to-cold {
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    hsl(30 25% 5%) 0%,
+    hsl(220 18% 3%) 40%,
+    hsl(210 20% 4%) 100%
+  );
+  position: relative;
+}
+.tone-transition-warm-to-cold::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.15), rgba(74, 168, 192, 0.15), transparent);
+}
+
+.tone-transition-cold-to-warm {
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    hsl(210 20% 4%) 0%,
+    hsl(220 18% 3%) 40%,
+    hsl(30 25% 5%) 100%
+  );
+  position: relative;
+}
+.tone-transition-cold-to-warm::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 168, 192, 0.15), rgba(212, 168, 83, 0.15), transparent);
 }

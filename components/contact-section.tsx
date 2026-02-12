@@ -18,7 +18,7 @@ const communityLinks = [
     label: "Twitter / X",
     description: "Follow development updates",
     href: "#",
-    accent: "cyan",
+    accent: "steel",
   },
   {
     icon: Swords,
@@ -31,7 +31,7 @@ const communityLinks = [
 
 const accentMap = {
   gold: { text: "text-gold", bg: "bg-gold/10", border: "border-gold/20", hoverBg: "group-hover:bg-gold/10" },
-  cyan: { text: "text-cyan", bg: "bg-cyan/10", border: "border-cyan/20", hoverBg: "group-hover:bg-cyan/10" },
+  steel: { text: "text-steel", bg: "bg-steel/10", border: "border-steel/20", hoverBg: "group-hover:bg-steel/10" },
   purple: { text: "text-purple", bg: "bg-purple/10", border: "border-purple/20", hoverBg: "group-hover:bg-purple/10" },
 } as const
 
@@ -49,8 +49,8 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative py-28 lg:py-40 overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       {/* Top separator */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />

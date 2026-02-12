@@ -39,14 +39,30 @@ const accentMap = {
     bg: "bg-gold",
     bgMuted: "bg-gold/10",
     quote: "text-gold/20",
+    toneClass: "tone-arpg",
+    cornersClass: "arpg-corners",
+    cornerTR: "arpg-corner-tr",
+    cornerBL: "arpg-corner-bl",
+    cornerBR: "arpg-corner-br",
+    cardClass: "arpg-card",
+    textureBg: "sand-grain-bg",
+    toneBg: "linear-gradient(180deg, hsl(30 20% 6%), hsl(30 15% 5%))",
   },
   cyan: {
-    text: "text-cyan",
-    border: "border-cyan/20",
-    hoverBorder: "hsl(174, 100%, 50%, 0.3)",
-    bg: "bg-cyan",
-    bgMuted: "bg-cyan/10",
-    quote: "text-cyan/20",
+    text: "text-steel",
+    border: "border-steel/20",
+    hoverBorder: "hsl(195, 45%, 50%, 0.3)",
+    bg: "bg-steel",
+    bgMuted: "bg-steel/10",
+    quote: "text-steel/20",
+    toneClass: "tone-fps",
+    cornersClass: "fps-corners",
+    cornerTR: "",
+    cornerBL: "fps-corner-bl",
+    cornerBR: "fps-corner-br",
+    cardClass: "fps-card",
+    textureBg: "carbon-fiber-bg",
+    toneBg: "linear-gradient(180deg, hsl(210 18% 5%), hsl(210 15% 4%))",
   },
   purple: {
     text: "text-purple",
@@ -55,14 +71,22 @@ const accentMap = {
     bg: "bg-purple",
     bgMuted: "bg-purple/10",
     quote: "text-purple/20",
+    toneClass: "tone-arpg",
+    cornersClass: "arpg-corners",
+    cornerTR: "arpg-corner-tr",
+    cornerBL: "arpg-corner-bl",
+    cornerBR: "arpg-corner-br",
+    cardClass: "arpg-card",
+    textureBg: "sand-grain-bg",
+    toneBg: "linear-gradient(180deg, hsl(30 20% 6%), hsl(30 15% 5%))",
   },
 } as const
 
 export function TestimonialsSection() {
   return (
     <section id="testimonials" className="relative py-28 lg:py-40 bg-card overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       {/* Top separator glow */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple/30 to-transparent" />
@@ -102,22 +126,28 @@ export function TestimonialsSection() {
             return (
               <StaggerItem key={item.name}>
                 <motion.div
-                  className={`hud-corners group bg-background border ${accent.border} p-6 lg:p-8 transition-all duration-500 ${
+                  className={`${accent.cornersClass} ${accent.cardClass} group border ${accent.border} p-6 lg:p-8 transition-all duration-500 ${accent.toneClass} ${
                     index === 1 ? "md:-mt-10" : index === 2 ? "md:mt-10" : ""
                   }`}
+                  style={{ background: accent.toneBg }}
                   whileHover={{ y: -6, borderColor: accent.hoverBorder }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
-                  <div className="hud-corner-bl" />
-                  <div className="hud-corner-br" />
+                  {/* IP-specific corners */}
+                  {accent.cornerTR && <div className={accent.cornerTR} />}
+                  <div className={accent.cornerBL} />
+                  <div className={accent.cornerBR} />
+
+                  {/* IP-specific background texture */}
+                  <div className={`absolute inset-0 ${accent.textureBg} pointer-events-none`} />
 
                   {/* Quote mark */}
-                  <div className={`${accent.quote} text-5xl font-serif leading-none mb-2`}>{'"'}</div>
-                  <p className="text-muted-foreground text-base leading-[1.85] mb-6 font-tactical">
+                  <div className={`${accent.quote} text-5xl font-serif leading-none mb-2 relative z-10`}>{'"'}</div>
+                  <p className="text-muted-foreground text-base leading-[1.85] mb-6 font-tactical relative z-10">
                     {item.quote}
                   </p>
-                  <div className={`h-px w-full bg-gradient-to-r from-transparent ${accent.text === "text-gold" ? "via-gold/20" : accent.text === "text-cyan" ? "via-cyan/20" : "via-purple/20"} to-transparent mb-5`} />
-                  <div className="flex items-center gap-3">
+                  <div className={`h-px w-full bg-gradient-to-r from-transparent ${item.accent === "gold" ? "via-gold/20" : item.accent === "cyan" ? "via-steel/20" : "via-purple/20"} to-transparent mb-5 relative z-10`} />
+                  <div className="flex items-center gap-3 relative z-10">
                     <div className={`w-10 h-10 ${accent.bgMuted} flex items-center justify-center border ${accent.border} group-hover:border-opacity-60 transition-colors duration-300`}>
                       <span className={`${accent.text} text-xs font-bold font-heading`}>{item.initials}</span>
                     </div>

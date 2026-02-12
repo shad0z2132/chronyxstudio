@@ -20,7 +20,7 @@ const approaches = [
     title: "INDEPENDENT TITLES",
     image: "/images/dedicated-team.jpg",
     imageAlt: "Independent game development",
-    accent: "cyan",
+    accent: "steel",
     icon: Layers,
     points: [
       "Each IP developed with its own team and vision",
@@ -55,15 +55,15 @@ const accentMap = {
     line: "bg-gold",
     icon: "text-gold",
   },
-  cyan: {
-    text: "text-cyan",
-    border: "border-cyan/20",
-    hoverBorder: "hover:border-cyan/40",
-    bg: "bg-cyan",
-    bgMuted: "bg-cyan/10",
-    dot: "status-dot-cyan",
-    line: "bg-cyan",
-    icon: "text-cyan",
+  steel: {
+    text: "text-steel",
+    border: "border-steel/20",
+    hoverBorder: "hover:border-steel/40",
+    bg: "bg-steel",
+    bgMuted: "bg-steel/10",
+    dot: "status-dot-steel",
+    line: "bg-steel",
+    icon: "text-steel",
   },
   purple: {
     text: "text-purple",
@@ -90,8 +90,8 @@ const principles = [
 export function CooperationSection() {
   return (
     <section className="relative py-28 lg:py-40 overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
         {/* Header */}

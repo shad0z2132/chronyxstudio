@@ -47,15 +47,37 @@ const accentStyles = {
     bgMuted: "bg-gold/10",
     shadow: "shadow-gold/20",
     badge: "genre-badge-arpg",
+    cornersClass: "arpg-corners",
+    cornerBL: "arpg-corner-bl",
+    cornerBR: "arpg-corner-br",
+    cornerTR: "arpg-corner-tr",
+    cardClass: "arpg-card arpg-card-accent",
+    textureBg: "sand-grain-bg",
+    imageTint: "arpg-image-tint",
+    statusDot: "status-dot-arpg",
+    toneBg: "linear-gradient(135deg, hsl(30 20% 6%), hsl(30 15% 5%))",
+    borderColor: "rgba(212, 168, 83, 0.2)",
+    dividerVia: "via-gold/30",
   },
   cyan: {
-    text: "text-cyan",
-    border: "border-cyan",
-    borderMuted: "border-cyan/30",
-    bg: "bg-cyan",
-    bgMuted: "bg-cyan/10",
-    shadow: "shadow-cyan/20",
+    text: "text-steel",
+    border: "border-steel",
+    borderMuted: "border-steel/30",
+    bg: "bg-steel",
+    bgMuted: "bg-steel/10",
+    shadow: "shadow-steel/20",
     badge: "genre-badge-fps",
+    cornersClass: "fps-corners",
+    cornerBL: "fps-corner-bl",
+    cornerBR: "fps-corner-br",
+    cornerTR: "",
+    cardClass: "fps-card fps-card-accent",
+    textureBg: "carbon-fiber-bg",
+    imageTint: "fps-image-tint",
+    statusDot: "status-dot-fps",
+    toneBg: "linear-gradient(135deg, hsl(210 18% 5%), hsl(210 15% 4%))",
+    borderColor: "rgba(74, 168, 192, 0.18)",
+    dividerVia: "via-steel/30",
   },
 } as const
 
@@ -66,8 +88,8 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="relative py-28 lg:py-40 overflow-hidden bg-card">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral dot pattern */}
+      <div className="absolute inset-0 dot-pattern" />
 
       {/* Top separator glow */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
@@ -153,11 +175,21 @@ export function ProjectsSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+            className={current.accent === "gold" ? "tone-arpg" : "tone-fps"}
           >
-            <div className={`hud-corners relative overflow-hidden border ${accent.borderMuted} bg-background transition-all duration-500`}>
-              {/* HUD corners */}
-              <div className="hud-corner-bl" />
-              <div className="hud-corner-br" />
+            <div className={`${accent.cornersClass} relative overflow-hidden border ${accent.cardClass} transition-all duration-500`}
+              style={{
+                background: accent.toneBg,
+                borderColor: accent.borderColor,
+              }}
+            >
+              {/* IP-specific corners */}
+              {accent.cornerTR && <div className={accent.cornerTR} />}
+              <div className={accent.cornerBL} />
+              <div className={accent.cornerBR} />
+
+              {/* IP-specific background texture */}
+              <div className={`absolute inset-0 ${accent.textureBg} pointer-events-none`} />
 
               <div className="flex flex-col lg:flex-row min-h-[420px]">
                 {/* Left: Image with glitch effect */}
@@ -169,6 +201,8 @@ export function ProjectsSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-background/40 to-background" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20" />
+                  {/* IP tone tint */}
+                  <div className={`absolute inset-0 ${accent.imageTint}`} />
 
                   {/* Tagline overlay */}
                   <div className="absolute bottom-6 left-6 z-10">
@@ -221,7 +255,7 @@ export function ProjectsSection() {
 
                   <a
                     href="#contact"
-                    className={`game-btn game-btn-${current.accent === "gold" ? "primary" : "secondary"} inline-flex items-center gap-2 w-fit text-xs`}
+                    className={`game-btn ${current.accent === "gold" ? "game-btn-primary" : "game-btn-secondary"} inline-flex items-center gap-2 w-fit text-xs`}
                   >
                     LEARN MORE
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -230,7 +264,7 @@ export function ProjectsSection() {
               </div>
 
               {/* Bottom accent line */}
-              <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent ${accent.text === "text-gold" ? "via-gold/40" : "via-cyan/40"} to-transparent`} />
+              <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent ${accent.dividerVia} to-transparent`} />
             </div>
           </motion.div>
         </AnimatePresence>

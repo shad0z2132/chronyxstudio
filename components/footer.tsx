@@ -45,9 +45,7 @@ export function Footer() {
 
   return (
     <footer className="relative bg-background border-t border-border overflow-hidden">
-      {/* Hex grid background */}
-      <div className="absolute inset-0 hex-grid-bg opacity-50" />
-      {/* Dot pattern overlay */}
+      {/* Dot pattern background */}
       <div className="absolute inset-0 dot-pattern" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 relative z-10">
@@ -93,7 +91,7 @@ export function Footer() {
                     E-mail<br />
                     <a
                       href="mailto:contact@chronyxstudio.com"
-                      className="text-cyan hover:text-gold hover:underline transition-colors duration-300"
+                      className="text-purple hover:text-gold hover:underline transition-colors duration-300"
                     >
                       contact@chronyxstudio.com
                     </a>

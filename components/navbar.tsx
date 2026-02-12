@@ -86,7 +86,7 @@ export function Navbar() {
       >
         {/* Scroll Progress Bar — gold → cyan → purple gradient */}
         <motion.div
-          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-cyan to-purple z-50 origin-left"
+          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-steel to-purple z-50 origin-left"
           style={{ scaleX, opacity: scrolled ? 1 : 0 }}
         />
 
@@ -136,7 +136,7 @@ export function Navbar() {
                   <span
                     className={`font-mono text-xs transition-colors duration-300 ${
                       activeSection === link.href
-                        ? "text-cyan"
+                        ? "text-purple"
                         : "text-muted-foreground/40 group-hover:text-gold/60"
                     }`}
                   >
@@ -264,8 +264,8 @@ export function Navbar() {
                     <span
                       className={`font-mono text-xs tracking-[0.3em] ${
                         activeSection === link.href
-                          ? "text-cyan"
-                          : "text-muted-foreground/40 group-hover:text-cyan/60"
+                          ? "text-purple"
+                          : "text-muted-foreground/40 group-hover:text-purple/60"
                       } transition-colors duration-300`}
                     >
                       {link.num}

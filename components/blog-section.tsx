@@ -38,17 +38,17 @@ const posts = [
 const tagColors = {
   gold: "bg-gold/10 text-gold",
   purple: "bg-purple/10 text-purple",
-  cyan: "bg-cyan/10 text-cyan",
+  cyan: "bg-steel/10 text-steel",
 } as const
 
 export function BlogSection() {
   return (
     <section className="relative py-28 lg:py-40 bg-card overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       {/* Top separator */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Header */}
@@ -56,11 +56,11 @@ export function BlogSection() {
           <FadeIn direction="left">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="status-dot status-dot-cyan" />
-                <span className="text-sm font-mono tracking-[0.3em] text-cyan/50 uppercase">
+                <div className="status-dot status-dot-purple" />
+                <span className="text-sm font-mono tracking-[0.3em] text-purple/50 uppercase">
                   Dev Log
                 </span>
-                <div className="h-px w-16 bg-gradient-to-r from-cyan/30 to-transparent" />
+                <div className="h-px w-16 bg-gradient-to-r from-purple/30 to-transparent" />
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] text-balance font-heading tracking-tight">
                 FROM THE
@@ -84,15 +84,31 @@ export function BlogSection() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5" staggerDelay={0.15}>
           {posts.map((post) => {
             const tagColor = tagColors[post.tagAccent as keyof typeof tagColors]
+            const isARPG = post.tagAccent !== "cyan"
+            const toneClass = isARPG ? "tone-arpg" : "tone-fps"
+            const cornersClass = isARPG ? "arpg-corners" : "fps-corners"
+            const cardClass = isARPG ? "arpg-card" : "fps-card"
+            const toneBg = isARPG
+              ? "linear-gradient(180deg, hsl(30 20% 6%), hsl(30 15% 5%))"
+              : "linear-gradient(180deg, hsl(210 18% 5%), hsl(210 15% 4%))"
+            const hoverBorder = isARPG ? "hover:border-gold/20" : "hover:border-steel/20"
+            const imageTint = isARPG ? "arpg-image-tint" : "fps-image-tint"
+            const textureBg = isARPG ? "sand-grain-bg" : "carbon-fiber-bg"
             return (
               <StaggerItem key={post.title}>
                 <motion.article
-                  className="hud-corners bg-background border border-border hover:border-gold/20 overflow-hidden group transition-all duration-500 h-full"
+                  className={`${cornersClass} ${cardClass} border border-border ${hoverBorder} overflow-hidden group transition-all duration-500 h-full ${toneClass}`}
+                  style={{ background: toneBg }}
                   whileHover={{ y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
-                  <div className="hud-corner-bl" />
-                  <div className="hud-corner-br" />
+                  {/* IP-specific corners */}
+                  {isARPG && <div className="arpg-corner-tr" />}
+                  <div className={isARPG ? "arpg-corner-bl" : "fps-corner-bl"} />
+                  <div className={isARPG ? "arpg-corner-br" : "fps-corner-br"} />
+
+                  {/* IP-specific background texture */}
+                  <div className={`absolute inset-0 ${textureBg} pointer-events-none`} />
 
                   <div className="relative h-52 overflow-hidden glitch-effect">
                     <img
@@ -100,6 +116,7 @@ export function BlogSection() {
                       alt={post.imageAlt}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
+                    <div className={`absolute inset-0 ${imageTint}`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
                   </div>
                   <div className="p-6">

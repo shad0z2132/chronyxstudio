@@ -17,10 +17,10 @@ const stats = [
 
 const pillars = [
   { label: "Deep Progression", accent: "text-gold" },
-  { label: "Competitive Integrity", accent: "text-cyan" },
+  { label: "Competitive Integrity", accent: "text-steel" },
   { label: "Player Identity", accent: "text-purple" },
   { label: "Long-Term Vision", accent: "text-gold" },
-  { label: "No Pay-to-Win", accent: "text-cyan" },
+  { label: "No Pay-to-Win", accent: "text-steel" },
 ]
 
 const accentMap = {
@@ -29,20 +29,36 @@ const accentMap = {
     bg: "bg-gold/10",
     border: "border-gold/20",
     hoverBorder: "hover:border-gold/40",
+    toneClass: "tone-arpg",
+    cornersClass: "arpg-corners",
+    cornerTR: "arpg-corner-tr",
+    cornerBL: "arpg-corner-bl",
+    cornerBR: "arpg-corner-br",
+    cardClass: "arpg-card",
+    textureBg: "sand-grain-bg",
+    toneBg: "linear-gradient(180deg, hsl(30 20% 6%), hsl(30 15% 5%))",
   },
   cyan: {
-    text: "text-cyan",
-    bg: "bg-cyan/10",
-    border: "border-cyan/20",
-    hoverBorder: "hover:border-cyan/40",
+    text: "text-steel",
+    bg: "bg-steel/10",
+    border: "border-steel/20",
+    hoverBorder: "hover:border-steel/40",
+    toneClass: "tone-fps",
+    cornersClass: "fps-corners",
+    cornerTR: "",
+    cornerBL: "fps-corner-bl",
+    cornerBR: "fps-corner-br",
+    cardClass: "fps-card",
+    textureBg: "carbon-fiber-bg",
+    toneBg: "linear-gradient(180deg, hsl(210 18% 5%), hsl(210 15% 4%))",
   },
 } as const
 
 export function AwardsSection() {
   return (
     <section className="relative py-28 lg:py-40 overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       {/* Top neon divider */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
@@ -76,12 +92,18 @@ export function AwardsSection() {
                 return (
                   <StaggerItem key={milestone.label}>
                     <motion.div
-                      className={`hud-corners group flex items-center gap-3 bg-card border ${a.border} ${a.hoverBorder} p-4 transition-all duration-500`}
+                      className={`${a.cornersClass} ${a.cardClass} group flex items-center gap-3 border ${a.border} ${a.hoverBorder} p-4 transition-all duration-500 ${a.toneClass} relative overflow-hidden`}
+                      style={{ background: a.toneBg }}
                       whileHover={{ scale: 1.03, y: -2 }}
                       transition={{ type: "spring", stiffness: 300, damping: 25 }}
                     >
-                      <div className="hud-corner-bl" />
-                      <div className="hud-corner-br" />
+                      {/* IP-specific corners */}
+                      {a.cornerTR && <div className={a.cornerTR} />}
+                      <div className={a.cornerBL} />
+                      <div className={a.cornerBR} />
+
+                      {/* IP-specific background texture */}
+                      <div className={`absolute inset-0 ${a.textureBg} pointer-events-none`} />
                       <div className={`w-10 h-10 flex items-center justify-center ${a.bg} border ${a.border} shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                         <milestone.icon className={`w-5 h-5 ${a.text}`} strokeWidth={1.5} />
                       </div>
@@ -97,8 +119,8 @@ export function AwardsSection() {
           <FadeIn direction="right" delay={0.2}>
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="status-dot status-dot-cyan" />
-                <span className="text-sm font-mono tracking-[0.3em] text-cyan/50 uppercase">
+                <div className="status-dot status-dot-gold" />
+                <span className="text-sm font-mono tracking-[0.3em] text-gold/50 uppercase">
                   Studio <span className="font-bold text-foreground">Pillars</span>
                 </span>
               </div>
@@ -123,7 +145,7 @@ export function AwardsSection() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 + 0.3 }}
                     >
-                      <div className={`w-2 h-2 rounded-full ${pillar.accent === "text-gold" ? "bg-gold" : pillar.accent === "text-cyan" ? "bg-cyan" : "bg-purple"} group-hover:shadow-[0_0_12px] transition-shadow duration-300`} />
+                      <div className={`w-2 h-2 rounded-full ${pillar.accent === "text-gold" ? "bg-gold" : pillar.accent === "text-steel" ? "bg-steel" : "bg-purple"} group-hover:shadow-[0_0_12px] transition-shadow duration-300`} />
                       <span className={`text-foreground text-base font-tactical group-hover:${pillar.accent} transition-colors duration-300`}>{pillar.label}</span>
                       <div className={`h-px flex-1 bg-gradient-to-r from-border to-transparent`} />
                     </motion.div>

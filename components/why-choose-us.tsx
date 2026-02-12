@@ -21,7 +21,7 @@ const dna = [
     title: "COMPETITIVE INTEGRITY",
     description:
       "From ranked ladders to tournament formats, competitive systems are built into the foundation — not bolted on. Skill expression, team coordination, and fair play are non-negotiable pillars across every Chronyx title.",
-    accent: "cyan",
+    accent: "steel",
   },
   {
     icon: Eye,
@@ -40,12 +40,12 @@ const accentMap = {
     dotBg: "bg-gold",
     glowColor: "group-hover:shadow-[0_0_30px_rgba(212,168,83,0.08)]",
   },
-  cyan: {
-    icon: "text-cyan",
-    border: "border-cyan/20",
-    hoverBorder: "group-hover:border-cyan/40",
-    dotBg: "bg-cyan",
-    glowColor: "group-hover:shadow-[0_0_30px_rgba(0,240,255,0.08)]",
+  steel: {
+    icon: "text-steel",
+    border: "border-steel/20",
+    hoverBorder: "group-hover:border-steel/40",
+    dotBg: "bg-steel",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(74,168,192,0.08)]",
   },
   purple: {
     icon: "text-purple",
@@ -59,8 +59,8 @@ const accentMap = {
 export function WhyChooseUs() {
   return (
     <section className="relative py-28 lg:py-40 pb-44 lg:pb-56 overflow-hidden">
-      {/* Background texture */}
-      <div className="absolute inset-0 hex-grid-bg" />
+      {/* Background texture — neutral */}
+      <div className="absolute inset-0 dot-pattern" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
         {/* Left content margin line — gold neon glow accent */}
