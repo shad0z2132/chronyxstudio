@@ -1,39 +1,15 @@
 "use client"
 
-import { Send, MessageSquare, Swords, Crosshair, Shield } from "lucide-react"
+import { Send, MessageSquare, Shield } from "lucide-react"
 import { useState } from "react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
 const communityLinks = [
-  {
-    icon: MessageSquare,
-    label: "Discord",
-    description: "Join the community",
-    href: "#",
-    accent: "purple",
-  },
-  {
-    icon: Crosshair,
-    label: "Twitter / X",
-    description: "Follow development updates",
-    href: "#",
-    accent: "steel",
-  },
-  {
-    icon: Swords,
-    label: "YouTube",
-    description: "Watch dev logs & trailers",
-    href: "#",
-    accent: "gold",
-  },
+  { icon: MessageSquare, label: "Discord", description: "Join the community", href: "#" },
+  { icon: MessageSquare, label: "Twitter / X", description: "Follow development updates", href: "#" },
+  { icon: MessageSquare, label: "YouTube", description: "Watch dev logs & trailers", href: "#" },
 ]
-
-const accentMap = {
-  gold: { text: "text-gold", bg: "bg-gold/10", border: "border-gold/20", hoverBg: "group-hover:bg-gold/10" },
-  steel: { text: "text-steel", bg: "bg-steel/10", border: "border-steel/20", hoverBg: "group-hover:bg-steel/10" },
-  purple: { text: "text-purple", bg: "bg-purple/10", border: "border-purple/20", hoverBg: "group-hover:bg-purple/10" },
-} as const
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -48,88 +24,80 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="relative py-28 lg:py-40 overflow-hidden">
-      {/* Background texture — neutral */}
-      <div className="absolute inset-0 dot-pattern" />
-
-      {/* Top separator */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
+    <section id="contact" className="relative py-24 lg:py-36 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Vision statement + community */}
-          <FadeIn direction="left">
+          {/* Left */}
+          <FadeIn>
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3 mb-2">
-                <div className="status-dot status-dot-gold" />
-                <span className="text-sm font-mono tracking-[0.3em] text-gold/50 uppercase">
+                <div className="w-8 h-px bg-gold" />
+                <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
                   Join the Mission
                 </span>
-                <div className="h-px w-16 bg-gradient-to-r from-gold/30 to-transparent" />
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] text-balance font-heading tracking-tight">
-                BE PART OF
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
+                Be Part of
                 <br />
-                <span className="hero-text-gradient">SOMETHING LEGENDARY</span>
+                <span className="text-gold">Something Legendary</span>
               </h2>
 
-              <p className="text-muted-foreground text-base leading-[1.85] max-w-md font-tactical mt-2">
-                Whether you're a player waiting for our first release, a creator interested in collaboration, or a developer who shares our vision — we want to hear from you. Chronyx is built by people who believe games can be better.
+              <p className="text-muted-foreground text-base leading-relaxed max-w-md">
+                Whether you're a player waiting for our first release, a creator interested
+                in collaboration, or a developer who shares our vision — we want to hear from you.
               </p>
 
-              {/* Vision card */}
+              {/* Promise card */}
               <motion.div
-                className="hud-corners bg-card border border-gold/20 p-8 mt-2 group hover:border-gold/40 transition-all duration-500"
-                whileHover={{ y: -4 }}
+                className="bg-card border border-white/[0.06] rounded-xl p-8 group hover:border-white/[0.12] transition-all duration-300"
+                whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <div className="hud-corner-bl" />
-                <div className="hud-corner-br" />
-
                 <div className="flex items-center gap-2 mb-4">
                   <Shield className="w-5 h-5 text-gold" />
-                  <span className="text-gold text-sm font-bold tracking-[0.15em] uppercase font-heading">Our Promise</span>
+                  <span className="text-gold text-sm font-heading font-semibold tracking-wide uppercase">
+                    Our Promise
+                  </span>
                 </div>
-                <p className="text-muted-foreground text-base leading-[1.85] font-tactical">
-                  No pay-to-win. No predatory monetization. No shortcuts to progression. Every game we build respects your time and rewards your commitment. That's not a marketing line — it's the foundation of everything we do.
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  No pay-to-win. No predatory monetization. No shortcuts to progression.
+                  Every game we build respects your time and rewards your commitment.
                 </p>
               </motion.div>
 
               {/* Community links */}
-              <StaggerContainer className="flex flex-col gap-4 mt-4" staggerDelay={0.1}>
-                {communityLinks.map((link) => {
-                  const a = accentMap[link.accent as keyof typeof accentMap]
-                  return (
-                    <StaggerItem key={link.label}>
-                      <a href={link.href} className="flex items-center gap-4 group cursor-pointer">
-                        <div className={`w-12 h-12 ${a.bg} border ${a.border} flex items-center justify-center ${a.hoverBg} transition-colors duration-300`}>
-                          <link.icon className={`w-5 h-5 ${a.text}`} />
+              <StaggerContainer className="flex flex-col gap-3 mt-2" staggerDelay={0.08}>
+                {communityLinks.map((link) => (
+                  <StaggerItem key={link.label}>
+                    <a href={link.href} className="flex items-center gap-4 group cursor-pointer">
+                      <div className="w-11 h-11 bg-gold/[0.06] border border-white/[0.06] rounded-lg flex items-center justify-center group-hover:bg-gold/[0.1] transition-colors duration-200">
+                        <link.icon className="w-5 h-5 text-gold" />
+                      </div>
+                      <div>
+                        <div className="text-foreground text-sm font-semibold group-hover:text-gold transition-colors duration-200">
+                          {link.label}
                         </div>
-                        <div>
-                          <div className={`text-foreground text-sm font-semibold font-heading group-hover:${a.text} transition-colors duration-300`}>{link.label}</div>
-                          <div className="text-muted-foreground text-sm font-tactical">{link.description}</div>
-                        </div>
-                      </a>
-                    </StaggerItem>
-                  )
-                })}
+                        <div className="text-muted-foreground text-xs">{link.description}</div>
+                      </div>
+                    </a>
+                  </StaggerItem>
+                ))}
               </StaggerContainer>
             </div>
           </FadeIn>
 
-          {/* Right: Contact form */}
+          {/* Right: Form */}
           <FadeIn direction="right" delay={0.2}>
-            <div className="hud-corners bg-card border border-border p-8 lg:p-10">
-              <div className="hud-corner-bl" />
-              <div className="hud-corner-br" />
-
-              <h3 className="text-foreground text-lg font-bold mb-2 font-heading">GET IN TOUCH</h3>
-              <p className="text-muted-foreground text-sm font-tactical mb-6">Interested in Chronyx? Drop us a message.</p>
+            <div className="bg-card border border-white/[0.06] rounded-xl p-8 lg:p-10">
+              <h3 className="text-foreground font-heading font-bold text-lg mb-1">Get in Touch</h3>
+              <p className="text-muted-foreground text-sm mb-6">
+                Interested in Chronyx? Drop us a message.
+              </p>
 
               <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
+                    <label htmlFor="name" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
                       Name
                     </label>
                     <input
@@ -138,12 +106,12 @@ export function ContactSection() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/50 transition-colors duration-200"
                       placeholder="Your name"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
+                    <label htmlFor="email" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
                       Email
                     </label>
                     <input
@@ -152,14 +120,14 @@ export function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/50 transition-colors duration-200"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="role" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
+                  <label htmlFor="role" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
                     I am a...
                   </label>
                   <select
@@ -167,7 +135,7 @@ export function ContactSection() {
                     name="role"
                     value={formData.role}
                     onChange={handleChange}
-                    className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300 appearance-none"
+                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm focus:outline-none focus:border-gold/50 transition-colors duration-200 appearance-none"
                   >
                     <option value="">Select one...</option>
                     <option value="player">Player / Community Member</option>
@@ -180,7 +148,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
+                  <label htmlFor="message" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
                     Message
                   </label>
                   <textarea
@@ -189,30 +157,29 @@ export function ContactSection() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300 resize-none"
+                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/50 transition-colors duration-200 resize-none"
                     placeholder="Tell us what you're interested in..."
                   />
                 </div>
 
-                {/* Action buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
                   <motion.button
                     type="submit"
-                    className="game-btn game-btn-primary flex items-center justify-center gap-2 text-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Send className="w-3.5 h-3.5" />
-                    SEND MESSAGE
+                    Send Message
                   </motion.button>
                   <motion.button
                     type="button"
-                    className="game-btn game-btn-secondary flex items-center justify-center gap-2 text-sm"
+                    className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-foreground px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    JOIN DISCORD
+                    Join Discord
                   </motion.button>
                 </div>
               </form>

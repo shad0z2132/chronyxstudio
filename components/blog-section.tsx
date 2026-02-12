@@ -7,140 +7,101 @@ const posts = [
     image: "/images/blog-1.jpg",
     imageAlt: "Game development design session",
     tag: "Dev Log",
-    tagAccent: "gold",
     title: "Building Progression Systems That Respect Players' Time",
     excerpt:
-      "How Sands of Avalon's character advancement is designed around meaningful milestones — not time gates or purchase shortcuts. A deep dive into our progression philosophy.",
+      "How Sands of Avalon's character advancement is designed around meaningful milestones — not time gates or purchase shortcuts.",
     slug: "#",
   },
   {
     image: "/images/blog-2.jpg",
     imageAlt: "Character concept art process",
     tag: "Art & Design",
-    tagAccent: "purple",
     title: "Designing Allegiance Systems for a Living World",
     excerpt:
-      "How faction loyalty, territory control, and player-driven politics create emergent narratives in Sands of Avalon — and why it matters for long-term engagement.",
+      "How faction loyalty, territory control, and player-driven politics create emergent narratives in Sands of Avalon.",
     slug: "#",
   },
   {
     image: "/images/blog-3.jpg",
     imageAlt: "Esports competitive gaming setup",
     tag: "Esports",
-    tagAccent: "cyan",
     title: "What Tournament-Ready Actually Means for an FPS",
     excerpt:
-      "Spectator modes, anti-cheat, ranking frameworks, and event infrastructure — what we're building from day one to support competitive communities.",
+      "Spectator modes, anti-cheat, ranking frameworks, and event infrastructure — what we're building from day one.",
     slug: "#",
   },
 ]
 
-const tagColors = {
-  gold: "bg-gold/10 text-gold",
-  purple: "bg-purple/10 text-purple",
-  cyan: "bg-steel/10 text-steel",
-} as const
-
 export function BlogSection() {
   return (
-    <section className="relative py-28 lg:py-40 bg-card overflow-hidden">
-      {/* Background texture — neutral */}
-      <div className="absolute inset-0 dot-pattern" />
-
-      {/* Top separator */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    <section className="relative py-24 lg:py-36 bg-card overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-          <FadeIn direction="left">
+          <FadeIn>
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="status-dot status-dot-purple" />
-                <span className="text-sm font-mono tracking-[0.3em] text-purple/50 uppercase">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-px bg-gold" />
+                <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
                   Dev Log
                 </span>
-                <div className="h-px w-16 bg-gradient-to-r from-purple/30 to-transparent" />
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] text-balance font-heading tracking-tight">
-                FROM THE
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
+                From the
                 <br />
-                <span className="hero-text-gradient-alt">WORKSHOP</span>
+                <span className="text-gold">Workshop</span>
               </h2>
             </div>
           </FadeIn>
-          <FadeIn direction="right" delay={0.2}>
+          <FadeIn delay={0.2}>
             <a
               href="#"
-              className="group text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1 font-tactical"
+              className="group text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
             >
-              VIEW ALL POSTS
+              View All Posts
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </FadeIn>
         </div>
 
         {/* Blog cards */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5" staggerDelay={0.15}>
-          {posts.map((post) => {
-            const tagColor = tagColors[post.tagAccent as keyof typeof tagColors]
-            const isARPG = post.tagAccent !== "cyan"
-            const toneClass = isARPG ? "tone-arpg" : "tone-fps"
-            const cornersClass = isARPG ? "arpg-corners" : "fps-corners"
-            const cardClass = isARPG ? "arpg-card" : "fps-card"
-            const toneBg = isARPG
-              ? "linear-gradient(180deg, hsl(30 20% 6%), hsl(30 15% 5%))"
-              : "linear-gradient(180deg, hsl(210 18% 5%), hsl(210 15% 4%))"
-            const hoverBorder = isARPG ? "hover:border-gold/20" : "hover:border-steel/20"
-            const imageTint = isARPG ? "arpg-image-tint" : "fps-image-tint"
-            const textureBg = isARPG ? "sand-grain-bg" : "carbon-fiber-bg"
-            return (
-              <StaggerItem key={post.title}>
-                <motion.article
-                  className={`${cornersClass} ${cardClass} border border-border ${hoverBorder} overflow-hidden group transition-all duration-500 h-full ${toneClass}`}
-                  style={{ background: toneBg }}
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                >
-                  {/* IP-specific corners */}
-                  {isARPG && <div className="arpg-corner-tr" />}
-                  <div className={isARPG ? "arpg-corner-bl" : "fps-corner-bl"} />
-                  <div className={isARPG ? "arpg-corner-br" : "fps-corner-br"} />
-
-                  {/* IP-specific background texture */}
-                  <div className={`absolute inset-0 ${textureBg} pointer-events-none`} />
-
-                  <div className="relative h-52 overflow-hidden glitch-effect">
-                    <img
-                      src={post.image}
-                      alt={post.imageAlt}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className={`absolute inset-0 ${imageTint}`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <span className={`inline-block ${tagColor} text-sm font-bold tracking-wider px-3 py-1 mb-4 uppercase font-tactical`}>
-                      {post.tag}
-                    </span>
-                    <h3 className="text-foreground text-base font-bold leading-snug mb-3 font-heading">
-                      {post.title}
-                    </h3>
-                    <p className="text-muted-foreground text-base leading-[1.85] mb-5 font-tactical">
-                      {post.excerpt}
-                    </p>
-                    <a
-                      href={post.slug}
-                      className="group/link text-gold text-sm font-bold tracking-wider hover:underline inline-flex items-center gap-1 font-tactical"
-                    >
-                      READ MORE
-                      <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                    </a>
-                  </div>
-                </motion.article>
-              </StaggerItem>
-            )
-          })}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4" staggerDelay={0.1}>
+          {posts.map((post) => (
+            <StaggerItem key={post.title}>
+              <motion.article
+                className="group bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.12] transition-all duration-300 h-full"
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.imageAlt}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14]/60 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <span className="inline-block text-gold/80 text-xs font-medium tracking-wider uppercase bg-gold/[0.08] px-3 py-1 rounded-md mb-4">
+                    {post.tag}
+                  </span>
+                  <h3 className="text-foreground font-heading font-semibold text-base leading-snug mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                    {post.excerpt}
+                  </p>
+                  <a
+                    href={post.slug}
+                    className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
+                  >
+                    Read More
+                    <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                </div>
+              </motion.article>
+            </StaggerItem>
+          ))}
         </StaggerContainer>
       </div>
     </section>

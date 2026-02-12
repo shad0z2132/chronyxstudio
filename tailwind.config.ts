@@ -44,40 +44,15 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        cyan: {
-          DEFAULT: '#00f0ff',
-          dark: '#00bcd4',
-          light: '#66f7ff',
-        },
-        steel: {
-          DEFAULT: '#4aa8c0',
-          dark: '#2d6e83',
-          light: '#7ec8d8',
-          muted: '#3a8a9e',
-        },
-        pink: {
-          DEFAULT: '#ff2d78',
-          dark: '#d4145a',
-        },
-        purple: {
-          DEFAULT: '#8b5cf6',
-          dark: '#6d28d9',
-          light: '#a78bfa',
-          glow: '#7c3aed',
-        },
         gold: {
           DEFAULT: '#d4a853',
           dark: '#b8860b',
           light: '#f0d78c',
-          bronze: '#cd7f32',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        mono: ['"Geist Mono"', 'monospace'],
-        display: ['Rajdhani', 'sans-serif'],
-        heading: ['Orbitron', 'sans-serif'],
-        tactical: ['"Chakra Petch"', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['"Sora"', 'Inter', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

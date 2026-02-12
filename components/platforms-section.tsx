@@ -13,117 +13,115 @@ const platforms = [
 
 export function PlatformsSection() {
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-20 lg:py-28 overflow-hidden">
       {/* Platforms bar */}
-      <div className="relative border-y border-border py-10 mb-24">
-        {/* Dot pattern overlay */}
-        <div className="absolute inset-0 dot-pattern" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div className="relative border-y border-white/[0.06] py-10 mb-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <FadeIn>
-            <div className="flex justify-center mb-10">
-              <span className="relative text-gold font-bold text-sm tracking-[0.25em] uppercase px-6 py-2 border border-gold/30 bg-background font-heading">
-                TARGET PLATFORMS
+            <div className="flex justify-center mb-8">
+              <span className="text-gold font-heading font-semibold text-sm tracking-[0.2em] uppercase px-5 py-2 border border-gold/20 rounded-lg bg-gold/[0.04]">
+                Target Platforms
               </span>
             </div>
           </FadeIn>
-          <StaggerContainer className="flex items-center justify-center gap-10 lg:gap-20 flex-wrap" staggerDelay={0.08}>
+          <StaggerContainer className="flex items-center justify-center gap-10 lg:gap-20 flex-wrap" staggerDelay={0.06}>
             {platforms.map((platform) => (
               <StaggerItem key={platform.name}>
                 <motion.div
                   className="flex flex-col items-center gap-2 group cursor-default"
-                  whileHover={{ scale: 1.2, y: -4 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <platform.icon className="w-9 h-9 text-muted-foreground/60 group-hover:text-gold transition-colors duration-300" strokeWidth={1.5} />
-                  <span className="text-muted-foreground/40 text-sm font-tactical tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">{platform.name}</span>
+                  <platform.icon className="w-8 h-8 text-muted-foreground/50 group-hover:text-gold transition-colors duration-200" strokeWidth={1.5} />
+                  <span className="text-muted-foreground/30 text-xs tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    {platform.name}
+                  </span>
                 </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
-
-          {/* Platform note */}
-          <FadeIn delay={0.3}>
-            <div className="flex justify-center mt-8">
-              <p className="text-muted-foreground/50 text-sm font-tactical tracking-wide text-center max-w-md">
-                PC is the initial priority platform. Mobile and console expansion planned as titles mature.
-              </p>
-            </div>
+          <FadeIn delay={0.2}>
+            <p className="text-center text-muted-foreground/40 text-sm mt-6 max-w-md mx-auto">
+              PC is the initial priority platform. Mobile and console expansion planned as titles mature.
+            </p>
           </FadeIn>
         </div>
       </div>
 
       {/* Game Engines */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-16">
-          <FadeIn direction="left">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
+          <FadeIn>
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="status-dot status-dot-steel" />
-                <span className="text-sm font-mono tracking-[0.3em] text-steel/50 uppercase">Technology</span>
-                <div className="h-px w-16 bg-gradient-to-r from-steel/30 to-transparent" />
+                <div className="w-8 h-px bg-gold" />
+                <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
+                  Technology
+                </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight max-w-xl text-balance font-heading">
-                ENGINES THAT POWER OUR WORLDS
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
+                Engines That Power
+                <br />
+                Our Worlds
               </h2>
             </div>
           </FadeIn>
-          <FadeIn direction="right" delay={0.2}>
-            <p className="text-muted-foreground max-w-md text-base leading-[1.85] lg:pt-8 font-tactical">
-              Every game begins with a solid technical foundation. We leverage engines that allow us to remain creative and flexible — building the best possible experience for each title independently.
+          <FadeIn delay={0.2}>
+            <p className="text-muted-foreground max-w-md text-base leading-relaxed">
+              Every game begins with a solid technical foundation. We leverage engines
+              that allow us to remain creative and flexible.
             </p>
           </FadeIn>
         </div>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6" staggerDelay={0.2}>
-          {/* Unity card */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4" staggerDelay={0.15}>
+          {/* Unity */}
           <StaggerItem>
             <motion.div
-              className="hud-corners relative group overflow-hidden border border-steel/20 aspect-[4/3] hover:border-steel/40 transition-all duration-500"
-              whileHover={{ scale: 1.02 }}
+              className="relative group overflow-hidden border border-white/[0.06] rounded-xl aspect-[4/3] hover:border-white/[0.12] transition-all duration-300"
+              whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="hud-corner-bl" />
-              <div className="hud-corner-br" />
               <img
                 src="/images/unity-engine.jpg"
-                alt="Unity game engine showcase with stylized fantasy character"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Unity game engine showcase"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-500" />
-              {/* Corner accent */}
-              <div className="absolute bottom-0 left-0 w-12 h-px bg-steel group-hover:w-24 transition-all duration-500" />
-              <div className="absolute bottom-0 left-0 h-12 w-px bg-steel group-hover:h-24 transition-all duration-500" />
+              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-300" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <span className="text-foreground text-4xl lg:text-5xl font-black tracking-wider block font-heading">Unity</span>
-                  <span className="text-steel text-xs tracking-[0.3em] font-tactical mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">GAME ENGINE</span>
+                  <span className="text-foreground text-4xl lg:text-5xl font-heading font-bold tracking-wide block">
+                    Unity
+                  </span>
+                  <span className="text-gold text-xs tracking-[0.2em] mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Game Engine
+                  </span>
                 </div>
               </div>
             </motion.div>
           </StaggerItem>
 
-          {/* Unreal Engine card */}
+          {/* Unreal */}
           <StaggerItem>
             <motion.div
-              className="hud-corners relative group overflow-hidden border border-gold/20 aspect-[4/3] hover:border-gold/40 transition-all duration-500"
-              whileHover={{ scale: 1.02 }}
+              className="relative group overflow-hidden border border-white/[0.06] rounded-xl aspect-[4/3] hover:border-white/[0.12] transition-all duration-300"
+              whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="hud-corner-bl" />
-              <div className="hud-corner-br" />
               <img
                 src="/images/unreal-engine.jpg"
-                alt="Unreal Engine showcase with realistic sci-fi soldiers"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Unreal Engine showcase"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-500" />
-              {/* Corner accent */}
-              <div className="absolute bottom-0 right-0 w-12 h-px bg-gold group-hover:w-24 transition-all duration-500" />
-              <div className="absolute bottom-0 right-0 h-12 w-px bg-gold group-hover:h-24 transition-all duration-500" />
+              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-300" />
               <div className="absolute inset-0 flex items-center justify-center flex-col">
-                <span className="text-foreground text-3xl lg:text-4xl font-black tracking-wider font-heading">UNREAL</span>
-                <span className="text-muted-foreground text-xs tracking-[0.3em] font-tactical">ENGINE</span>
-                <span className="text-gold text-xs tracking-[0.3em] font-tactical mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">HIGH-END VISUALS</span>
+                <span className="text-foreground text-3xl lg:text-4xl font-heading font-bold tracking-wide">
+                  Unreal
+                </span>
+                <span className="text-muted-foreground text-xs tracking-[0.2em]">Engine</span>
+                <span className="text-gold text-xs tracking-[0.2em] mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  High-End Visuals
+                </span>
               </div>
             </motion.div>
           </StaggerItem>
