@@ -1,98 +1,137 @@
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
-const testimonials = [
+const visionQuotes = [
   {
     quote:
-      "Chronyx Studio's flexibility and willingness to work quickly despite all issues resulted in a successful product upon first review. They produced good work, and the end product has positive reviews and no major crashes. They provided good feedback, and weren't afraid of making suggestions that would improve the end product.",
-    name: "James Kucera",
-    role: "Former Head of Mobile Development",
-    company: "Bandai Namco America",
-    initials: "JK",
+      "We started Chronyx because we were tired of games designed around monetization instead of mastery. Every system in our titles exists to make the player's journey more meaningful — not to extract value from it. That's the studio we wanted to build.",
+    name: "Studio Founder",
+    role: "Creative Direction",
+    department: "Leadership",
+    initials: "SF",
+    accent: "gold",
   },
   {
     quote:
-      "It was a pleasure working with Chronyx Studio. They're very professional and understand the slot business very well. On top of that they had good suggestions regarding the animations and art style which we incorporated into our games. I will definitely work with them in the future.",
-    name: "Amichai Naveh Marmor",
-    role: "Games Director",
-    company: "Techona",
-    initials: "AM",
+      "The best competitive games don't just test reflexes — they reward strategy, adaptation, and team coordination. Our FPS is being built from the ground up for tournament play, with spectator systems and ranking frameworks designed to support real competitive communities.",
+    name: "Lead Designer",
+    role: "Competitive Systems",
+    department: "Game Design",
+    initials: "LD",
+    accent: "cyan",
   },
   {
     quote:
-      "We found Chronyx for animation via an extensive animation test comparing many vendors. Chronyx's work stood out with realism in all details. They kept it up since then doing most of character animations for Stormdivers summer 2018 release and the closed beta. Everything within a tight schedule.",
-    name: "Niko Makela",
-    role: "Art Manager",
-    company: "Housemarque",
-    initials: "NM",
+      "Sands of Avalon isn't just another ARPG — it's a world where your choices define your path. Allegiance systems, deep character progression, and a living world that evolves with the community. We're building something players will invest years in, not weeks.",
+    name: "Game Director",
+    role: "ARPG Development",
+    department: "Sands of Avalon",
+    initials: "GD",
+    accent: "purple",
   },
 ]
 
+const accentMap = {
+  gold: {
+    text: "text-gold",
+    border: "border-gold/20",
+    hoverBorder: "hsl(42, 65%, 55%, 0.3)",
+    bg: "bg-gold",
+    bgMuted: "bg-gold/10",
+    quote: "text-gold/20",
+  },
+  cyan: {
+    text: "text-cyan",
+    border: "border-cyan/20",
+    hoverBorder: "hsl(174, 100%, 50%, 0.3)",
+    bg: "bg-cyan",
+    bgMuted: "bg-cyan/10",
+    quote: "text-cyan/20",
+  },
+  purple: {
+    text: "text-purple",
+    border: "border-purple/20",
+    hoverBorder: "hsl(263, 70%, 58%, 0.3)",
+    bg: "bg-purple",
+    bgMuted: "bg-purple/10",
+    quote: "text-purple/20",
+  },
+} as const
+
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="relative py-24 lg:py-32 bg-card overflow-hidden">
-      {/* Edge glow */}
-      <div className="edge-glow-left" />
-      <div className="edge-glow-right" />
+    <section id="testimonials" className="relative py-28 lg:py-40 bg-card overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 hex-grid-bg" />
 
-      {/* Watermark */}
-      <div className="watermark-text right-[-3%] top-[10%]">REVIEWS</div>
-
-      {/* Dot pattern overlay */}
-      <div className="absolute inset-0 dot-pattern" />
+      {/* Top separator glow */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12 mb-20">
           <FadeIn direction="left">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-px w-10 bg-pink" />
-                <span className="text-pink text-xs font-mono tracking-[0.3em] uppercase">Testimonials</span>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="status-dot status-dot-purple" />
+                <span className="text-sm font-mono tracking-[0.3em] text-purple/50 uppercase">
+                  Team Vision
+                </span>
+                <div className="h-px w-16 bg-gradient-to-r from-purple/30 to-transparent" />
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight max-w-xl text-balance font-display">
-                WHAT CLIENTS SAY ABOUT US
+              <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] max-w-xl text-balance font-heading tracking-tight">
+                WHY WE BUILD
+                <br />
+                <span className="hero-text-gradient-alt">WHAT WE BUILD</span>
               </h2>
             </div>
           </FadeIn>
           <FadeIn direction="right" delay={0.2}>
-            <p className="text-muted-foreground max-w-md text-sm leading-relaxed lg:pt-8">
-              We prioritize our client{"'"}s success as our success. Our commitment to delivering high-quality results, tailored solutions, and innovative approaches has earned us trust of top video game companies worldwide.
-            </p>
+            <div className="lg:pt-12">
+              <p className="text-muted-foreground max-w-[360px] text-base leading-[1.85] font-tactical tracking-wide">
+                Chronyx wasn't founded to make games — it was founded to make games differently. Hear from the team behind the vision: why we chose to build our own IPs, and what drives every design decision.
+              </p>
+            </div>
           </FadeIn>
         </div>
 
-        {/* Testimonial cards - staggered masonry-like layout */}
+        {/* Vision cards - staggered masonry-like layout */}
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start" staggerDelay={0.15}>
-          {testimonials.map((testimonial, index) => (
-            <StaggerItem key={testimonial.name}>
-              <motion.div
-                className={`group bg-background border border-border p-6 lg:p-8 card-glow-border transition-colors duration-300 hover:border-border/80 ${
-                  index === 1 ? "md:-mt-10" : index === 2 ? "md:mt-10" : ""
-                }`}
-                whileHover={{ y: -6, borderColor: "hsl(174, 100%, 50%, 0.3)" }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              >
-                {/* Quote mark */}
-                <div className="text-cyan/20 text-5xl font-serif leading-none mb-2">{'"'}</div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                  {testimonial.quote}
-                </p>
-                <div className="h-px w-full bg-border mb-5" />
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan/20 to-pink/20 flex items-center justify-center border border-border group-hover:border-cyan/30 transition-colors duration-300">
-                    <span className="text-foreground text-xs font-bold">{testimonial.initials}</span>
-                  </div>
-                  <div>
-                    <div className="text-foreground text-sm font-semibold">{testimonial.name}</div>
-                    <div className="text-cyan text-xs">
-                      {testimonial.role}, {testimonial.company}
+          {visionQuotes.map((item, index) => {
+            const accent = accentMap[item.accent as keyof typeof accentMap]
+            return (
+              <StaggerItem key={item.name}>
+                <motion.div
+                  className={`hud-corners group bg-background border ${accent.border} p-6 lg:p-8 transition-all duration-500 ${
+                    index === 1 ? "md:-mt-10" : index === 2 ? "md:mt-10" : ""
+                  }`}
+                  whileHover={{ y: -6, borderColor: accent.hoverBorder }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                >
+                  <div className="hud-corner-bl" />
+                  <div className="hud-corner-br" />
+
+                  {/* Quote mark */}
+                  <div className={`${accent.quote} text-5xl font-serif leading-none mb-2`}>{'"'}</div>
+                  <p className="text-muted-foreground text-base leading-[1.85] mb-6 font-tactical">
+                    {item.quote}
+                  </p>
+                  <div className={`h-px w-full bg-gradient-to-r from-transparent ${accent.text === "text-gold" ? "via-gold/20" : accent.text === "text-cyan" ? "via-cyan/20" : "via-purple/20"} to-transparent mb-5`} />
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 ${accent.bgMuted} flex items-center justify-center border ${accent.border} group-hover:border-opacity-60 transition-colors duration-300`}>
+                      <span className={`${accent.text} text-xs font-bold font-heading`}>{item.initials}</span>
+                    </div>
+                    <div>
+                      <div className="text-foreground text-sm font-semibold font-heading">{item.name}</div>
+                      <div className={`${accent.text} text-sm font-tactical`}>
+                        {item.role} — {item.department}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </StaggerItem>
-          ))}
+                </motion.div>
+              </StaggerItem>
+            )
+          })}
         </StaggerContainer>
       </div>
     </section>

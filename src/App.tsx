@@ -24,7 +24,7 @@ export default function App() {
     <>
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-pink via-cyan to-pink z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-cyan to-purple z-[60] origin-left"
         style={{ scaleX }}
       />
 

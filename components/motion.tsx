@@ -1,7 +1,7 @@
 "use client"
 
-import { motion, useInView, useMotionValue, useSpring, type Variants } from "framer-motion"
-import { useRef, useEffect, type ReactNode } from "react"
+import { motion, useInView, useMotionValue, useSpring, AnimatePresence, type Variants } from "framer-motion"
+import { useRef, useEffect, useState, type ReactNode } from "react"
 
 // ─── Fade In on Scroll ───────────────────────────────────────────────────────
 interface FadeInProps {
@@ -380,5 +380,47 @@ export function LineReveal({
       transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
       style={{ transformOrigin: "left" }}
     />
+  )
+}
+
+// ─── Rotating Words (cycles through words with animation) ────────────────────
+interface RotatingWordsProps {
+  words: string[]
+  className?: string
+  interval?: number
+}
+
+export function RotatingWords({
+  words,
+  className,
+  interval = 3000,
+}: RotatingWordsProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % words.length)
+    }, interval)
+    return () => clearInterval(timer)
+  }, [words.length, interval])
+
+  return (
+    <span className={`relative inline-block ${className || ""}`}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={words[currentIndex]}
+          className="inline-block"
+          initial={{ y: 30, opacity: 0, filter: "blur(6px)" }}
+          animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: -30, opacity: 0, filter: "blur(6px)" }}
+          transition={{
+            duration: 0.5,
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
+        >
+          {words[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   )
 }

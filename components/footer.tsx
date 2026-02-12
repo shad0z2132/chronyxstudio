@@ -1,49 +1,41 @@
-import { Instagram, Youtube, Linkedin, Facebook } from "lucide-react"
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+import { Youtube, Gamepad2 } from "lucide-react"
+import { FadeIn } from "@/components/motion"
 import { motion } from "framer-motion"
 
 const footerLinks = {
-  "Game Art": [
-    "3D Art",
-    "3D Characters Design",
-    "AAA",
-    "Concept Art",
-    "Slots Game Art",
-    "2D Art",
-    "UI/UX Design",
+  Games: [
+    "Sands of Avalon",
+    "Competitive FPS",
+    "Game Updates",
+    "Patch Notes",
+    "Roadmap",
   ],
-  "Game Development": [
-    "Unity Development",
-    "Unreal Game Development",
-    "PC Game Development",
-    "Mobile Game Development",
-    "Hyper Casual Game Development",
-    "Android Game Development",
-    "iOS Game Development",
-    "3D Game Development",
-    "Game Testing",
-    "Game Porting",
+  Studio: [
+    "About Chronyx",
+    "Our Philosophy",
+    "Careers",
+    "Press Kit",
+    "Brand Guidelines",
   ],
-  Animation: ["2D Animation", "3D Animation", "VFX"],
-  Outstaffing: [
-    "Hire Game Developers",
-    "Hire Unity Developers",
-    "Hire Unreal Developers",
-    "Hire 3D Artists",
-    "Hire Game Designers",
-    "Hire Character Designers",
-    "Hire Concept Artists",
-    "Hire 2D Artists",
-    "Hire 2D Animators",
-    "Hire 3D Animators",
+  Community: [
+    "Discord Server",
+    "Forums",
+    "Player Support",
+    "Bug Reports",
+    "Feedback",
+  ],
+  Resources: [
+    "Developer Blog",
+    "Media Gallery",
+    "API Documentation",
+    "Partner Program",
+    "Content Creators",
   ],
 }
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: Gamepad2, label: "Discord", href: "#" },
   { icon: Youtube, label: "YouTube", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
 ]
 
 export function Footer() {
@@ -53,13 +45,15 @@ export function Footer() {
 
   return (
     <footer className="relative bg-background border-t border-border overflow-hidden">
-      {/* Dot pattern */}
+      {/* Hex grid background */}
+      <div className="absolute inset-0 hex-grid-bg opacity-50" />
+      {/* Dot pattern overlay */}
       <div className="absolute inset-0 dot-pattern" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 relative z-10">
         <FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-            {/* Logo & Address */}
+            {/* Logo & Studio Info */}
             <div className="lg:col-span-2 flex flex-col gap-6">
               <a href="/" className="flex items-center gap-3 w-fit group">
                 <img
@@ -67,46 +61,44 @@ export function Footer() {
                   alt="Chronyx Studio logo"
                   width={48}
                   height={48}
-                  className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
+                  className="w-12 h-12 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]"
                 />
                 <div className="flex flex-col leading-tight">
-                  <span className="text-foreground font-bold text-xl tracking-wider font-display">CHRONYX</span>
-                  <span className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase">Studio</span>
+                  <span className="text-foreground font-bold text-xl tracking-[0.15em] font-heading">
+                    CHRONYX
+                  </span>
+                  <span className="text-gold/50 text-xs tracking-[0.3em] uppercase font-tactical">
+                    Studio
+                  </span>
                 </div>
               </a>
 
-              <div className="flex flex-col gap-5 mt-2">
-                <div>
-                  <h4 className="text-foreground text-sm font-semibold mb-2">Address</h4>
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    al. Jana Pawla II 61, lok.241, biuro 1.7,<br />
-                    Warsaw, 01-031, Poland<br />
-                    Phone: +48 22 419 38 000
-                  </p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    8 The Green, STE R, Dover,<br />
-                    Delaware, 19901, USA<br />
-                    Phone: +1-424-413-5692
-                  </p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    95 3rd Street, 2nd Floor,<br />
-                    San Francisco, CA 94103, USA
-                  </p>
-                </div>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs font-tactical">
+                Building long-term IPs through deep progression systems, strong player identity, and competitive gameplay experiences.
+              </p>
+
+              {/* Genre badges */}
+              <div className="flex items-center gap-2 mt-1">
+                <span className="genre-badge genre-badge-arpg text-xs">ARPG</span>
+                <span className="genre-badge genre-badge-fps text-xs">FPS</span>
+                <span className="genre-badge genre-badge-studio text-xs">Multi-IP</span>
               </div>
 
-              <div className="mt-2">
-                <h4 className="text-foreground text-sm font-semibold mb-2">Contact</h4>
-                <p className="text-muted-foreground text-xs">
-                  E-mail<br />
-                  <a href="mailto:contact@chronyxstudio.com" className="text-cyan hover:underline">
-                    contact@chronyxstudio.com
-                  </a>
-                </p>
+              <div className="flex flex-col gap-4 mt-2">
+                <div>
+                  <h4 className="text-gold text-sm font-bold tracking-wide uppercase mb-2 font-tactical">
+                    Contact
+                  </h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    E-mail<br />
+                    <a
+                      href="mailto:contact@chronyxstudio.com"
+                      className="text-cyan hover:text-gold hover:underline transition-colors duration-300"
+                    >
+                      contact@chronyxstudio.com
+                    </a>
+                  </p>
+                </div>
               </div>
 
               {/* Social links */}
@@ -115,7 +107,7 @@ export function Footer() {
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    className="text-muted-foreground hover:text-cyan transition-colors duration-300"
+                    className="text-muted-foreground hover:text-gold transition-colors duration-300"
                     aria-label={social.label}
                     whileHover={{ scale: 1.2, y: -2 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -129,13 +121,15 @@ export function Footer() {
             {/* Link columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-cyan text-xs font-bold tracking-wide uppercase mb-4 font-display">{category}</h4>
+                <h4 className="text-gold text-sm font-bold tracking-wide uppercase mb-4 font-tactical">
+                  {category}
+                </h4>
                 <ul className="flex flex-col gap-2">
                   {links.map((link) => (
                     <li key={link}>
                       <a
                         href="#"
-                        className="text-muted-foreground text-xs hover:text-foreground hover:translate-x-1 transition-all duration-300 inline-block"
+                        className="text-muted-foreground text-sm hover:text-foreground hover:translate-x-1 transition-all duration-300 inline-block font-tactical"
                       >
                         {link}
                       </a>
@@ -151,19 +145,25 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-xs">
-            &copy; 2026 Chronyx Studio
+          <p className="text-muted-foreground text-sm font-tactical">
+            &copy; 2026 Chronyx Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-muted-foreground text-xs hover:text-foreground transition-colors duration-300">
-              Sitemap
+            <a
+              href="#"
+              className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-300 font-tactical"
+            >
+              Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground text-xs hover:text-foreground transition-colors duration-300">
-              Terms And Conditions
+            <a
+              href="#"
+              className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-300 font-tactical"
+            >
+              Terms of Service
             </a>
             <motion.button
               onClick={scrollToTop}
-              className="text-cyan text-xs font-semibold tracking-wide hover:underline"
+              className="text-gold text-sm font-semibold tracking-wide hover:underline font-tactical"
               whileHover={{ y: -2 }}
             >
               Back to Top

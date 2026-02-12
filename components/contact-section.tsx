@@ -1,101 +1,135 @@
 "use client"
 
-import { Star, Send, Phone, MessageSquare } from "lucide-react"
+import { Send, MessageSquare, Swords, Crosshair, Shield } from "lucide-react"
 import { useState } from "react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
+
+const communityLinks = [
+  {
+    icon: MessageSquare,
+    label: "Discord",
+    description: "Join the community",
+    href: "#",
+    accent: "purple",
+  },
+  {
+    icon: Crosshair,
+    label: "Twitter / X",
+    description: "Follow development updates",
+    href: "#",
+    accent: "cyan",
+  },
+  {
+    icon: Swords,
+    label: "YouTube",
+    description: "Watch dev logs & trailers",
+    href: "#",
+    accent: "gold",
+  },
+]
+
+const accentMap = {
+  gold: { text: "text-gold", bg: "bg-gold/10", border: "border-gold/20", hoverBg: "group-hover:bg-gold/10" },
+  cyan: { text: "text-cyan", bg: "bg-cyan/10", border: "border-cyan/20", hoverBg: "group-hover:bg-cyan/10" },
+  purple: { text: "text-purple", bg: "bg-purple/10", border: "border-purple/20", hoverBg: "group-hover:bg-purple/10" },
+} as const
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
-    company: "",
+    role: "",
     message: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Edge glow */}
-      <div className="edge-glow-left" />
-      <div className="edge-glow-right" />
+    <section id="contact" className="relative py-28 lg:py-40 overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 hex-grid-bg" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Top separator */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Featured testimonial */}
+          {/* Left: Vision statement + community */}
           <FadeIn direction="left">
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3 mb-2">
-                <div className="h-px w-10 bg-cyan" />
-                <span className="text-cyan text-xs font-mono tracking-[0.3em] uppercase">Get in Touch</span>
+                <div className="status-dot status-dot-gold" />
+                <span className="text-sm font-mono tracking-[0.3em] text-gold/50 uppercase">
+                  Join the Mission
+                </span>
+                <div className="h-px w-16 bg-gradient-to-r from-gold/30 to-transparent" />
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight text-balance font-display">
-                LET{"'"}S BUILD YOUR GAME TOGETHER
+              <h2 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] text-balance font-heading tracking-tight">
+                BE PART OF
+                <br />
+                <span className="hero-text-gradient">SOMETHING LEGENDARY</span>
               </h2>
 
+              <p className="text-muted-foreground text-base leading-[1.85] max-w-md font-tactical mt-2">
+                Whether you're a player waiting for our first release, a creator interested in collaboration, or a developer who shares our vision — we want to hear from you. Chronyx is built by people who believe games can be better.
+              </p>
+
+              {/* Vision card */}
               <motion.div
-                className="bg-background border border-border p-8 mt-4 group hover:border-cyan/20 transition-colors duration-300"
+                className="hud-corners bg-card border border-gold/20 p-8 mt-2 group hover:border-gold/40 transition-all duration-500"
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-cyan text-cyan" />
-                  ))}
+                <div className="hud-corner-bl" />
+                <div className="hud-corner-br" />
+
+                <div className="flex items-center gap-2 mb-4">
+                  <Shield className="w-5 h-5 text-gold" />
+                  <span className="text-gold text-sm font-bold tracking-[0.15em] uppercase font-heading">Our Promise</span>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                  {`"Chronyx Studio has been an incredible partner for our team. Their attention to detail, creative problem-solving, and ability to deliver on tight deadlines has made them our go-to studio for game art and animation. I highly recommend them to anyone looking for a reliable development partner."`}
+                <p className="text-muted-foreground text-base leading-[1.85] font-tactical">
+                  No pay-to-win. No predatory monetization. No shortcuts to progression. Every game we build respects your time and rewards your commitment. That's not a marketing line — it's the foundation of everything we do.
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm font-bold">SL</span>
-                  </div>
-                  <div>
-                    <div className="text-foreground text-sm font-semibold">Sarah Lancaster</div>
-                    <div className="text-muted-foreground text-xs">VP of Business Development, MajorStudio</div>
-                  </div>
-                </div>
               </motion.div>
 
+              {/* Community links */}
               <StaggerContainer className="flex flex-col gap-4 mt-4" staggerDelay={0.1}>
-                <StaggerItem>
-                  <div className="flex items-center gap-4 group cursor-default">
-                    <div className="w-12 h-12 bg-muted flex items-center justify-center group-hover:bg-cyan/10 transition-colors duration-300">
-                      <Phone className="w-5 h-5 text-cyan" />
-                    </div>
-                    <div>
-                      <div className="text-muted-foreground text-xs">Phone</div>
-                      <div className="text-foreground text-sm">+1-424-413-5692</div>
-                    </div>
-                  </div>
-                </StaggerItem>
-                <StaggerItem>
-                  <div className="flex items-center gap-4 group cursor-default">
-                    <div className="w-12 h-12 bg-muted flex items-center justify-center group-hover:bg-cyan/10 transition-colors duration-300">
-                      <MessageSquare className="w-5 h-5 text-cyan" />
-                    </div>
-                    <div>
-                      <div className="text-muted-foreground text-xs">Email</div>
-                      <div className="text-foreground text-sm">contact@chronyxstudio.com</div>
-                    </div>
-                  </div>
-                </StaggerItem>
+                {communityLinks.map((link) => {
+                  const a = accentMap[link.accent as keyof typeof accentMap]
+                  return (
+                    <StaggerItem key={link.label}>
+                      <a href={link.href} className="flex items-center gap-4 group cursor-pointer">
+                        <div className={`w-12 h-12 ${a.bg} border ${a.border} flex items-center justify-center ${a.hoverBg} transition-colors duration-300`}>
+                          <link.icon className={`w-5 h-5 ${a.text}`} />
+                        </div>
+                        <div>
+                          <div className={`text-foreground text-sm font-semibold font-heading group-hover:${a.text} transition-colors duration-300`}>{link.label}</div>
+                          <div className="text-muted-foreground text-sm font-tactical">{link.description}</div>
+                        </div>
+                      </a>
+                    </StaggerItem>
+                  )
+                })}
               </StaggerContainer>
             </div>
           </FadeIn>
 
           {/* Right: Contact form */}
           <FadeIn direction="right" delay={0.2}>
-            <div className="bg-card border border-border p-8 lg:p-10 card-glow-border">
-              <h3 className="text-foreground text-lg font-bold mb-6 font-display">Send us a message</h3>
+            <div className="hud-corners bg-card border border-border p-8 lg:p-10">
+              <div className="hud-corner-bl" />
+              <div className="hud-corner-br" />
+
+              <h3 className="text-foreground text-lg font-bold mb-2 font-heading">GET IN TOUCH</h3>
+              <p className="text-muted-foreground text-sm font-tactical mb-6">Interested in Chronyx? Drop us a message.</p>
+
               <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
+                    <label htmlFor="name" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
                       Name
                     </label>
                     <input
@@ -104,12 +138,12 @@ export function ContactSection() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-cyan focus:shadow-[0_0_0_1px_hsl(174,100%,50%,0.3)] transition-all duration-300"
+                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300"
                       placeholder="Your name"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
+                    <label htmlFor="email" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
                       Email
                     </label>
                     <input
@@ -118,43 +152,35 @@ export function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-cyan focus:shadow-[0_0_0_1px_hsl(174,100%,50%,0.3)] transition-all duration-300"
+                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="phone" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
-                      Phone
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-cyan focus:shadow-[0_0_0_1px_hsl(174,100%,50%,0.3)] transition-all duration-300"
-                      placeholder="+1 (000) 000-0000"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="company" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
-                      Company
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="bg-muted border border-border px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-cyan focus:shadow-[0_0_0_1px_hsl(174,100%,50%,0.3)] transition-all duration-300"
-                      placeholder="Company name"
-                    />
-                  </div>
-                </div>
+
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
+                  <label htmlFor="role" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
+                    I am a...
+                  </label>
+                  <select
+                    id="role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300 appearance-none"
+                  >
+                    <option value="">Select one...</option>
+                    <option value="player">Player / Community Member</option>
+                    <option value="developer">Developer / Engineer</option>
+                    <option value="artist">Artist / Designer</option>
+                    <option value="creator">Content Creator / Streamer</option>
+                    <option value="business">Business / Partnership</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="message" className="text-muted-foreground text-sm font-bold tracking-[0.15em] uppercase font-tactical">
                     Message
                   </label>
                   <textarea
@@ -163,39 +189,30 @@ export function ContactSection() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="bg-muted border border-border px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-cyan focus:shadow-[0_0_0_1px_hsl(174,100%,50%,0.3)] transition-all duration-300 resize-none"
-                    placeholder="Tell us about your project..."
+                    className="bg-muted border border-border px-4 py-3 text-foreground text-sm font-tactical placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold focus:shadow-[0_0_0_1px_hsl(42,65%,55%,0.3)] transition-all duration-300 resize-none"
+                    placeholder="Tell us what you're interested in..."
                   />
                 </div>
 
                 {/* Action buttons */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                   <motion.button
                     type="submit"
-                    className="flex items-center justify-center gap-2 bg-cyan text-background px-5 py-3 text-xs font-bold tracking-wide hover:bg-cyan-dark transition-colors duration-300 hover:shadow-lg hover:shadow-cyan/20"
+                    className="game-btn game-btn-primary flex items-center justify-center gap-2 text-sm"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Send className="w-3.5 h-3.5" />
-                    SEND FORM
+                    SEND MESSAGE
                   </motion.button>
                   <motion.button
                     type="button"
-                    className="flex items-center justify-center gap-2 bg-muted text-foreground px-5 py-3 text-xs font-bold tracking-wide hover:bg-border transition-colors duration-300 border border-border"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    GET AI CALL
-                  </motion.button>
-                  <motion.button
-                    type="button"
-                    className="flex items-center justify-center gap-2 bg-muted text-foreground px-5 py-3 text-xs font-bold tracking-wide hover:bg-border transition-colors duration-300 border border-border"
+                    className="game-btn game-btn-secondary flex items-center justify-center gap-2 text-sm"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    CHAT WITH AI
+                    JOIN DISCORD
                   </motion.button>
                 </div>
               </form>
