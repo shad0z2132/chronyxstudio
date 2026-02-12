@@ -1,9 +1,10 @@
-import { ArrowUpRight, ChevronDown } from "lucide-react"
+import { ArrowUpRight, ChevronDown, Gamepad2, Crosshair, Hourglass } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import { FadeIn, RotatingWords } from "@/components/motion"
+import { FadeIn, RotatingWords, Counter } from "@/components/motion"
 
 const heroBackground = "/alien-planet-building.webp"
+const heroVideo = "/Untitled video - Made with Clipchamp (2).mp4"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -21,84 +22,234 @@ export function HeroSection() {
   return (
     <section ref={sectionRef} className="relative">
       <div className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background image with parallax */}
+        {/* Background video (desktop) + image fallback (mobile) */}
         <motion.div
           className="absolute inset-0"
           style={{ y: bgY, scale: bgScale }}
         >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            poster={heroBackground}
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <img
             src={heroBackground}
             alt="Epic fantasy landscape"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover md:hidden"
           />
         </motion.div>
 
-        {/* Dark gradient overlays — clean editorial */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/60 z-[1]" />
+        {/* Dark gradient overlays — balanced tint */}
+        <div className="absolute inset-0 bg-[#0a0a0f]/55 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/95 via-[#0a0a0f]/65 to-[#0a0a0f]/35 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/95 via-[#0a0a0f]/15 to-[#0a0a0f]/40 z-[1]" />
 
-        {/* Main content */}
+        {/* Main content — two column layout */}
         <motion.div
           className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full"
           style={{ opacity: contentOpacity, y: contentY }}
         >
-          {/* Eyebrow */}
-          <FadeIn delay={0.2}>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-8 h-px bg-gold" />
-              <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
-                Game Development Studio
-              </span>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-12">
+            {/* Left column — headline + CTAs */}
+            <div className="flex-1 max-w-2xl">
+              {/* Eyebrow with studio badge */}
+              <FadeIn delay={0.2}>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-2.5 bg-gold/[0.08] border border-gold/15 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <Hourglass className="w-3.5 h-3.5 text-gold" />
+                    <span className="text-gold text-xs font-semibold tracking-[0.15em] uppercase">
+                      Chronyx Studio
+                    </span>
+                  </div>
+                  <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-gold/30 to-transparent hidden sm:block" />
+                </div>
+              </FadeIn>
+
+              {/* Heading — enhanced hierarchy */}
+              <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7">
+                <FadeIn delay={0.3}>
+                  <span className="block text-lg md:text-xl lg:text-2xl text-white/40 mb-4 font-medium tracking-[0.08em] uppercase">
+                    We Build
+                  </span>
+                </FadeIn>
+                <FadeIn delay={0.5}>
+                  <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-3 drop-shadow-[0_0_40px_rgba(212,168,83,0.15)]">
+                    <RotatingWords
+                      words={["Legendary", "Enduring", "Competitive"]}
+                      interval={3500}
+                      className="min-w-[280px] md:min-w-[440px] lg:min-w-[560px]"
+                    />
+                  </span>
+                </FadeIn>
+                <FadeIn delay={0.7}>
+                  <span className="block text-4xl md:text-5xl lg:text-6xl text-foreground">
+                    Gaming Worlds.
+                  </span>
+                </FadeIn>
+              </h1>
+
+              {/* Tagline accent line */}
+              <FadeIn delay={0.8}>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-px bg-gradient-to-r from-gold to-gold/20" />
+                  <span className="text-gold/50 text-sm italic tracking-wide">
+                    Where mastery meets meaning.
+                  </span>
+                </div>
+              </FadeIn>
+
+              {/* Description — tighter, punchier */}
+              <FadeIn delay={0.9}>
+                <p className="text-white/60 text-base lg:text-lg leading-relaxed max-w-lg mb-9">
+                  Deep progression systems. Competitive integrity. Player-driven worlds
+                  designed to last — not to extract.
+                </p>
+              </FadeIn>
+
+              {/* CTA Buttons — enhanced with micro-interactions */}
+              <FadeIn delay={1.0}>
+                <div className="flex flex-wrap items-center gap-4">
+                  <motion.a
+                    href="#games"
+                    className="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+                    whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(212,168,83,0.3)" }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Explore Our Games
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+
+                  <motion.a
+                    href="#about"
+                    className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    About the Studio
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </motion.a>
+                </div>
+              </FadeIn>
+
+              {/* Stats + UE badge — enhanced with dividers */}
+              <FadeIn delay={1.2}>
+                <div className="mt-12 pt-8 border-t border-white/[0.06]">
+                  <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                    {[
+                      { target: 2, suffix: "", label: "Original IPs" },
+                      { target: 15, suffix: "+", label: "Team Members" },
+                      { target: 3, suffix: "", label: "Years Building" },
+                    ].map((stat, i) => (
+                      <div key={stat.label} className="flex items-center gap-3">
+                        {i > 0 && <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />}
+                        <div className="flex items-baseline gap-1.5">
+                          <Counter
+                            target={stat.target}
+                            suffix={stat.suffix}
+                            className="text-gold font-heading font-bold text-2xl"
+                          />
+                          <span className="text-white/30 text-[11px] uppercase tracking-wider">
+                            {stat.label}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                    <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />
+                    <div className="flex items-center gap-2.5">
+                      <img
+                        src="/unreal-engine-xwo7bd8vu6fzpnkcifgtu.webp"
+                        alt="Unreal Engine"
+                        className="w-5 h-5 rounded-full object-cover invert opacity-70"
+                      />
+                      <span className="text-white/30 text-[11px] font-medium tracking-wider uppercase">
+                        Powered by UE5
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
-          </FadeIn>
 
-          {/* Heading */}
-          <FadeIn delay={0.4}>
-            <h1 className="font-heading font-bold leading-[0.95] tracking-tight mb-8">
-              <span className="block text-4xl md:text-6xl lg:text-7xl text-foreground mb-2">
-                We Build
-              </span>
-              <span className="block text-4xl md:text-6xl lg:text-7xl text-gold mb-2">
-                <RotatingWords
-                  words={["Legendary", "Enduring", "Competitive"]}
-                  interval={3500}
-                  className="min-w-[240px] md:min-w-[380px]"
-                />
-              </span>
-              <span className="block text-5xl md:text-7xl lg:text-8xl text-foreground">
-                Gaming Worlds.
-              </span>
-            </h1>
-          </FadeIn>
+            {/* Right column — stacked game cards (desktop only) */}
+            <div className="hidden lg:flex flex-col gap-4 w-[400px] shrink-0">
+              {/* Sands of Avalon card */}
+              <FadeIn delay={1.0} direction="right">
+                <a href="#games" className="block rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0a0a0f]/60 backdrop-blur-sm group cursor-pointer transition-all duration-300 hover:border-gold/20 hover:shadow-[0_0_40px_rgba(212,168,83,0.08)]">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src="/image (27).png"
+                      alt="Sands of Avalon"
+                      className="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-gold/10 border border-gold/20 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                      <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                      <span className="text-gold text-[10px] font-semibold tracking-wider uppercase">
+                        In Development
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Gamepad2 className="w-3.5 h-3.5 text-gold/50" />
+                          <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">
+                            Action RPG
+                          </span>
+                        </div>
+                        <h3 className="text-foreground font-heading font-bold text-lg">
+                          Sands of Avalon
+                        </h3>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </div>
+                </a>
+              </FadeIn>
 
-          {/* Description */}
-          <FadeIn delay={0.6}>
-            <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed max-w-xl mb-10">
-              Chronyx Studio builds long-term IPs through deep progression systems,
-              competitive gameplay, and player-driven experiences.
-            </p>
-          </FadeIn>
-
-          {/* CTA Buttons — clean, simple */}
-          <FadeIn delay={0.8}>
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#games"
-                className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-8 py-3.5 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 group"
-              >
-                Explore Our Games
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              <a
-                href="#about"
-                className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-foreground px-8 py-3.5 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 group"
-              >
-                About the Studio
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              {/* Competitive FPS card */}
+              <FadeIn delay={1.2} direction="right">
+                <a href="#games" className="block rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0a0a0f]/60 backdrop-blur-sm group cursor-pointer transition-all duration-300 hover:border-gold/20 hover:shadow-[0_0_40px_rgba(212,168,83,0.08)]">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src="/image-32.webp"
+                      alt="Competitive FPS"
+                      className="w-full h-[160px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-white/5 border border-white/10 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                      <span className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase">
+                        Coming Soon
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Crosshair className="w-3.5 h-3.5 text-muted-foreground/40" />
+                          <span className="text-muted-foreground/40 text-[11px] tracking-wider uppercase">
+                            Competitive FPS
+                          </span>
+                        </div>
+                        <h3 className="text-foreground font-heading font-bold text-lg">
+                          Untitled Project
+                        </h3>
+                      </div>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground/30 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </div>
+                </a>
+              </FadeIn>
             </div>
-          </FadeIn>
+          </div>
         </motion.div>
 
         {/* Scroll indicator */}
@@ -118,34 +269,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Marquee strip */}
-      <div className="relative bg-[#0d0d14] border-t border-b border-white/[0.06] py-4 overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0d0d14] to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0d0d14] to-transparent z-10" />
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[
-            "Sands of Avalon",
-            "Competitive FPS",
-            "Deep Progression",
-            "Player Identity",
-            "Esports Ready",
-            "Mastery & Commitment",
-            "Sands of Avalon",
-            "Competitive FPS",
-            "Deep Progression",
-            "Player Identity",
-            "Esports Ready",
-            "Mastery & Commitment",
-          ].map((text, i) => (
-            <span key={i} className="flex items-center">
-              <span className="mx-8 text-muted-foreground/25 text-sm font-medium tracking-[0.15em] uppercase">
-                {text}
-              </span>
-              <span className="w-1 h-1 rounded-full bg-gold/20" />
-            </span>
-          ))}
-        </div>
-      </div>
+
     </section>
   )
 }

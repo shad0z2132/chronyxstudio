@@ -1,5 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { PartnersSection } from "@/components/partners-section"
+import { SandsOfAvalonSection } from "@/components/sands-of-avalon-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { ServicesSection } from "@/components/services-section"
 import { PlatformsSection } from "@/components/platforms-section"
@@ -11,6 +13,16 @@ import { BlogSection } from "@/components/blog-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { motion, useScroll, useSpring } from "framer-motion"
+
+function SectionDivider() {
+  return (
+    <div className="relative py-1">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      </div>
+    </div>
+  )
+}
 
 export default function App() {
   const { scrollYProgress } = useScroll()
@@ -24,21 +36,34 @@ export default function App() {
     <>
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-cyan to-purple z-[60] origin-left"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left"
         style={{ scaleX }}
       />
 
       <main>
         <Navbar />
         <HeroSection />
+        <SectionDivider />
+        <PartnersSection />
+        <SectionDivider />
+        <SandsOfAvalonSection />
+        <SectionDivider />
         <WhyChooseUs />
+        <SectionDivider />
         <ServicesSection />
+        <SectionDivider />
         <PlatformsSection />
+        <SectionDivider />
         <ProjectsSection />
+        <SectionDivider />
         <CooperationSection />
+        <SectionDivider />
         <TestimonialsSection />
+        <SectionDivider />
         <AwardsSection />
+        <SectionDivider />
         <BlogSection />
+        <SectionDivider />
         <ContactSection />
         <Footer />
       </main>

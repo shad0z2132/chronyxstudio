@@ -1,38 +1,43 @@
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, BookOpen, Palette, Trophy, Clock } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
 const posts = [
   {
-    image: "/images/blog-1.jpg",
-    imageAlt: "Game development design session",
     tag: "Dev Log",
+    icon: BookOpen,
+    date: "Coming Soon",
     title: "Building Progression Systems That Respect Players' Time",
     excerpt:
       "How Sands of Avalon's character advancement is designed around meaningful milestones — not time gates or purchase shortcuts.",
-    slug: "#",
+    readTime: "8 min read",
+    featured: true,
   },
   {
-    image: "/images/blog-2.jpg",
-    imageAlt: "Character concept art process",
     tag: "Art & Design",
+    icon: Palette,
+    date: "Coming Soon",
     title: "Designing Allegiance Systems for a Living World",
     excerpt:
       "How faction loyalty, territory control, and player-driven politics create emergent narratives in Sands of Avalon.",
-    slug: "#",
+    readTime: "6 min read",
+    featured: false,
   },
   {
-    image: "/images/blog-3.jpg",
-    imageAlt: "Esports competitive gaming setup",
     tag: "Esports",
+    icon: Trophy,
+    date: "Coming Soon",
     title: "What Tournament-Ready Actually Means for an FPS",
     excerpt:
       "Spectator modes, anti-cheat, ranking frameworks, and event infrastructure — what we're building from day one.",
-    slug: "#",
+    readTime: "7 min read",
+    featured: false,
   },
 ]
 
 export function BlogSection() {
+  const [featured, ...rest] = posts
+
   return (
     <section className="relative py-24 lg:py-36 bg-card overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -64,45 +69,108 @@ export function BlogSection() {
           </FadeIn>
         </div>
 
-        {/* Blog cards */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4" staggerDelay={0.1}>
-          {posts.map((post) => (
-            <StaggerItem key={post.title}>
-              <motion.article
-                className="group bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.12] transition-all duration-300 h-full"
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.imageAlt}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14]/60 to-transparent" />
-                </div>
-                <div className="p-6">
-                  <span className="inline-block text-gold/80 text-xs font-medium tracking-wider uppercase bg-gold/[0.08] px-3 py-1 rounded-md mb-4">
-                    {post.tag}
+        {/* Blog layout — featured + sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          {/* Featured post — large */}
+          <FadeIn className="lg:col-span-3">
+            <motion.article
+              className="group relative bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.1] transition-all duration-500 h-full flex flex-col"
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              {/* Top accent border */}
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
+
+              {/* Accent gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10 p-8 lg:p-10 flex flex-col flex-1">
+                {/* Tag + meta */}
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="inline-flex items-center gap-1.5 text-gold/80 text-xs font-medium tracking-wider uppercase bg-gold/[0.08] px-3 py-1.5 rounded-md">
+                    <featured.icon className="w-3 h-3" />
+                    {featured.tag}
                   </span>
-                  <h3 className="text-foreground font-heading font-semibold text-base leading-snug mb-3">
-                    {post.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                    {post.excerpt}
-                  </p>
+                  <div className="flex items-center gap-1.5 text-muted-foreground/40 text-xs">
+                    <Clock className="w-3 h-3" />
+                    {featured.readTime}
+                  </div>
+                </div>
+
+                <h3 className="text-foreground font-heading font-bold text-2xl lg:text-3xl leading-snug mb-4 group-hover:text-gold transition-colors duration-300">
+                  {featured.title}
+                </h3>
+
+                <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-xl flex-1">
+                  {featured.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                    {featured.date}
+                  </span>
                   <a
-                    href={post.slug}
+                    href="#"
                     className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
                   >
-                    Read More
+                    Read Article
                     <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </a>
                 </div>
-              </motion.article>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+              </div>
+            </motion.article>
+          </FadeIn>
+
+          {/* Sidebar posts — stacked */}
+          <StaggerContainer className="lg:col-span-2 flex flex-col gap-5" staggerDelay={0.1}>
+            {rest.map((post) => (
+              <StaggerItem key={post.title}>
+                <motion.article
+                  className="group relative bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.1] transition-all duration-500 h-full"
+                  whileHover={{ y: -2 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                >
+                  {/* Top accent border */}
+                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent group-hover:via-gold/50 transition-all duration-500" />
+                  <div className="relative z-10 p-6">
+                    {/* Tag + meta */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="inline-flex items-center gap-1.5 text-gold/80 text-xs font-medium tracking-wider uppercase bg-gold/[0.08] px-2.5 py-1 rounded-md">
+                        <post.icon className="w-3 h-3" />
+                        {post.tag}
+                      </span>
+                      <div className="flex items-center gap-1.5 text-muted-foreground/40 text-xs">
+                        <Clock className="w-3 h-3" />
+                        {post.readTime}
+                      </div>
+                    </div>
+
+                    <h3 className="text-foreground font-heading font-semibold text-base leading-snug mb-3 group-hover:text-gold transition-colors duration-300">
+                      {post.title}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-5">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground/40 text-xs tracking-wider uppercase">
+                        {post.date}
+                      </span>
+                      <a
+                        href="#"
+                        className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
+                      >
+                        Read
+                        <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </a>
+                    </div>
+                  </div>
+                </motion.article>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </div>
     </section>
   )

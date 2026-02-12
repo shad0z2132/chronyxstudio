@@ -3,10 +3,10 @@ import { FadeIn, StaggerContainer, StaggerItem, Counter } from "@/components/mot
 import { motion } from "framer-motion"
 
 const milestones = [
-  { icon: Swords, label: "Flagship ARPG in Development" },
-  { icon: Crosshair, label: "Competitive FPS in Pre-Production" },
-  { icon: Target, label: "Esports Infrastructure Planned" },
-  { icon: Flame, label: "Web2-First, Player-Driven" },
+  { icon: Swords, label: "Flagship ARPG in Development", status: "Active" },
+  { icon: Crosshair, label: "Competitive FPS in Pre-Production", status: "Planning" },
+  { icon: Target, label: "Esports Infrastructure Planned", status: "Roadmap" },
+  { icon: Flame, label: "Web2-First, Player-Driven", status: "Philosophy" },
 ]
 
 const stats = [
@@ -25,7 +25,33 @@ const pillars = [
 
 export function AwardsSection() {
   return (
-    <section className="relative py-24 lg:py-36 overflow-hidden">
+    <section className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold-top">
+      {/* ── Golden flare orbs ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "10%",
+          left: "20%",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.10) 0%, rgba(212,168,83,0) 70%)",
+          animation: "flare-breathe 8s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "15%",
+          right: "12%",
+          width: "480px",
+          height: "480px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(212,168,83,0.07) 0%, rgba(212,168,83,0) 65%)",
+          animation: "flare-breathe-slow 10s ease-in-out infinite",
+        }}
+      />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
@@ -49,18 +75,23 @@ export function AwardsSection() {
             </FadeIn>
 
             {/* Milestone badges */}
-            <StaggerContainer className="grid grid-cols-2 gap-3 mt-10" staggerDelay={0.08}>
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10" staggerDelay={0.08}>
               {milestones.map((milestone) => (
                 <StaggerItem key={milestone.label}>
                   <motion.div
-                    className="group flex items-center gap-3 bg-card border border-white/[0.06] rounded-xl p-4 hover:border-white/[0.12] transition-all duration-300"
+                    className="group relative flex items-center gap-3 bg-card border border-white/[0.06] rounded-xl p-4 hover:border-white/[0.1] transition-all duration-300 overflow-hidden"
                     whileHover={{ scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   >
-                    <div className="w-10 h-10 flex items-center justify-center bg-gold/[0.08] rounded-lg shrink-0">
+                    {/* Top accent border */}
+                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent group-hover:via-gold/50 transition-all duration-500" />
+                    <div className="w-10 h-10 flex items-center justify-center bg-gold/[0.06] rounded-lg shrink-0 group-hover:bg-gold/[0.1] transition-colors duration-300">
                       <milestone.icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
                     </div>
-                    <span className="text-foreground text-sm font-medium">{milestone.label}</span>
+                    <div className="min-w-0">
+                      <span className="text-foreground text-sm font-medium block">{milestone.label}</span>
+                      <span className="text-gold/40 text-[10px] tracking-wider uppercase">{milestone.status}</span>
+                    </div>
                   </motion.div>
                 </StaggerItem>
               ))}
@@ -77,10 +108,12 @@ export function AwardsSection() {
                 </span>
               </div>
 
-              <div className="bg-card border border-white/[0.06] rounded-xl p-8 overflow-hidden">
-                {/* Subtle watermark */}
+              <div className="group/pillars relative bg-card border border-white/[0.06] rounded-xl p-8 overflow-hidden hover:border-white/[0.1] transition-all duration-500">
+                {/* Top accent border */}
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover/pillars:via-gold/60 transition-all duration-500" />
+                {/* Subtle watermark — now relative to this container */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-                  <Shield className="w-full h-full text-gold" strokeWidth={0.3} />
+                  <Shield className="w-48 h-48 text-gold" strokeWidth={0.3} />
                 </div>
 
                 <div className="relative z-10 flex flex-col gap-4">
@@ -93,11 +126,14 @@ export function AwardsSection() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08 + 0.2 }}
                     >
-                      <div className="w-2 h-2 rounded-full bg-gold" />
+                      <div className="w-2 h-2 rounded-full bg-gold/60 group-hover:bg-gold transition-colors duration-200" />
                       <span className="text-foreground text-sm font-medium group-hover:text-gold transition-colors duration-200">
                         {pillar}
                       </span>
-                      <div className="h-px flex-1 bg-white/[0.04]" />
+                      <div className="h-px flex-1 bg-white/[0.04] group-hover:bg-gold/10 transition-colors duration-300" />
+                      <span className="text-gold/20 text-xs font-heading font-bold tabular-nums">
+                        0{i + 1}
+                      </span>
                     </motion.div>
                   ))}
                 </div>

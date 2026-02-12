@@ -1,131 +1,189 @@
-import { Gamepad2, Monitor, Smartphone, Apple, Laptop } from "lucide-react"
+import { Monitor, Smartphone, Gamepad2, Cpu, Zap, Server } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
+/* ─── Data ────────────────────────────────────────────────────────────────── */
+
 const platforms = [
-  { name: "PlayStation", icon: Gamepad2 },
-  { name: "Xbox", icon: Gamepad2 },
-  { name: "Steam", icon: Monitor },
-  { name: "Mobile", icon: Smartphone },
-  { name: "PC", icon: Laptop },
-  { name: "Apple", icon: Apple },
+  {
+    name: "PC",
+    subtitle: "Primary",
+    icon: Monitor,
+    priority: "primary" as const,
+  },
+  {
+    name: "Steam",
+    subtitle: "Distribution",
+    icon: Monitor,
+    priority: "primary" as const,
+  },
+  {
+    name: "PlayStation",
+    subtitle: "Planned",
+    icon: Gamepad2,
+    priority: "planned" as const,
+  },
+  {
+    name: "Xbox",
+    subtitle: "Planned",
+    icon: Gamepad2,
+    priority: "planned" as const,
+  },
+  {
+    name: "Mobile",
+    subtitle: "Exploring",
+    icon: Smartphone,
+    priority: "future" as const,
+  },
 ]
 
-export function PlatformsSection() {
-  return (
-    <section className="relative py-20 lg:py-28 overflow-hidden">
-      {/* Platforms bar */}
-      <div className="relative border-y border-white/[0.06] py-10 mb-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <FadeIn>
-            <div className="flex justify-center mb-8">
-              <span className="text-gold font-heading font-semibold text-sm tracking-[0.2em] uppercase px-5 py-2 border border-gold/20 rounded-lg bg-gold/[0.04]">
-                Target Platforms
-              </span>
-            </div>
-          </FadeIn>
-          <StaggerContainer className="flex items-center justify-center gap-10 lg:gap-20 flex-wrap" staggerDelay={0.06}>
-            {platforms.map((platform) => (
-              <StaggerItem key={platform.name}>
-                <motion.div
-                  className="flex flex-col items-center gap-2 group cursor-default"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <platform.icon className="w-8 h-8 text-muted-foreground/50 group-hover:text-gold transition-colors duration-200" strokeWidth={1.5} />
-                  <span className="text-muted-foreground/30 text-xs tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    {platform.name}
-                  </span>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <FadeIn delay={0.2}>
-            <p className="text-center text-muted-foreground/40 text-sm mt-6 max-w-md mx-auto">
-              PC is the initial priority platform. Mobile and console expansion planned as titles mature.
-            </p>
-          </FadeIn>
-        </div>
-      </div>
+const techHighlights = [
+  { icon: Cpu, label: "Nanite", description: "Film-quality virtualized geometry" },
+  { icon: Zap, label: "Lumen GI", description: "Fully dynamic global illumination" },
+  { icon: Server, label: "Dedicated Servers", description: "Low-latency competitive infra" },
+]
 
-      {/* Game Engines */}
+/* ─── Main Section ────────────────────────────────────────────────────────── */
+
+export function PlatformsSection() {
+  const priorityStyles = {
+    primary: {
+      border: "border-gold/20",
+      iconColor: "text-gold",
+      nameColor: "text-foreground",
+      dot: "bg-gold",
+    },
+    planned: {
+      border: "border-white/[0.06]",
+      iconColor: "text-muted-foreground/50 group-hover:text-gold",
+      nameColor: "text-foreground/80",
+      dot: "bg-white/30",
+    },
+    future: {
+      border: "border-white/[0.04]",
+      iconColor: "text-muted-foreground/30 group-hover:text-muted-foreground/60",
+      nameColor: "text-foreground/50",
+      dot: "bg-white/15",
+    },
+  }
+
+  return (
+    <section className="relative py-16 lg:py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-          <FadeIn>
+
+        {/* ── Header — inline ──────────────────────────────────────────── */}
+        <FadeIn>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 <div className="w-8 h-px bg-gold" />
                 <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
-                  Technology
+                  Platforms & Technology
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
-                Engines That Power
-                <br />
-                Our Worlds
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight tracking-tight">
+                Where We <span className="text-gold">Build & Ship</span>
               </h2>
             </div>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-muted-foreground max-w-md text-base leading-relaxed">
-              Every game begins with a solid technical foundation. We leverage engines
-              that allow us to remain creative and flexible.
+            <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
+              PC-first, Unreal Engine 5. Console expansion planned as titles mature.
             </p>
-          </FadeIn>
-        </div>
+          </div>
+        </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4" staggerDelay={0.15}>
-          {/* Unity */}
-          <StaggerItem>
-            <motion.div
-              className="relative group overflow-hidden border border-white/[0.06] rounded-xl aspect-[4/3] hover:border-white/[0.12] transition-all duration-300"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <img
-                src="/images/unity-engine.jpg"
-                alt="Unity game engine showcase"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-foreground text-4xl lg:text-5xl font-heading font-bold tracking-wide block">
-                    Unity
-                  </span>
-                  <span className="text-gold text-xs tracking-[0.2em] mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Game Engine
+        {/* ── Platform Strip — compact horizontal row ──────────────────── */}
+        <FadeIn delay={0.1}>
+          <div className="flex flex-wrap gap-3 mb-10">
+            {platforms.map((platform) => {
+              const Icon = platform.icon
+              const style = priorityStyles[platform.priority]
+              return (
+                <div
+                  key={platform.name}
+                  className={`group flex items-center gap-3 bg-background border ${style.border} rounded-xl px-5 py-3.5 hover:border-gold/30 transition-all duration-300`}
+                >
+                  <Icon className={`w-5 h-5 ${style.iconColor} transition-colors duration-300 shrink-0`} strokeWidth={1.5} />
+                  <div className="flex items-baseline gap-2">
+                    <span className={`font-heading font-bold text-sm tracking-tight ${style.nameColor}`}>
+                      {platform.name}
+                    </span>
+                    <span className="text-muted-foreground/30 text-[10px] tracking-wider uppercase">
+                      {platform.subtitle}
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </FadeIn>
+
+        {/* ── Engine Showcase — compact ─────────────────────────────────── */}
+        <FadeIn delay={0.15}>
+          <div className="relative rounded-xl overflow-hidden border border-white/[0.06] group">
+            <div className="flex flex-col lg:flex-row min-h-[260px]">
+              {/* Image side */}
+              <div className="relative lg:w-[38%] min-h-[180px] lg:min-h-0 overflow-hidden">
+                <img
+                  src="/HighresScreenshot00105.webp"
+                  alt="Unreal Engine 5 in-game screenshot"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card hidden lg:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent lg:hidden" />
+
+                {/* UE logo overlay */}
+                <div className="absolute top-3 left-3 flex items-center gap-2 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
+                  <img
+                    src="/unreal-engine-xwo7bd8vu6fzpnkcifgtu.webp"
+                    alt="Unreal Engine"
+                    className="w-3.5 h-3.5 rounded-full object-cover invert"
+                  />
+                  <span className="text-foreground/80 text-[10px] font-semibold tracking-wider uppercase">
+                    UE5
                   </span>
                 </div>
               </div>
-            </motion.div>
-          </StaggerItem>
 
-          {/* Unreal */}
-          <StaggerItem>
-            <motion.div
-              className="relative group overflow-hidden border border-white/[0.06] rounded-xl aspect-[4/3] hover:border-white/[0.12] transition-all duration-300"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <img
-                src="/images/unreal-engine.jpg"
-                alt="Unreal Engine showcase"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-background/50 group-hover:bg-background/30 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center flex-col">
-                <span className="text-foreground text-3xl lg:text-4xl font-heading font-bold tracking-wide">
-                  Unreal
-                </span>
-                <span className="text-muted-foreground text-xs tracking-[0.2em]">Engine</span>
-                <span className="text-gold text-xs tracking-[0.2em] mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  High-End Visuals
-                </span>
+              {/* Content side */}
+              <div className="relative z-10 flex flex-col justify-center p-6 lg:p-10 lg:w-[62%]">
+                <h3 className="text-xl lg:text-2xl font-heading font-bold text-foreground tracking-tight mb-2">
+                  Unreal Engine 5
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-5 max-w-md">
+                  Nanite, Lumen, World Partition — powering cinematic open worlds
+                  with real-time fidelity at scale.
+                </p>
+
+                {/* Feature tags + tech highlights — merged inline */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["Nanite Geometry", "Lumen GI", "World Partition", "MetaHuman", "Chaos Physics"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-gold/50 text-[10px] font-medium tracking-wider uppercase bg-gold/[0.06] border border-gold/10 px-2.5 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Tech highlights — compact row */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {techHighlights.map((tech) => (
+                    <div key={tech.label} className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 bg-gold/[0.08] rounded-md flex items-center justify-center shrink-0">
+                        <tech.icon className="w-3.5 h-3.5 text-gold" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <span className="text-foreground text-xs font-semibold block leading-tight">{tech.label}</span>
+                        <span className="text-muted-foreground/40 text-[10px] leading-tight">{tech.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </motion.div>
-          </StaggerItem>
-        </StaggerContainer>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )

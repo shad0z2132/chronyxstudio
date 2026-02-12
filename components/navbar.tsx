@@ -1,21 +1,48 @@
 import { ArrowUpRight, Menu, X } from "lucide-react"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
   { label: "Games", href: "#games" },
   { label: "Studio", href: "#about" },
-  { label: "Vision", href: "#vision" },
+  { label: "Careers", href: "#careers" },
+  { label: "News", href: "#news" },
   { label: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [activeSection, setActiveSection] = useState("")
+  const lastScrollY = useRef(0)
+  const scrollDirection = useRef<"up" | "down">("up")
+  const lastDirectionChangeY = useRef(0)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      setScrolled(currentY > 50)
+
+      // Determine scroll direction
+      const direction = currentY > lastScrollY.current ? "down" : "up"
+
+      // Track when direction changes
+      if (direction !== scrollDirection.current) {
+        scrollDirection.current = direction
+        lastDirectionChangeY.current = currentY
+      }
+
+      // Only hide/show after scrolling 60px in one direction (prevents jitter)
+      const delta = Math.abs(currentY - lastDirectionChangeY.current)
+      if (currentY > 100 && delta > 60) {
+        setHidden(direction === "down")
+      } else if (currentY <= 100) {
+        setHidden(false)
+      }
+
+      lastScrollY.current = currentY
+    }
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -55,28 +82,32 @@ export function Navbar() {
 
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "navbar-scrolled" : "bg-transparent"
+        animate={{ y: hidden && !mobileOpen ? -100 : 0 }}
+        transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background,backdrop-filter] duration-500 ${
+          scrolled
+            ? "bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/[0.06]"
+            : "bg-transparent"
         }`}
       >
         <div className="flex items-center justify-between px-6 py-4 lg:px-12 max-w-[1400px] mx-auto">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3 group">
-            <img
-              src="/Untitled design (55)-Photoroom.webp"
-              alt="Chronyx Studio logo"
-              width={36}
-              height={36}
-              className="w-9 h-9 transition-transform duration-300 group-hover:scale-105"
-            />
+            <div className="relative">
+              <img
+                src="/Untitled design (55)-Photoroom.webp"
+                alt="Chronyx Studio logo"
+                width={42}
+                height={42}
+                className="relative z-10 w-[42px] h-[42px] transition-all duration-300 group-hover:scale-105"
+              />
+            </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-foreground font-heading font-bold text-base tracking-[0.1em]">
+              <span className="text-foreground font-heading font-bold text-lg tracking-[0.15em] transition-colors duration-200 group-hover:text-gold">
                 CHRONYX
               </span>
-              <span className="text-muted-foreground text-[10px] tracking-[0.2em] uppercase">
-                Studio
+              <span className="text-gold text-[11px] font-semibold tracking-[0.3em] uppercase">
+                Studios
               </span>
             </div>
           </a>
@@ -87,19 +118,24 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group ${
                   activeSection === link.href
                     ? "text-gold"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {link.label}
+                {/* Active indicator */}
                 {activeSection === link.href && (
                   <motion.div
-                    className="absolute bottom-0 left-4 right-4 h-px bg-gold"
+                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full"
                     layoutId="navIndicator"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
+                )}
+                {/* Hover underline — slides in from left */}
+                {activeSection !== link.href && (
+                  <span className="absolute bottom-0 left-4 right-4 h-px bg-foreground/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                 )}
               </a>
             ))}

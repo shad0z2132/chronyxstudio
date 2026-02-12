@@ -1,4 +1,4 @@
-import { Youtube, Gamepad2 } from "lucide-react"
+import { Youtube, Gamepad2, ArrowUp, MessageSquare } from "lucide-react"
 import { FadeIn } from "@/components/motion"
 import { motion } from "framer-motion"
 
@@ -11,6 +11,7 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Gamepad2, label: "Discord", href: "#" },
+  { icon: MessageSquare, label: "Twitter / X", href: "#" },
   { icon: Youtube, label: "YouTube", href: "#" },
 ]
 
@@ -38,19 +39,19 @@ export function Footer() {
                   <span className="text-foreground font-heading font-bold text-lg tracking-[0.1em]">
                     CHRONYX
                   </span>
-                  <span className="text-muted-foreground text-[10px] tracking-[0.2em] uppercase">
+                  <span className="text-muted-foreground/50 text-[10px] tracking-[0.2em] uppercase">
                     Studio
                   </span>
                 </div>
               </a>
 
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+              <p className="text-muted-foreground/70 text-sm leading-relaxed max-w-xs">
                 Building long-term IPs through deep progression systems, strong player identity,
                 and competitive gameplay experiences.
               </p>
 
               <div>
-                <h4 className="text-gold text-sm font-semibold tracking-wide uppercase mb-2">
+                <h4 className="text-gold/60 text-xs font-semibold tracking-[0.15em] uppercase mb-2">
                   Contact
                 </h4>
                 <a
@@ -62,17 +63,17 @@ export function Footer() {
               </div>
 
               {/* Social */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    className="text-muted-foreground hover:text-gold transition-colors duration-200"
+                    className="w-9 h-9 bg-white/[0.04] border border-white/[0.06] rounded-lg flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/20 hover:bg-gold/[0.06] transition-all duration-300"
                     aria-label={social.label}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ y: -2 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-4 h-4" />
                   </motion.a>
                 ))}
               </div>
@@ -81,7 +82,7 @@ export function Footer() {
             {/* Link columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-gold text-sm font-semibold tracking-wide uppercase mb-4">
+                <h4 className="text-gold/60 text-xs font-semibold tracking-[0.15em] uppercase mb-4">
                   {category}
                 </h4>
                 <ul className="flex flex-col gap-2.5">
@@ -89,7 +90,7 @@ export function Footer() {
                     <li key={link}>
                       <a
                         href="#"
-                        className="text-muted-foreground text-sm hover:text-foreground transition-colors duration-200"
+                        className="text-muted-foreground/60 text-sm hover:text-foreground transition-colors duration-200"
                       >
                         {link}
                       </a>
@@ -105,22 +106,24 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground/60 text-sm">
+          <p className="text-muted-foreground/40 text-sm">
             &copy; 2026 Chronyx Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-muted-foreground/60 text-sm hover:text-foreground transition-colors duration-200">
+            <a href="#" className="text-muted-foreground/40 text-sm hover:text-foreground transition-colors duration-200">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground/60 text-sm hover:text-foreground transition-colors duration-200">
+            <a href="#" className="text-muted-foreground/40 text-sm hover:text-foreground transition-colors duration-200">
               Terms of Service
             </a>
             <motion.button
               onClick={scrollToTop}
-              className="text-gold text-sm font-semibold tracking-wide hover:underline"
+              className="w-8 h-8 bg-gold/[0.08] border border-gold/15 rounded-lg flex items-center justify-center text-gold hover:bg-gold/[0.15] transition-all duration-200"
               whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Back to top"
             >
-              Back to Top
+              <ArrowUp className="w-3.5 h-3.5" />
             </motion.button>
           </div>
         </div>

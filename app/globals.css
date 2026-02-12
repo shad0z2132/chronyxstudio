@@ -46,6 +46,70 @@
   }
 }
 
+/* ─── Noise Grain Overlay ────────────────────────────────────────────── */
+/* Subtle film grain across the entire page — breaks flat dark backgrounds */
+main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Ambient Glow Utilities ─────────────────────────────────────────── */
+/* Radial color washes behind sections for depth */
+.ambient-glow-gold {
+  position: relative;
+}
+.ambient-glow-gold::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(212, 168, 83, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-gold-top {
+  position: relative;
+}
+.ambient-glow-gold-top::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50%;
+  background: radial-gradient(ellipse at center, rgba(212, 168, 83, 0.035) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-blue {
+  position: relative;
+}
+.ambient-glow-blue::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(100, 130, 200, 0.025) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    CHRONYX STUDIO — Premium Editorial Design System
    Inspired by: Riot Games, EA, Epic Games, Blizzard
@@ -113,3 +177,21 @@
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
+
+.animate-marquee-partners {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee-partners:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Golden Flare Breathing ─────────────────────────────────────────── */
+@keyframes flare-breathe {
+  0%, 100% { opacity: 0.04; transform: scale(1); }
+  50% { opacity: 0.08; transform: scale(1.15); }
+}
+@keyframes flare-breathe-slow {
+  0%, 100% { opacity: 0.03; transform: scale(1.05); }
+  50% { opacity: 0.065; transform: scale(1.2); }
+}
+
