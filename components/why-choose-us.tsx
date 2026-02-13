@@ -1,6 +1,7 @@
 import { Flame, Crown, Swords, Eye } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem, Counter } from "@/components/motion"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 
 const dna = [
   {
@@ -46,8 +47,28 @@ const dna = [
 ]
 
 export function WhyChooseUs() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
+
   return (
-    <section id="studio" className="relative py-24 lg:py-36 bg-card overflow-hidden">
+    <section ref={sectionRef} id="studio" className="relative py-24 lg:py-36 bg-card overflow-hidden">
+      {/* Parallax background image */}
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img
+          src="/HighresScreenshot00081.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.04] scale-110"
+        />
+      </motion.div>
+      {/* Overlay to blend into section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-card via-transparent to-card z-[1]" />
+
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none"

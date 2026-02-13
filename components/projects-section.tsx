@@ -44,6 +44,7 @@ const worlds = [
 export function ProjectsSection() {
   return (
     <section id="projects" className="relative py-24 lg:py-36 bg-card overflow-hidden ambient-glow-gold">
+
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none"

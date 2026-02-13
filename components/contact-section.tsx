@@ -1,9 +1,9 @@
 "use client"
 
 import { Send, MessageSquare, Shield, Youtube, Gamepad2, Mail } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 const communityLinks = [
   { icon: Gamepad2, label: "Discord", description: "Join the community", href: "#" },
@@ -23,8 +23,28 @@ export function ContactSection() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  })
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
+
   return (
-    <section id="contact" className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold">
+    <section ref={sectionRef} id="contact" className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold">
+      {/* Parallax background image */}
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img
+          src="/alien-planet-building.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.03] scale-110"
+        />
+      </motion.div>
+      {/* Overlay to blend into section */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-[1]" />
+
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none"
@@ -51,7 +71,7 @@ export function ContactSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-[2] max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left */}
           <FadeIn>

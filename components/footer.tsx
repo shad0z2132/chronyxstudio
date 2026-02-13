@@ -39,8 +39,8 @@ export function Footer() {
                   <span className="text-foreground font-heading font-bold text-lg tracking-[0.1em]">
                     CHRONYX
                   </span>
-                  <span className="text-muted-foreground/50 text-[10px] tracking-[0.2em] uppercase">
-                    Studio
+                  <span className="text-gold text-[10px] tracking-[0.2em] uppercase">
+                    Studios
                   </span>
                 </div>
               </a>

@@ -67,7 +67,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 /* ─── Noise Grain Overlay ────────────────────────────────────────────── */
-/* Subtle film grain across the entire page — breaks flat dark backgrounds */
+/* Animated film grain across the entire page — breaks flat dark backgrounds */
 main::before {
   content: "";
   position: fixed;
@@ -78,6 +78,21 @@ main::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
+  animation: grain-drift 8s steps(1) infinite;
+}
+
+@keyframes grain-drift {
+  0%  { background-position: 0 0; }
+  10% { background-position: -32px 16px; }
+  20% { background-position: 48px -24px; }
+  30% { background-position: -16px 48px; }
+  40% { background-position: 64px 32px; }
+  50% { background-position: -48px -16px; }
+  60% { background-position: 24px 64px; }
+  70% { background-position: -64px -48px; }
+  80% { background-position: 16px -64px; }
+  90% { background-position: -32px 32px; }
+  100% { background-position: 0 0; }
 }
 
 /* ─── Ambient Glow Utilities ─────────────────────────────────────────── */
