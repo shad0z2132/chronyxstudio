@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { FadeIn, RotatingWords, Counter } from "@/components/motion"
 
-const heroBackground = "/alien-planet-building.webp"
 const heroVideo = "/Untitled video - Made with Clipchamp (2).mp4"
 
 export function HeroSection() {
@@ -33,7 +32,6 @@ export function HeroSection() {
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover hidden md:block"
-            poster={heroBackground}
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
