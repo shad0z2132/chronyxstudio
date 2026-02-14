@@ -31,14 +31,14 @@ export function HeroSection() {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            className="absolute inset-0 w-full h-full object-cover hidden md:block brightness-[0.75]"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
           <img
             src="/Anubismonolith.webp"
             alt="Anubis monolith — Sands of Avalon"
-            className="absolute inset-0 w-full h-full object-cover md:hidden"
+            className="absolute inset-0 w-full h-full object-cover md:hidden brightness-[0.75]"
           />
         </motion.div>
 

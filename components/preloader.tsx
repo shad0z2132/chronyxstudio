@@ -123,7 +123,7 @@ export function Preloader({ onComplete, minimumDuration = 2800 }: PreloaderProps
               className="relative"
             >
               <img
-                src="/Untitled design (55)-Photoroom.webp"
+                src="/Silver 1.png"
                 alt="Chronyx Studio"
                 width={72}
                 height={72}
