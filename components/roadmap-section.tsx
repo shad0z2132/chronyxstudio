@@ -92,7 +92,7 @@ function ConnectingLine({ status }: { status: keyof typeof statusConfig }) {
   const config = statusConfig[status]
 
   return (
-    <div ref={ref} className="hidden md:flex justify-center" style={{ height: "56px" }}>
+    <div ref={ref} className="hidden md:flex justify-center" style={{ height: "80px" }}>
       <motion.div
         className={`w-px ${config.line}`}
         initial={{ scaleY: 0 }}
@@ -190,10 +190,10 @@ function MilestoneCard({
       </div>
 
       {/* ── Mobile layout ── */}
-      <div className="md:hidden flex items-start gap-4 w-full">
+      <div className="md:hidden flex items-start gap-3 w-full pl-1">
         <div className="flex flex-col items-center flex-shrink-0">
           <motion.div
-            className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center ${
+            className={`relative w-10 h-10 rounded-full border-2 flex items-center justify-center ${
               milestone.status === "in-progress"
                 ? "border-gold bg-gold/10"
                 : milestone.status === "upcoming"
@@ -377,12 +377,12 @@ export function RoadmapSection() {
           </div>
 
           {/* Vertical left line — mobile */}
-          <div className="md:hidden absolute left-6 top-0 bottom-0 w-px">
+          <div className="md:hidden absolute left-[21px] top-0 bottom-0 w-px">
             <div className="w-full h-full bg-gradient-to-b from-transparent via-gold/15 to-transparent" />
           </div>
 
           {/* Milestone items with connecting segments */}
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-6 md:gap-0">
             {milestones.map((milestone, index) => (
               <div key={milestone.id}>
                 <MilestoneCard milestone={milestone} index={index} />
