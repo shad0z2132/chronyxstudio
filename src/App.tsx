@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { PartnersSection } from "@/components/partners-section"
 import { SandsOfAvalonSection } from "@/components/sands-of-avalon-section"
+import { RoadmapSection } from "@/components/roadmap-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { ServicesSection } from "@/components/services-section"
 import { PlatformsSection } from "@/components/platforms-section"
@@ -64,6 +65,8 @@ export default function App() {
               <PartnersSection />
               <SectionDivider />
               <SandsOfAvalonSection />
+              <SectionDivider />
+              <RoadmapSection />
               <SectionDivider />
               <WhyChooseUs />
               <SectionDivider />

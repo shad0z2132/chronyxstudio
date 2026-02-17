@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronDown, Gamepad2, Crosshair, Hourglass } from "lucide-react"
+import { ArrowUpRight, ChevronDown, Gamepad2, Crosshair } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { FadeIn, RotatingWords, Counter } from "@/components/motion"
@@ -54,19 +54,6 @@ export function HeroSection() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-12">
             {/* Left column — headline + CTAs */}
             <div className="flex-1 max-w-2xl">
-              {/* Eyebrow with studio badge */}
-              <FadeIn delay={0.2}>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="flex items-center gap-2.5 bg-gold/[0.08] border border-gold/15 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <Hourglass className="w-3.5 h-3.5 text-gold" />
-                    <span className="text-gold text-xs font-semibold tracking-[0.15em] uppercase">
-                      Chronyx Studio
-                    </span>
-                  </div>
-                  <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-gold/30 to-transparent hidden sm:block" />
-                </div>
-              </FadeIn>
-
               {/* Heading — enhanced hierarchy */}
               <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7">
                 <FadeIn delay={0.3}>
