@@ -236,9 +236,9 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — hidden on mobile to avoid overlap with stacked content */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+          className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-3"
           style={{ opacity: scrollIndicatorOpacity }}
         >
           <span className="text-muted-foreground/50 text-xs tracking-[0.2em] uppercase">
