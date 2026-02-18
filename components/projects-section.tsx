@@ -24,7 +24,7 @@ const worlds = [
   {
     title: "Competitive FPS",
     subtitle: "Tournament-Ready Shooter",
-    image: "/image-32.webp",
+    image: "/photo_2026-02-18_02-54-03.jpg",
     characterImage: "/alien-planet-building.webp",
     icon: Crosshair,
     tagline: "Prove Your Skill",

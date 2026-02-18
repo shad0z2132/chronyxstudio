@@ -202,7 +202,7 @@ export function HeroSection() {
                 <a href="#games" className="block rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0a0a0f]/60 backdrop-blur-sm group cursor-pointer transition-all duration-300 hover:border-gold/20 hover:shadow-[0_0_40px_rgba(212,168,83,0.08)]">
                   <div className="relative overflow-hidden">
                     <img
-                      src="/image-32.webp"
+                      src="/photo_2026-02-18_02-54-03.jpg"
                       alt="Competitive FPS"
                       className="w-full h-[160px] object-cover transition-transform duration-500 group-hover:scale-105"
                     />

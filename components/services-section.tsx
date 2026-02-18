@@ -23,7 +23,7 @@ const games = [
     description:
       "A competitive first-person shooter designed for tournaments and esports. Built around skill expression, team play, and competitive integrity — serving as a high-frequency engagement layer.",
     icon: Crosshair,
-    image: "/image-32.webp",
+    image: "/photo_2026-02-18_02-54-03.jpg",
     href: "#competitive-fps",
     status: "Coming Soon",
     statusActive: false,
