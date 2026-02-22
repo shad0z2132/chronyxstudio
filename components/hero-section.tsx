@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronDown, Gamepad2, Crosshair } from "lucide-react"
+import { ArrowUpRight, ChevronDown, Gamepad2, Crosshair, ExternalLink } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { FadeIn, RotatingWords, Counter } from "@/components/motion"
@@ -171,11 +171,26 @@ export function HeroSection() {
                       className="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
-                    <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-gold/10 border border-gold/20 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                      <span className="text-gold text-[10px] font-semibold tracking-wider uppercase">
-                        In Development
-                      </span>
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 bg-gold/10 border border-gold/20 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                        <span className="text-gold text-[10px] font-semibold tracking-wider uppercase">
+                          In Development
+                        </span>
+                      </div>
+                      <a
+                        href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-1.5 bg-[#1b2838]/80 border border-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full hover:border-white/40 hover:bg-[#1b2838] transition-all duration-200"
+                      >
+                        <img src="/steam-icon.svg" alt="" className="w-3 h-3 invert opacity-80" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                        <ExternalLink className="w-2.5 h-2.5 text-white/70" />
+                        <span className="text-white/80 text-[10px] font-semibold tracking-wider uppercase">
+                          Steam
+                        </span>
+                      </a>
                     </div>
                   </div>
                   <div className="p-4">

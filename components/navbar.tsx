@@ -1,4 +1,4 @@
-import { ArrowUpRight, Menu, X } from "lucide-react"
+import { ArrowUpRight, Menu, X, ExternalLink } from "lucide-react"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -143,7 +143,18 @@ export function Navbar() {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {/* Steam pill */}
+            <a
+              href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-2 bg-[#1b2838] hover:bg-[#2a3f5f] border border-white/10 hover:border-white/20 px-4 py-2 rounded-lg text-white/80 text-sm font-semibold tracking-wide uppercase transition-all duration-200 group"
+            >
+              <ExternalLink className="w-3 h-3" />
+              Wishlist <span className="text-gold">Sands of Avalon</span>
+            </a>
+
             {/* Desktop CTA */}
             <a
               href="#contact"

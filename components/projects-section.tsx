@@ -1,4 +1,4 @@
-import { ArrowUpRight, Swords, Crosshair, Shield, Map, Users, Trophy, Flame } from "lucide-react"
+import { ArrowUpRight, Swords, Crosshair, Shield, Map, Users, Trophy, Flame, ExternalLink } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
@@ -11,6 +11,7 @@ const worlds = [
     icon: Swords,
     tagline: "Forge Your Legend",
     status: "In Development",
+    steamHref: "https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1",
     features: [
       { icon: Map, text: "Vast world shaped by exploration" },
       { icon: Shield, text: "Deep progression — earned, never bought" },
@@ -29,6 +30,7 @@ const worlds = [
     icon: Crosshair,
     tagline: "Prove Your Skill",
     status: "Pre-Production",
+    steamHref: null,
     features: [
       { icon: Crosshair, text: "Precision gunplay, high skill ceiling" },
       { icon: Trophy, text: "Ranked ladders & tournament infra" },
@@ -191,13 +193,26 @@ export function ProjectsSection() {
                         ))}
                       </StaggerContainer>
 
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 w-fit group/btn"
-                      >
-                        Learn More
-                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                      </a>
+                      <div className="flex flex-wrap items-center gap-3">
+                        {world.steamHref && (
+                          <a
+                            href={world.steamHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-[#1b2838] hover:bg-[#2a3f5f] border border-white/10 hover:border-white/20 text-white px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200 w-fit group/steam"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            Wishlist on Steam
+                          </a>
+                        )}
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 w-fit group/btn"
+                        >
+                          Learn More
+                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
