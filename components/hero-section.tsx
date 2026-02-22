@@ -238,8 +238,8 @@ export function HeroSection() {
                             Competitive FPS
                           </span>
                         </div>
-                        <h3 className="text-foreground font-heading font-bold text-lg">
-                          Untitled Project
+                        <h3 className="text-foreground/40 font-heading font-bold text-lg italic">
+                          TBA
                         </h3>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 transition-all duration-200 group-hover:text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
