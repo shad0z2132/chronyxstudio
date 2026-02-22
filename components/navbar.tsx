@@ -226,10 +226,16 @@ export function Navbar() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-6">
-                    {["Twitter/X", "Discord", "YouTube"].map((label) => (
+                    {[
+                      { label: "Twitter/X", href: "https://x.com/ChronyxStudios" },
+                      { label: "Discord", href: "https://discord.gg/y5rFa8vpHH" },
+                      { label: "YouTube", href: "https://www.youtube.com/@mummylabs" },
+                    ].map(({ label, href }) => (
                       <a
                         key={label}
-                        href="#"
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-muted-foreground text-sm hover:text-gold transition-colors duration-200"
                       >
                         {label}

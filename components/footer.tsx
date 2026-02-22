@@ -3,16 +3,40 @@ import { FadeIn } from "@/components/motion"
 import { motion } from "framer-motion"
 
 const footerLinks = {
-  Games: ["Sands of Avalon", "Competitive FPS", "Game Updates", "Patch Notes", "Roadmap"],
-  Studio: ["About Chronyx", "Our Philosophy", "Careers", "Press Kit", "Brand Guidelines"],
-  Community: ["Discord Server", "Forums", "Player Support", "Bug Reports", "Feedback"],
-  Resources: ["Developer Blog", "Media Gallery", "API Documentation", "Partner Program", "Content Creators"],
+  Games: [
+    { label: "Sands of Avalon", href: "https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1" },
+    { label: "Competitive FPS", href: "#" },
+    { label: "Game Updates", href: "#" },
+    { label: "Patch Notes", href: "#" },
+    { label: "Roadmap", href: "#roadmap" },
+  ],
+  Studio: [
+    { label: "About Chronyx", href: "#about" },
+    { label: "Our Philosophy", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Press Kit", href: "#" },
+    { label: "Brand Guidelines", href: "#" },
+  ],
+  Community: [
+    { label: "Discord Server", href: "https://discord.gg/y5rFa8vpHH" },
+    { label: "Forums", href: "#" },
+    { label: "Player Support", href: "#" },
+    { label: "Bug Reports", href: "#" },
+    { label: "Feedback", href: "#" },
+  ],
+  Resources: [
+    { label: "Developer Blog", href: "#" },
+    { label: "Media Gallery", href: "#" },
+    { label: "API Documentation", href: "#" },
+    { label: "Partner Program", href: "#" },
+    { label: "Content Creators", href: "#" },
+  ],
 }
 
 const socialLinks = [
-  { icon: Gamepad2, label: "Discord", href: "#" },
-  { icon: MessageSquare, label: "Twitter / X", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
+  { icon: Gamepad2, label: "Discord", href: "https://discord.gg/y5rFa8vpHH" },
+  { icon: MessageSquare, label: "Twitter / X", href: "https://x.com/ChronyxStudios" },
+  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@mummylabs" },
 ]
 
 export function Footer() {
@@ -68,6 +92,8 @@ export function Footer() {
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-9 h-9 bg-white/[0.04] border border-white/[0.06] rounded-lg flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/20 hover:bg-gold/[0.06] transition-all duration-300"
                     aria-label={social.label}
                     whileHover={{ y: -2 }}
@@ -87,12 +113,14 @@ export function Footer() {
                 </h4>
                 <ul className="flex flex-col gap-2.5">
                   {links.map((link) => (
-                    <li key={link}>
+                    <li key={link.label}>
                       <a
-                        href="#"
+                        href={link.href}
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                         className="text-muted-foreground/60 text-sm hover:text-foreground transition-colors duration-200"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}

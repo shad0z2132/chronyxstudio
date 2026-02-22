@@ -1,15 +1,9 @@
 "use client"
 
-import { Send, MessageSquare, Shield, Youtube, Gamepad2, Mail } from "lucide-react"
+import { Send, Shield, Gamepad2, Mail } from "lucide-react"
 import { useState, useRef } from "react"
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
+import { FadeIn } from "@/components/motion"
 import { motion, useScroll, useTransform } from "framer-motion"
-
-const communityLinks = [
-  { icon: Gamepad2, label: "Discord", description: "Join the community", href: "#" },
-  { icon: MessageSquare, label: "Twitter / X", description: "Follow development updates", href: "#" },
-  { icon: Youtube, label: "YouTube", description: "Watch dev logs & trailers", href: "#" },
-]
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -122,25 +116,6 @@ export function ContactSection() {
                   contact@chronyxstudio.com
                 </a>
               </div>
-
-              {/* Community links */}
-              <StaggerContainer className="flex flex-col gap-3 mt-2" staggerDelay={0.08}>
-                {communityLinks.map((link) => (
-                  <StaggerItem key={link.label}>
-                    <a href={link.href} className="flex items-center gap-4 group/link cursor-pointer">
-                      <div className="w-11 h-11 bg-gold/[0.06] border border-white/[0.06] rounded-lg flex items-center justify-center group-hover/link:bg-gold/[0.1] group-hover/link:border-gold/15 transition-all duration-300">
-                        <link.icon className="w-5 h-5 text-gold" />
-                      </div>
-                      <div>
-                        <div className="text-foreground text-sm font-semibold group-hover/link:text-gold transition-colors duration-200">
-                          {link.label}
-                        </div>
-                        <div className="text-muted-foreground/60 text-xs">{link.description}</div>
-                      </div>
-                    </a>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
             </div>
           </FadeIn>
 

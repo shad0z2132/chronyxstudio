@@ -1,4 +1,4 @@
-import { ArrowUpRight, Swords, Shield, Map, Users, Clock, Sparkles } from "lucide-react"
+import { ArrowUpRight, Swords, Shield, Map, Users, Clock, Sparkles, ExternalLink } from "lucide-react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { FadeIn, StaggerContainer, StaggerItem, Counter } from "@/components/motion"
@@ -346,17 +346,19 @@ export function SandsOfAvalonSection() {
         <FadeIn delay={0.3}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-14">
             <a
-              href="#contact"
+              href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group hover:shadow-[0_0_30px_rgba(212,168,83,0.2)]"
             >
-              Follow Development
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Wishlist on Steam
+              <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
-              href="#games"
+              href="#contact"
               className="inline-flex items-center gap-2.5 border border-white/15 hover:border-white/30 hover:bg-white/[0.03] text-foreground px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
             >
-              View All Projects
+              Follow Development
               <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
