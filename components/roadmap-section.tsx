@@ -1,5 +1,5 @@
-import { useRef, MouseEvent } from "react"
-import { motion, useInView, useScroll, useTransform, useMotionValue, useMotionTemplate } from "framer-motion"
+import { useRef, memo } from "react"
+import { motion, useInView, useScroll, useTransform } from "framer-motion"
 import { Map, Skull, Users, Globe, Wind } from "lucide-react"
 import { FadeIn } from "@/components/motion"
 
@@ -128,7 +128,7 @@ function MilestoneCard({
       {/* Center node */}
       <div className="hidden md:flex flex-col items-center z-10" style={{ width: "80px" }}>
         <motion.div
-          className={`relative w-20 h-20 rounded-full border-2 flex items-center justify-center transition-colors duration-300 ${
+          className={`relative w-20 h-20 rounded-full border-2 flex items-center justify-center transition-colors duration-300 will-change-transform ${
             milestone.status === "in-progress"
               ? "border-gold/50 bg-[#0f1115] shadow-[0_0_30px_rgba(212,168,83,0.3)]"
               : milestone.status === "upcoming"
@@ -167,9 +167,9 @@ function MilestoneCard({
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
           )}
-          {/* Glow behind active node */}
+          {/* Glow behind active node - OPTIMIZED: Removed blur, using opacity-based glow */}
           {milestone.status === "in-progress" && (
-            <div className="absolute inset-0 rounded-full bg-gold/20 blur-[20px] scale-150 -z-10" />
+            <div className="absolute inset-0 rounded-full bg-gold/20 scale-150 -z-10" style={{ transform: 'translateZ(0)' }} />
           )}
         </motion.div>
       </div>
@@ -192,7 +192,7 @@ function MilestoneCard({
       <div className="md:hidden flex items-start gap-4 w-full pl-0">
         <div className="flex flex-col items-center flex-shrink-0 z-10">
           <motion.div
-            className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center ${
+            className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center will-change-transform ${
               milestone.status === "in-progress"
                 ? "border-gold/50 bg-[#0f1115] shadow-[0_0_20px_rgba(212,168,83,0.3)]"
                 : milestone.status === "upcoming"
@@ -241,9 +241,9 @@ function MilestoneCard({
   )
 }
 
-/* ─── Card Content (always visible, details animate in on scroll) ─────── */
+/* ─── Card Content (OPTIMIZED - Memoized, removed mouse tracking) ─────── */
 
-function CardContent({
+const CardContent = memo(function CardContent({
   milestone,
   status,
   index,
@@ -254,40 +254,24 @@ function CardContent({
   index: number
   isInView: boolean
 }) {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
   const isEven = index % 2 === 0
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect()
-    mouseX.set(clientX - left)
-    mouseY.set(clientY - top)
-  }
 
   return (
     <div 
-      className="group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl overflow-hidden hover:border-gold/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(212,168,83,0.15)]"
-      onMouseMove={handleMouseMove}
+      className="group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl overflow-hidden hover:border-gold/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(212,168,83,0.15)] will-change-transform"
+      style={{ transform: 'translateZ(0)' }}
     >
-      {/* Dynamic Hover Spotlight */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              600px circle at ${mouseX}px ${mouseY}px,
-              rgba(212,168,83,0.1),
-              transparent 40%
-            )
-          `,
-        }}
+      {/* OPTIMIZED: Static hover glow instead of mouse-tracking blur gradient */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_50%,rgba(212,168,83,0.12),transparent_50%)]"
       />
 
       {/* Cinematic Background Image Masked */}
       <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none overflow-hidden">
         <img 
           src={milestone.image} 
-          alt={milestone.title} 
+          alt={milestone.title}
+          loading="lazy"
           className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[1.5s]" 
         />
         {/* Gradient fades the image from right/left depending on card side to ensure text is highly readable */}
@@ -347,7 +331,7 @@ function CardContent({
       </div>
     </div>
   )
-}
+})
 
 /* ─── Main Section ────────────────────────────────────────────────────────── */
 
@@ -367,19 +351,13 @@ export function RoadmapSection() {
       id="roadmap"
       className="relative py-24 lg:py-36 overflow-hidden bg-background"
     >
-      {/* ── Magic Accents / Ambient Flares ── */}
-      <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[100px] pointer-events-none z-[1]" />
-
-      {/* ── Grid/Map Background ── */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-[1] mix-blend-overlay bg-repeat" 
-        style={{ backgroundImage: "url('/noise.png')", backgroundSize: "100px 100px" }}
-      />
+      {/* ── OPTIMIZED: Replaced massive blur with solid gradients ── */}
+      <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full pointer-events-none z-[1]" style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }} />
+      <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full pointer-events-none z-[1]" style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }} />
 
       {/* ── Golden flare orbs ── */}
       <div
-        className="absolute pointer-events-none z-[1]"
+        className="absolute pointer-events-none z-[1] will-change-transform"
         style={{
           top: "8%",
           right: "8%",
@@ -388,10 +366,11 @@ export function RoadmapSection() {
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
           animation: "flare-breathe 9s ease-in-out infinite",
+          transform: 'translateZ(0)'
         }}
       />
       <div
-        className="absolute pointer-events-none z-[1]"
+        className="absolute pointer-events-none z-[1] will-change-transform"
         style={{
           bottom: "12%",
           left: "5%",
@@ -400,12 +379,9 @@ export function RoadmapSection() {
           borderRadius: "50%",
           background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 65%)",
           animation: "flare-breathe-slow 11s ease-in-out infinite",
+          transform: 'translateZ(0)'
         }}
       />
-
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-[1]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* ── Section Header ── */}
@@ -435,10 +411,15 @@ export function RoadmapSection() {
               className="w-full bg-gradient-to-b from-gold/50 via-gold to-transparent" 
               style={{ height: lineHeight }}
             />
-            {/* Glow effect on the active tip */}
+            {/* OPTIMIZED: Reduced blur on glow effect */}
             <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 w-4 h-[100px] bg-gold/50 blur-xl pointer-events-none"
-              style={{ top: lineHeight, marginTop: "-100px" }}
+              className="absolute left-1/2 -translate-x-1/2 w-4 h-[100px] bg-gold/50 pointer-events-none"
+              style={{ 
+                top: lineHeight, 
+                marginTop: "-100px",
+                filter: 'blur(20px)',
+                transform: 'translateZ(0)'
+              }}
             />
           </div>
 
@@ -448,10 +429,15 @@ export function RoadmapSection() {
               className="w-full bg-gradient-to-b from-gold/50 via-gold to-transparent" 
               style={{ height: lineHeight }}
             />
-            {/* Glow effect on the active tip */}
+            {/* OPTIMIZED: Reduced blur on glow effect */}
             <motion.div 
-              className="absolute left-1/2 -translate-x-1/2 w-4 h-[80px] bg-gold/50 blur-xl pointer-events-none"
-              style={{ top: lineHeight, marginTop: "-80px" }}
+              className="absolute left-1/2 -translate-x-1/2 w-4 h-[80px] bg-gold/50 pointer-events-none"
+              style={{ 
+                top: lineHeight, 
+                marginTop: "-80px",
+                filter: 'blur(20px)',
+                transform: 'translateZ(0)'
+              }}
             />
           </div>
 

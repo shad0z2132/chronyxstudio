@@ -24,7 +24,7 @@ export function PartnersSection() {
   const doubled = [...partners, ...partners]
 
   return (
-    <section className="relative bg-[#0a0a0f] border-b border-white/[0.06] py-10 overflow-hidden">
+    <section className="relative bg-[#0a0a0f] py-10 overflow-hidden">
       {/* Eyebrow label */}
       <FadeIn>
         <div className="flex justify-center mb-8">

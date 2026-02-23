@@ -102,34 +102,37 @@ export function HeroSection() {
           />
         </motion.div>
 
-        {/* Film Grain Texture - Cinematic overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay z-[1] bg-repeat"
-          style={{ backgroundImage: "url('/noise.png')", backgroundSize: "100px 100px" }}
-        />
-
-        {/* ── Complex Cinematic Lighting & Overlays ── */}
+        {/* ── Complex Cinematic Lighting & Overlays (OPTIMIZED - reduced blur amounts) ── */}
         {/* 1. Base vignette (middle ground between the old heavy black and the fully bright version) */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0f_100%)] opacity-60 z-[1]" />
         
         {/* 2. Side/Bottom gradients for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/40 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/80 to-transparent z-[1] w-3/4" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent z-[1] h-1/2 mt-auto" />
 
         {/* 3. Global color wash to tone down raw video colors and unify the cinematic look */}
         <div className="absolute inset-0 bg-[#1c1408]/40 mix-blend-multiply z-[1] pointer-events-none" />
 
-        {/* 4. Ambient Magic Flares (Deep Teal + Gold) */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(212,168,83,0.15)] rounded-full blur-[120px] pointer-events-none z-[1] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[rgba(212,168,83,0.1)] rounded-full blur-[100px] pointer-events-none z-[1] mix-blend-screen" />
+        {/* 4. Ambient Magic Flares (Deep Teal + Gold) - OPTIMIZED: reduced blur amounts */}
+        <div 
+          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(212,168,83,0.15)] rounded-full pointer-events-none z-[1] mix-blend-screen will-change-transform" 
+          style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }}
+        />
+        <div 
+          className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[rgba(212,168,83,0.1)] rounded-full pointer-events-none z-[1] mix-blend-screen will-change-transform" 
+          style={{ filter: 'blur(70px)', transform: 'translateZ(0)' }}
+        />
         
         {/* 5. Center/Top Golden "God Ray" and pulsing core */}
         <div 
-          className="absolute top-[-20%] left-[20%] w-[70vw] h-[70vw] bg-gold/15 rounded-full blur-[130px] pointer-events-none z-[1] mix-blend-screen"
-          style={{ animation: 'flare-breathe 8s ease-in-out infinite' }}
+          className="absolute top-[-20%] left-[20%] w-[70vw] h-[70vw] bg-gold/15 rounded-full pointer-events-none z-[1] mix-blend-screen will-change-transform"
+          style={{ animation: 'flare-breathe 8s ease-in-out infinite', filter: 'blur(90px)', transform: 'translateZ(0)' }}
         />
-        {/* Sweeping light ray overlay */}
-        <div className="absolute top-[-10%] left-[15%] w-[50%] h-[150%] bg-gradient-to-b from-white/10 via-gold/5 to-transparent origin-top -rotate-[25deg] blur-3xl pointer-events-none z-[1] mix-blend-overlay" style={{ animation: 'flare-breathe-slow 10s ease-in-out infinite' }} />
+        {/* Sweeping light ray overlay - OPTIMIZED: reduced blur */}
+        <div 
+          className="absolute top-[-10%] left-[15%] w-[50%] h-[150%] bg-gradient-to-b from-white/10 via-gold/5 to-transparent origin-top -rotate-[25deg] pointer-events-none z-[1] mix-blend-overlay will-change-transform" 
+          style={{ animation: 'flare-breathe-slow 10s ease-in-out infinite', filter: 'blur(50px)', transform: 'translateZ(0)' }}
+        />
 
         {/* Main content — two column layout */}
         <motion.div

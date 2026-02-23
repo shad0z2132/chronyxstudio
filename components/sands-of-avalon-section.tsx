@@ -164,11 +164,9 @@ export function SandsOfAvalonSection() {
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.06] scale-110"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.04] scale-110"
         />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
 
@@ -184,8 +182,8 @@ export function SandsOfAvalonSection() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
               />
               {/* Gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/80 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent h-2/3 mt-auto" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/80 to-transparent w-2/3" />
 
               {/* Content overlay */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">

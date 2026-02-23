@@ -60,9 +60,9 @@ export function ProjectsSection() {
       
       {/* Sticky container that stays in place while we scroll down */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        {/* ── Magic Accents / Ambient Flares ── */}
-        <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[20%] left-[10%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[100px] pointer-events-none" />
+        {/* ── Magic Accents / Ambient Flares (OPTIMIZED - reduced blur) ── */}
+        <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full pointer-events-none will-change-transform" style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }} />
+        <div className="absolute bottom-[20%] left-[10%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full pointer-events-none will-change-transform" style={{ filter: 'blur(70px)', transform: 'translateZ(0)' }} />
 
         {/* ── Golden flare orbs ── */}
         <div
@@ -147,8 +147,8 @@ export function ProjectsSection() {
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                         {/* Directional fade into content */}
-                        <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-[#0f1115]/50 to-[#0f1115] hidden lg:block`} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-[#0f1115]/40 to-transparent lg:hidden" />
+                        <div className="absolute top-0 bottom-0 right-0 w-3/4 bg-gradient-to-r from-transparent to-[#0f1115] hidden lg:block" />
+                        <div className="absolute left-0 right-0 bottom-0 h-3/4 bg-gradient-to-t from-transparent to-[#0f1115] lg:hidden" />
 
                         {/* Accent gradient */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${world.gradient} opacity-40`} />

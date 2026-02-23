@@ -66,12 +66,10 @@ export function WhyChooseUs() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.04] scale-110"
         />
       </motion.div>
-      {/* Overlay to blend into section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-card via-transparent to-card z-[1]" />
 
-      {/* ── Magic Accents / Ambient Flares ── */}
-      <div className="absolute top-[20%] left-[15%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[15%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[100px] pointer-events-none" />
+      {/* ── Magic Accents / Ambient Flares (OPTIMIZED - reduced blur) ── */}
+      <div className="absolute top-[20%] left-[15%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full pointer-events-none will-change-transform" style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }} />
+      <div className="absolute bottom-[20%] right-[15%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full pointer-events-none will-change-transform" style={{ filter: 'blur(70px)', transform: 'translateZ(0)' }} />
 
       {/* ── Golden flare orbs ── */}
       <div

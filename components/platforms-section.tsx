@@ -155,8 +155,8 @@ export function PlatformsSection() {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card hidden lg:block" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent lg:hidden" />
+                <div className="absolute top-0 bottom-0 right-0 w-3/4 bg-gradient-to-r from-transparent to-card hidden lg:block" />
+                <div className="absolute left-0 right-0 bottom-0 h-3/4 bg-gradient-to-t from-transparent to-card lg:hidden" />
 
                 {/* UE logo overlay */}
                 <div className="absolute top-3 left-3 flex items-center gap-2 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">

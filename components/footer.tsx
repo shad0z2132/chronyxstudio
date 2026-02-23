@@ -72,9 +72,9 @@ export function Footer() {
 
   return (
     <footer className="relative bg-[#08080d] border-t border-white/[0.06] overflow-hidden mt-20">
-      {/* ── Magic Accents / Ambient Flares ── */}
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gold/5 rounded-[100%] blur-[120px] pointer-events-none" />
+      {/* ── Magic Accents / Ambient Flares (OPTIMIZED - reduced blur) ── */}
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[rgba(10,25,47,0.3)] rounded-full pointer-events-none will-change-transform" style={{ filter: 'blur(100px)', transform: 'translateZ(0)' }} />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gold/5 rounded-[100%] pointer-events-none will-change-transform" style={{ filter: 'blur(80px)', transform: 'translateZ(0)' }} />
 
       {/* Large watermark logo */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden mix-blend-screen">

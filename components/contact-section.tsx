@@ -36,8 +36,6 @@ export function ContactSection() {
           className="absolute inset-0 w-full h-full object-cover opacity-[0.03] scale-110"
         />
       </motion.div>
-      {/* Overlay to blend into section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-[1]" />
 
       {/* ── Golden flare orbs ── */}
       <div

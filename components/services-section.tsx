@@ -100,11 +100,11 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
             {/* Gradients */}
             {isFirst ? (
               <>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0a0a0f] hidden lg:block" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent lg:hidden" />
+                <div className="absolute top-0 bottom-0 right-0 w-1/2 bg-gradient-to-r from-transparent to-[#0a0a0f] hidden lg:block" />
+                <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0a0f] to-transparent lg:hidden" />
               </>
             ) : (
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent" />
+              <div className="absolute left-0 right-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
             )}
 
             {/* Status badge */}
