@@ -117,11 +117,11 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/40 z-[1]" />
 
         {/* 3. Global color wash to tone down raw video colors and unify the cinematic look */}
-        <div className="absolute inset-0 bg-blue-950/20 mix-blend-multiply z-[1] pointer-events-none" />
+        <div className="absolute inset-0 bg-[#1c1408]/40 mix-blend-multiply z-[1] pointer-events-none" />
 
         {/* 4. Ambient Magic Flares (Deep Teal + Gold) */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(10,25,47,0.5)] rounded-full blur-[120px] pointer-events-none z-[1] mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none z-[1] mix-blend-screen" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(212,168,83,0.15)] rounded-full blur-[120px] pointer-events-none z-[1] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-[rgba(212,168,83,0.1)] rounded-full blur-[100px] pointer-events-none z-[1] mix-blend-screen" />
         
         {/* 5. Center/Top Golden "God Ray" and pulsing core */}
         <div 
