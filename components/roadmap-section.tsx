@@ -365,7 +365,7 @@ export function RoadmapSection() {
     <section
       ref={sectionRef}
       id="roadmap"
-      className="relative py-24 lg:py-36 overflow-hidden bg-[#0d0d14]"
+      className="relative py-24 lg:py-36 overflow-hidden bg-background"
     >
       {/* ── Magic Accents / Ambient Flares ── */}
       <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none z-[1]" />
@@ -373,13 +373,8 @@ export function RoadmapSection() {
 
       {/* ── Grid/Map Background ── */}
       <div 
-        className="absolute inset-0 opacity-[0.015] pointer-events-none z-[1]" 
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at center, rgba(212,168,83,0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px'
-        }}
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-[1] mix-blend-overlay bg-repeat" 
+        style={{ backgroundImage: "url('/noise.png')", backgroundSize: "100px 100px" }}
       />
 
       {/* ── Golden flare orbs ── */}
@@ -409,8 +404,8 @@ export function RoadmapSection() {
       />
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d14] via-[#0d0d14]/90 to-[#0d0d14] z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d14] via-transparent to-[#0d0d14] z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-[1]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
         {/* ── Section Header ── */}
