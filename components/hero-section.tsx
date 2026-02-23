@@ -91,14 +91,14 @@ export function HeroSection() {
             loop
             playsInline
             poster="/Anubismonolith.webp"
-            className="absolute inset-0 w-full h-full object-cover hidden md:block"
+            className="absolute inset-0 w-full h-full object-cover hidden md:block brightness-[0.85]"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
           <img
             src="/Anubismonolith.webp"
             alt="Anubis monolith — Sands of Avalon"
-            className="absolute inset-0 w-full h-full object-cover md:hidden"
+            className="absolute inset-0 w-full h-full object-cover md:hidden brightness-[0.85]"
           />
         </motion.div>
 
@@ -109,18 +109,21 @@ export function HeroSection() {
         />
 
         {/* ── Complex Cinematic Lighting & Overlays ── */}
-        {/* 1. Base vignette (reduced opacity for brighter background) */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0f_100%)] opacity-40 z-[1]" />
+        {/* 1. Base vignette (middle ground between the old heavy black and the fully bright version) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0f_100%)] opacity-60 z-[1]" />
         
-        {/* 2. Side/Bottom gradients for text readability (reduced intensity) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/30 to-transparent z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent z-[1]" />
+        {/* 2. Side/Bottom gradients for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/60 to-transparent z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/40 z-[1]" />
 
-        {/* 3. Ambient Magic Flares (Deep Teal + Gold) */}
+        {/* 3. Global color wash to tone down raw video colors and unify the cinematic look */}
+        <div className="absolute inset-0 bg-blue-950/20 mix-blend-multiply z-[1] pointer-events-none" />
+
+        {/* 4. Ambient Magic Flares (Deep Teal + Gold) */}
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(10,25,47,0.5)] rounded-full blur-[120px] pointer-events-none z-[1] mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none z-[1] mix-blend-screen" />
         
-        {/* 4. Center/Top Golden "God Ray" and pulsing core */}
+        {/* 5. Center/Top Golden "God Ray" and pulsing core */}
         <div 
           className="absolute top-[-20%] left-[20%] w-[70vw] h-[70vw] bg-gold/15 rounded-full blur-[130px] pointer-events-none z-[1] mix-blend-screen"
           style={{ animation: 'flare-breathe 8s ease-in-out infinite' }}
