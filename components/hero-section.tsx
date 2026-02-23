@@ -91,14 +91,14 @@ export function HeroSection() {
             loop
             playsInline
             poster="/Anubismonolith.webp"
-            className="absolute inset-0 w-full h-full object-cover hidden md:block brightness-[0.75]"
+            className="absolute inset-0 w-full h-full object-cover hidden md:block"
           >
             <source src={heroVideo} type="video/mp4" />
           </video>
           <img
             src="/Anubismonolith.webp"
             alt="Anubis monolith — Sands of Avalon"
-            className="absolute inset-0 w-full h-full object-cover md:hidden brightness-[0.75]"
+            className="absolute inset-0 w-full h-full object-cover md:hidden"
           />
         </motion.div>
 
@@ -108,10 +108,25 @@ export function HeroSection() {
           style={{ backgroundImage: "url('/noise.png')", backgroundSize: "100px 100px" }}
         />
 
-        {/* Dark gradient overlays — cinematic vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0f_100%)] opacity-80 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/60 z-[1]" />
+        {/* ── Complex Cinematic Lighting & Overlays ── */}
+        {/* 1. Base vignette (reduced opacity for brighter background) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0f_100%)] opacity-40 z-[1]" />
+        
+        {/* 2. Side/Bottom gradients for text readability (reduced intensity) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/30 to-transparent z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent z-[1]" />
+
+        {/* 3. Ambient Magic Flares (Deep Teal + Gold) */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[rgba(10,25,47,0.5)] rounded-full blur-[120px] pointer-events-none z-[1] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-amber-600/10 rounded-full blur-[100px] pointer-events-none z-[1] mix-blend-screen" />
+        
+        {/* 4. Center/Top Golden "God Ray" and pulsing core */}
+        <div 
+          className="absolute top-[-20%] left-[20%] w-[70vw] h-[70vw] bg-gold/15 rounded-full blur-[130px] pointer-events-none z-[1] mix-blend-screen"
+          style={{ animation: 'flare-breathe 8s ease-in-out infinite' }}
+        />
+        {/* Sweeping light ray overlay */}
+        <div className="absolute top-[-10%] left-[15%] w-[50%] h-[150%] bg-gradient-to-b from-white/10 via-gold/5 to-transparent origin-top -rotate-[25deg] blur-3xl pointer-events-none z-[1] mix-blend-overlay" style={{ animation: 'flare-breathe-slow 10s ease-in-out infinite' }} />
 
         {/* Main content — two column layout */}
         <motion.div
