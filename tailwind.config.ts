@@ -52,7 +52,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['"Sora"', 'Inter', 'sans-serif'],
+        heading: ['"Cinzel"', 'serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -68,10 +68,14 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        shimmer: {
+          '100%': { transform: 'translateX(150%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        shimmer: 'shimmer 2s infinite',
       },
     },
   },

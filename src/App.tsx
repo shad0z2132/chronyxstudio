@@ -18,16 +18,6 @@ import { Footer } from "@/components/footer"
 import { Preloader } from "@/components/preloader"
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
 
-function SectionDivider() {
-  return (
-    <div className="relative py-1">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-      </div>
-    </div>
-  )
-}
-
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const handlePreloaderComplete = useCallback(() => setIsLoaded(true), [])
@@ -52,38 +42,25 @@ export default function App() {
           >
             {/* Scroll progress bar */}
             <motion.div
-              className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left"
+              className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left pointer-events-none"
               style={{ scaleX }}
             />
 
             <main>
               <Navbar />
               <HeroSection />
-              <SectionDivider />
               <AboutSection />
-              <SectionDivider />
               <PartnersSection />
-              <SectionDivider />
               <SandsOfAvalonSection />
-              <SectionDivider />
               <RoadmapSection />
-              <SectionDivider />
               <WhyChooseUs />
-              <SectionDivider />
               <ServicesSection />
-              <SectionDivider />
               <PlatformsSection />
-              <SectionDivider />
               <ProjectsSection />
-              <SectionDivider />
               <CooperationSection />
-              <SectionDivider />
               <TestimonialsSection />
-              <SectionDivider />
               <AwardsSection />
-              <SectionDivider />
               <BlogSection />
-              <SectionDivider />
               <ContactSection />
               <Footer />
             </main>

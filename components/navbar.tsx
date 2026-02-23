@@ -1,6 +1,6 @@
 import { ArrowUpRight, Menu, X, ExternalLink } from "lucide-react"
 import { useState, useEffect, useCallback, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 /* ── Brand SVG icons ─────────────────────────────────────────────────────── */
 
@@ -38,41 +38,34 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const { scrollY } = useScroll()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [activeSection, setActiveSection] = useState("")
-  const lastScrollY = useRef(0)
-  const scrollDirection = useRef<"up" | "down">("up")
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const lastDirectionChangeY = useRef(0)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY
-      setScrolled(currentY > 50)
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    const previous = scrollY.getPrevious() ?? 0
+    setScrolled(latest > 50)
 
-      // Determine scroll direction
-      const direction = currentY > lastScrollY.current ? "down" : "up"
+    // Track when direction changes
+    const direction = latest > previous ? "down" : "up"
+    const prevDirection = previous > (scrollY.getPrevious() ?? 0) ? "down" : "up"
 
-      // Track when direction changes
-      if (direction !== scrollDirection.current) {
-        scrollDirection.current = direction
-        lastDirectionChangeY.current = currentY
-      }
-
-      // Only hide/show after scrolling 60px in one direction (prevents jitter)
-      const delta = Math.abs(currentY - lastDirectionChangeY.current)
-      if (currentY > 100 && delta > 60) {
-        setHidden(direction === "down")
-      } else if (currentY <= 100) {
-        setHidden(false)
-      }
-
-      lastScrollY.current = currentY
+    if (direction !== prevDirection) {
+      lastDirectionChangeY.current = latest
     }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+
+    // Only hide/show after scrolling 60px in one direction (prevents jitter)
+    const delta = Math.abs(latest - lastDirectionChangeY.current)
+    if (latest > 100 && delta > 60) {
+      setHidden(direction === "down")
+    } else if (latest <= 100) {
+      setHidden(false)
+    }
+  })
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]")
@@ -109,27 +102,37 @@ export function Navbar() {
 
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: hidden && !mobileOpen ? -100 : 0 }}
+        animate={{ 
+          y: hidden && !mobileOpen ? -100 : 0,
+          paddingTop: scrolled ? "1rem" : "0rem"
+        }}
         transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-[background,backdrop-filter] duration-500 ${
-          scrolled
-            ? "bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/[0.06]"
-            : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none ${
+          scrolled ? "px-4" : ""
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 lg:px-12 max-w-[1400px] mx-auto">
+        <motion.div 
+          layout
+          transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          className={`pointer-events-auto flex items-center justify-between transition-[background,backdrop-filter,border-radius,border-color,box-shadow,width] duration-500 overflow-hidden relative ${
+            scrolled
+              ? "bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-full max-w-[1000px] px-6 py-3"
+              : "bg-transparent border border-transparent w-full max-w-[1400px] px-6 lg:px-12 py-4"
+          }`}
+        >
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group relative z-10 shrink-0">
             <div className="relative">
               <img
                 src="/Silver 1.png"
                 alt="Chronyx Studio logo"
-                width={42}
-                height={42}
-                className="relative z-10 w-[42px] h-[42px] transition-all duration-300 group-hover:scale-105"
+                width={scrolled ? 36 : 42}
+                height={scrolled ? 36 : 42}
+                className="relative z-10 transition-all duration-500 group-hover:scale-105"
+                style={{ width: scrolled ? 36 : 42, height: scrolled ? 36 : 42 }}
               />
             </div>
-            <div className="flex flex-col leading-tight">
+            <div className={`flex flex-col leading-tight transition-all duration-500 origin-left ${scrolled ? 'scale-90' : 'scale-100'}`}>
               <span className="text-foreground font-heading font-bold text-lg tracking-[0.15em] transition-colors duration-200 group-hover:text-gold">
                 CHRONYX
               </span>
@@ -140,59 +143,71 @@ export function Navbar() {
           </a>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div 
+            className="hidden lg:flex items-center gap-1 relative z-10"
+            onMouseLeave={() => setHoveredLink(null)}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group ${
+                onMouseEnter={() => setHoveredLink(link.href)}
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group rounded-full ${
                   activeSection === link.href
                     ? "text-gold"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {link.label}
-                {/* Active indicator */}
-                {activeSection === link.href && (
+                <span className="relative z-10">{link.label}</span>
+                
+                {/* Magnetic Hover Pill */}
+                {hoveredLink === link.href && (
                   <motion.div
-                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full"
+                    layoutId="navHoverPill"
+                    className="absolute inset-0 bg-white/5 rounded-full z-0"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                
+                {/* Active indicator */}
+                {activeSection === link.href && !scrolled && (
+                  <motion.div
+                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full z-10"
                     layoutId="navIndicator"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
-                )}
-                {/* Hover underline — slides in from left */}
-                {activeSection !== link.href && (
-                  <span className="absolute bottom-0 left-4 right-4 h-px bg-foreground/40 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
                 )}
               </a>
             ))}
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 relative z-10 shrink-0">
             {/* Steam pill */}
             <a
               href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-2 bg-gold hover:bg-gold-light border border-gold/40 hover:border-gold px-4 py-2 rounded-lg text-background text-sm font-semibold tracking-wide uppercase transition-all duration-200 group"
+              className={`hidden lg:inline-flex items-center gap-2 bg-gold hover:bg-gold-light border border-gold/40 hover:border-gold rounded-full text-background font-semibold tracking-wide uppercase transition-all duration-300 group overflow-hidden relative ${scrolled ? 'px-4 py-1.5 text-xs' : 'px-4 py-2 text-sm'}`}
             >
-              <ExternalLink className="w-3 h-3" />
-              Wishlist on Steam
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+              <ExternalLink className={scrolled ? 'w-2.5 h-2.5' : 'w-3 h-3'} />
+              Wishlist
             </a>
 
             {/* Desktop CTA */}
             <a
               href="#contact"
-              className="hidden lg:inline-flex items-center gap-2 border border-gold/40 hover:border-gold hover:bg-gold/5 px-5 py-2 rounded-lg text-gold text-sm font-semibold tracking-wide uppercase transition-all duration-200 group"
+              className={`hidden lg:inline-flex items-center gap-2 border border-gold/40 hover:border-gold hover:bg-gold/5 rounded-full text-gold font-semibold tracking-wide uppercase transition-all duration-300 group ${scrolled ? 'px-4 py-1.5 text-xs' : 'px-5 py-2 text-sm'}`}
             >
-              Get in Touch
+              Contact
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden text-foreground w-8 h-8 flex items-center justify-center"
+              className="lg:hidden text-foreground w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
@@ -210,7 +225,7 @@ export function Navbar() {
               </AnimatePresence>
             </button>
           </div>
-        </div>
+        </motion.div>
       </motion.nav>
 
       {/* Mobile Menu */}

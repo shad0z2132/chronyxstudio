@@ -11,7 +11,7 @@ const highlights = [
 export function AboutSection() {
   return (
     <section id="about" className="relative py-20 lg:py-28 bg-background overflow-hidden">
-      {/* ── Golden flare orbs ── */}
+      {/* ── Magical & Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none z-[1]"
         style={{
@@ -32,7 +32,7 @@ export function AboutSection() {
           width: "420px",
           height: "420px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 65%)",
+          background: "radial-gradient(circle, rgba(10,25,47,0.4) 0%, rgba(10,25,47,0) 65%)",
           animation: "flare-breathe-slow 10s ease-in-out infinite",
         }}
       />
@@ -43,7 +43,7 @@ export function AboutSection() {
           <FadeIn>
             <div className="relative">
               {/* Main image */}
-              <div className="relative rounded-xl overflow-hidden border border-white/[0.06] group">
+              <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] group">
                 <img
                   src="/HighresScreenshot00084.webp"
                   alt="Chronyx Studio — in-engine screenshot"

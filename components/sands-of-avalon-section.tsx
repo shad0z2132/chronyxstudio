@@ -119,7 +119,7 @@ export function SandsOfAvalonSection() {
       id="sands-of-avalon"
       className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold"
     >
-      {/* ── Golden flare orbs ── */}
+      {/* ── Golden & Teal flare orbs ── */}
       <div
         className="absolute pointer-events-none z-[1]"
         style={{
@@ -128,7 +128,7 @@ export function SandsOfAvalonSection() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.10) 0%, rgba(212,168,83,0) 70%)",
+          background: "radial-gradient(circle, rgba(212,168,83,0.12) 0%, rgba(212,168,83,0) 70%)",
           animation: "flare-breathe 8s ease-in-out infinite",
         }}
       />
@@ -140,7 +140,7 @@ export function SandsOfAvalonSection() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 65%)",
+          background: "radial-gradient(circle, rgba(10,25,47,0.5) 0%, rgba(10,25,47,0) 65%)",
           animation: "flare-breathe-slow 10s ease-in-out infinite",
         }}
       />
@@ -152,7 +152,7 @@ export function SandsOfAvalonSection() {
           width: "450px",
           height: "450px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 70%)",
+          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
           animation: "flare-breathe 12s ease-in-out infinite",
         }}
       />
@@ -174,7 +174,7 @@ export function SandsOfAvalonSection() {
 
         {/* ── Cinematic Hero Banner ──────────────────────────────────────── */}
         <FadeIn>
-          <div className="relative rounded-2xl overflow-hidden border border-white/[0.06] mb-16 group">
+          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_30px_rgba(0,0,0,0.5)] mb-16 group">
             {/* Large showcase image */}
             <div className="relative h-[360px] md:h-[440px] lg:h-[500px] overflow-hidden">
               <img
@@ -253,8 +253,10 @@ export function SandsOfAvalonSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-16">
           {/* Dev progress panel — takes 3 cols */}
           <FadeIn className="lg:col-span-3">
-            <div className="bg-card border border-white/[0.06] rounded-xl p-6 lg:p-8 h-full flex flex-col">
-              <div className="flex items-center justify-between mb-7">
+            <div className="bg-[#0f1115] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.5)] rounded-xl p-6 lg:p-8 h-full flex flex-col relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-7">
                 <div className="flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-gold/60" />
                   <span className="text-foreground font-heading font-semibold text-base tracking-tight">
@@ -279,12 +281,13 @@ export function SandsOfAvalonSection() {
               </div>
 
               {/* Overall */}
-              <div className="mt-7 pt-5 border-t border-white/[0.06]">
+              <div className="mt-7 pt-5 border-t border-white/[0.06] relative z-10">
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground/50 text-sm">Overall Completion</span>
                   <span className="text-gold font-heading font-bold text-xl">~51%</span>
                 </div>
               </div>
+            </div>
             </div>
           </FadeIn>
 
@@ -294,14 +297,15 @@ export function SandsOfAvalonSection() {
               {devStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-card border border-white/[0.06] rounded-xl p-5 flex flex-col items-center justify-center text-center hover:border-white/[0.1] transition-colors duration-200"
+                  className="bg-[#0f1115] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl p-5 flex flex-col items-center justify-center text-center hover:border-white/20 transition-colors duration-300 relative overflow-hidden group"
                 >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <Counter
                     target={stat.target}
                     suffix={stat.suffix}
-                    className="text-gold font-heading font-bold text-3xl lg:text-4xl block mb-1"
+                    className="text-gold font-heading font-bold text-3xl lg:text-4xl block mb-1 relative z-10"
                   />
-                  <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
+                  <span className="text-muted-foreground/50 text-[10px] tracking-wider uppercase relative z-10">
                     {stat.label}
                   </span>
                 </div>
@@ -314,24 +318,27 @@ export function SandsOfAvalonSection() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" staggerDelay={0.08}>
           {features.map((feature) => (
             <StaggerItem key={feature.title}>
-              <div className="group relative bg-card border border-white/[0.06] rounded-xl p-7 h-full hover:border-gold/15 transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="group relative bg-[#0f1115] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl p-7 h-full hover:border-gold/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_10px_30px_rgba(212,168,83,0.1)] transition-all duration-500 overflow-hidden flex flex-col">
+                {/* Background glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
                 {/* Top accent border */}
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
 
-                <div className="mb-5">
-                  <div className="w-10 h-10 bg-gold/[0.08] rounded-lg flex items-center justify-center group-hover:bg-gold/[0.12] transition-colors duration-300">
-                    <feature.icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
+                <div className="mb-5 relative z-10">
+                  <div className="w-10 h-10 bg-gold/10 border border-gold/20 rounded-lg flex items-center justify-center group-hover:bg-gold/20 group-hover:scale-110 transition-all duration-300">
+                    <feature.icon className="w-5 h-5 text-gold group-hover:drop-shadow-[0_0_8px_rgba(212,168,83,0.8)] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                 </div>
-                <h3 className="text-foreground font-heading font-semibold text-base mb-2 tracking-tight">
+                <h3 className="text-foreground font-heading font-semibold text-base mb-2 tracking-tight relative z-10 group-hover:text-gold transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground/60 text-sm leading-relaxed flex-1">
+                <p className="text-muted-foreground/60 text-sm leading-relaxed flex-1 relative z-10">
                   {feature.description}
                 </p>
 
                 {/* Bottom metric */}
-                <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/10 transition-colors duration-500">
+                <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/20 transition-colors duration-500 relative z-10">
                   <div className="flex items-baseline gap-2">
                     <span className="text-gold font-heading font-bold text-lg">{feature.stat.value}</span>
                     <span className="text-muted-foreground/50 text-[11px] tracking-wider uppercase">{feature.stat.label}</span>
@@ -345,22 +352,27 @@ export function SandsOfAvalonSection() {
         {/* ── Bottom CTA ─────────────────────────────────────────────────── */}
         <FadeIn delay={0.3}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-14">
-            <a
+            <motion.a
               href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group hover:shadow-[0_0_30px_rgba(212,168,83,0.2)]"
+              className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
+              whileTap={{ scale: 0.98 }}
             >
-              Wishlist on Steam
-              <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
+              <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+              <span className="relative z-10">Wishlist on Steam</span>
+              <ExternalLink className="relative z-10 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </motion.a>
+
+            <motion.a
               href="#contact"
-              className="inline-flex items-center gap-2.5 border border-white/15 hover:border-white/30 hover:bg-white/[0.03] text-foreground px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+              className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Follow Development
               <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </motion.a>
           </div>
         </FadeIn>
       </div>
