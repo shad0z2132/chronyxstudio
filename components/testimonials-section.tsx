@@ -91,17 +91,18 @@ export function TestimonialsSection() {
           {visionQuotes.map((item, index) => (
             <StaggerItem key={item.name}>
               <motion.div
-                className={`group relative bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.1] transition-all duration-500 ${
+                className={`group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl overflow-hidden hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,168,83,0.1)] transition-all duration-500 ${
                   index === 1 ? "md:-mt-6" : index === 2 ? "md:mt-6" : ""
                 }`}
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
                 {/* Top accent border */}
-                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent group-hover:via-gold/50 transition-all duration-500" />
 
                 {/* Accent gradient on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-b ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-b ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 <div className="relative z-10 p-7 lg:p-8">
                   {/* Quote icon */}

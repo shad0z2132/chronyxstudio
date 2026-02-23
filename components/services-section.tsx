@@ -80,7 +80,7 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
     <StaggerItem>
       <a
         href={game.href}
-        className={`group block relative overflow-hidden rounded-2xl border border-white/[0.06] hover:border-gold/20 transition-all duration-500 ${
+        className={`group block relative overflow-hidden rounded-2xl bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] hover:border-gold/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,83,0.1)] ${
           isFirst ? "lg:col-span-2" : ""
         }`}
       >
@@ -185,15 +185,16 @@ function PillarCard({ pillar, index }: { pillar: typeof pillars[0]; index: numbe
   return (
     <StaggerItem>
       <motion.div
-        className="group relative bg-card border border-white/[0.06] rounded-xl p-7 h-full hover:border-gold/15 transition-all duration-500 overflow-hidden"
+        className="group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl p-7 h-full hover:border-gold/30 hover:shadow-[0_0_30px_rgba(212,168,83,0.1)] transition-all duration-500 overflow-hidden"
         whileHover={{ y: -3 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         {/* Top accent border */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent group-hover:via-gold/50 transition-all duration-500" />
 
         {/* Hover gradient accent */}
-        <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${pillar.accent} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+        <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${pillar.accent} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         <div className="relative z-10">
           {/* Number + icon */}

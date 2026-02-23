@@ -71,58 +71,102 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative bg-[#08080d] border-t border-white/[0.06] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+    <footer className="relative bg-[#08080d] border-t border-white/[0.06] overflow-hidden mt-20">
+      {/* ── Magic Accents / Ambient Flares ── */}
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gold/5 rounded-[100%] blur-[120px] pointer-events-none" />
+
+      {/* Large watermark logo */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none select-none overflow-hidden mix-blend-screen">
+        <img
+          src="/Silver 1.png"
+          alt=""
+          className="w-[120vw] max-w-[1200px] object-contain object-center scale-150 transform-gpu"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24">
+        {/* Grand Finale Call to Action */}
         <FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
+          <div className="flex flex-col items-center justify-center text-center mb-24 relative">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white tracking-tight mb-6 drop-shadow-2xl">
+              Forge Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-amber-600">Legacy</span>
+            </h2>
+            <p className="text-muted-foreground/80 max-w-xl text-lg md:text-xl mb-10">
+              Join our growing community. Be the first to play, test, and shape the future of our worlds.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <a 
+                href="https://discord.gg/y5rFa8vpHH" 
+                target="_blank" 
+                rel="noreferrer"
+                className="group relative px-8 py-4 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-lg font-bold tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(88,101,242,0.4)] flex items-center gap-3 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <DiscordIcon className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">Join the Discord</span>
+              </a>
+              <a 
+                href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1" 
+                target="_blank" 
+                rel="noreferrer"
+                className="group relative px-8 py-4 bg-transparent border border-gold/40 hover:border-gold text-gold rounded-lg font-bold tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,168,83,0.2)] flex items-center gap-3 overflow-hidden bg-[#0f1115]"
+              >
+                <div className="absolute inset-0 bg-gold/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <span className="relative z-10">Wishlist on Steam</span>
+              </a>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Footer Links & Info */}
+        <FadeIn delay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-16 pt-16 border-t border-white/[0.06]">
             {/* Logo & Info */}
-            <div className="lg:col-span-2 flex flex-col gap-5">
+            <div className="lg:col-span-2 flex flex-col gap-6">
               <a href="/" className="flex items-center gap-3 w-fit group">
                 <img
                   src="/Silver 1.png"
                   alt="Chronyx Studio logo"
-                  width={44}
-                  height={44}
-                  className="w-11 h-11 transition-transform duration-300 group-hover:scale-105"
+                  width={56}
+                  height={56}
+                  className="w-14 h-14 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(212,168,83,0.3)]"
                 />
                 <div className="flex flex-col leading-tight">
-                  <span className="text-foreground font-heading font-bold text-lg tracking-[0.1em]">
+                  <span className="text-foreground font-heading font-bold text-2xl tracking-[0.15em] drop-shadow-md">
                     CHRONYX
                   </span>
-                  <span className="text-gold text-[10px] tracking-[0.2em] uppercase">
+                  <span className="text-gold text-[11px] font-bold tracking-[0.3em] uppercase">
                     Studios
                   </span>
                 </div>
               </a>
 
-              <p className="text-muted-foreground/70 text-sm leading-relaxed max-w-xs">
+              <p className="text-muted-foreground/70 text-sm leading-relaxed max-w-sm">
                 Building long-term IPs through deep progression systems, strong player identity,
-                and competitive gameplay experiences.
+                and competitive gameplay experiences. We don't just make games, we forge worlds.
               </p>
 
               <div>
-                <h4 className="text-gold/60 text-xs font-semibold tracking-[0.15em] uppercase mb-2">
-                  Contact
-                </h4>
                 <a
                   href="mailto:contact@chronyxstudio.com"
-                  className="text-muted-foreground text-sm hover:text-gold transition-colors duration-200"
+                  className="text-gold hover:text-white transition-colors duration-300 font-semibold tracking-wide text-sm"
                 >
                   contact@chronyxstudio.com
                 </a>
               </div>
 
               {/* Social */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4 mt-2">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white/[0.04] border border-white/[0.06] rounded-lg flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/20 hover:bg-gold/[0.06] transition-all duration-300"
+                    className="w-10 h-10 bg-[#0f1115] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/30 hover:shadow-[0_0_20px_rgba(212,168,83,0.15)] transition-all duration-300"
                     aria-label={social.label}
-                    whileHover={{ y: -2 }}
+                    whileHover={{ y: -3 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
                     <social.icon className="w-4 h-4" />
@@ -134,18 +178,19 @@ export function Footer() {
             {/* Link columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-gold/60 text-xs font-semibold tracking-[0.15em] uppercase mb-4">
+                <h4 className="text-white text-xs font-bold tracking-[0.2em] uppercase mb-6 drop-shadow-md">
                   {category}
                 </h4>
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-3.5">
                   {links.map((link) => (
                     <li key={link.label}>
                       <a
                         href={link.href}
                         target={link.href.startsWith("http") ? "_blank" : undefined}
                         rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="text-muted-foreground/60 text-sm hover:text-foreground transition-colors duration-200"
+                        className="group flex items-center gap-2 text-muted-foreground/60 text-sm hover:text-gold transition-colors duration-300"
                       >
+                        <span className="w-1.5 h-px bg-gold/50 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                         {link.label}
                       </a>
                     </li>
@@ -158,26 +203,26 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/[0.06]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground/50 text-sm">
-            &copy; 2026 Chronyx Studio. All rights reserved.
+      <div className="relative z-10 bg-black/40 border-t border-white/[0.04] backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase">
+            &copy; {new Date().getFullYear()} Chronyx Studio. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-muted-foreground/50 text-sm hover:text-foreground transition-colors duration-200">
+          <div className="flex items-center gap-8">
+            <a href="#" className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase hover:text-gold transition-colors duration-300">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground/50 text-sm hover:text-foreground transition-colors duration-200">
+            <a href="#" className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase hover:text-gold transition-colors duration-300">
               Terms of Service
             </a>
             <motion.button
               onClick={scrollToTop}
-              className="w-8 h-8 bg-gold/[0.08] border border-gold/15 rounded-lg flex items-center justify-center text-gold hover:bg-gold/[0.15] transition-all duration-200"
-              whileHover={{ y: -2 }}
+              className="ml-4 w-10 h-10 bg-[#0f1115] border border-gold/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl flex items-center justify-center text-gold hover:border-gold/50 hover:shadow-[0_0_20px_rgba(212,168,83,0.2)] transition-all duration-300"
+              whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Back to top"
             >
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-4 h-4" />
             </motion.button>
           </div>
         </div>

@@ -251,11 +251,14 @@ function CardContent({
   isInView: boolean
 }) {
   return (
-    <div className="group relative bg-card border border-white/[0.06] rounded-xl overflow-hidden hover:border-gold/15 transition-all duration-300">
+    <div className="group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl overflow-hidden hover:border-gold/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,83,0.1)]">
+      {/* Hover inner gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
       {/* Top accent line */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent group-hover:via-gold/40 transition-all duration-500" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent group-hover:via-gold/50 transition-all duration-500" />
 
-      <div className="p-5 lg:p-6">
+      <div className="relative p-5 lg:p-6 z-10">
         {/* Phase + Status badges */}
         <div className="flex items-center gap-2.5 mb-3">
           <span className="text-gold/40 text-[11px] font-semibold tracking-[0.2em] uppercase">
@@ -310,15 +313,22 @@ export function RoadmapSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end center"],
   })
+
+  // We map the scroll progress to a height percentage for the glowing line
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
     <section
       ref={sectionRef}
       id="roadmap"
-      className="relative py-24 lg:py-36 overflow-hidden"
+      className="relative py-24 lg:py-36 overflow-hidden bg-background"
     >
+      {/* ── Magic Accents / Ambient Flares ── */}
+      <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[100px] pointer-events-none" />
+
       {/* ── Golden flare orbs ── */}
       <div
         className="absolute pointer-events-none z-[1]"
@@ -372,13 +382,24 @@ export function RoadmapSection() {
         {/* ── Timeline ── */}
         <div className="relative">
           {/* Vertical center line — desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
-            <div className="w-full h-full bg-gradient-to-b from-transparent via-gold/15 to-transparent" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-white/5">
+            <motion.div 
+              className="w-full bg-gradient-to-b from-gold/50 via-gold to-transparent" 
+              style={{ height: lineHeight }}
+            />
+            {/* Glow effect on the active tip */}
+            <motion.div 
+              className="absolute left-1/2 -translate-x-1/2 w-4 h-[100px] bg-gold/50 blur-xl pointer-events-none"
+              style={{ top: lineHeight, marginTop: "-100px" }}
+            />
           </div>
 
           {/* Vertical left line — mobile */}
-          <div className="md:hidden absolute left-[21px] top-0 bottom-0 w-px">
-            <div className="w-full h-full bg-gradient-to-b from-transparent via-gold/15 to-transparent" />
+          <div className="md:hidden absolute left-[21px] top-0 bottom-0 w-[2px] bg-white/5">
+            <motion.div 
+              className="w-full bg-gradient-to-b from-gold/50 via-gold to-transparent" 
+              style={{ height: lineHeight }}
+            />
           </div>
 
           {/* Milestone items with connecting segments */}

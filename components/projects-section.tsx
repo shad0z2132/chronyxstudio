@@ -1,6 +1,7 @@
+import { useRef } from "react"
 import { ArrowUpRight, Swords, Crosshair, Shield, Map, Users, Trophy, Flame, ExternalLink } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 const worlds = [
   {
@@ -44,181 +45,203 @@ const worlds = [
 ]
 
 export function ProjectsSection() {
+  const targetRef = useRef<HTMLDivElement>(null)
+  
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+
+  // We have 2 projects, so we need to scroll them horizontally. 
+  // We map scrollYProgress from 0 to 1 to x from 0 to negative some percentage
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"])
+
   return (
-    <section id="projects" className="relative py-24 lg:py-36 bg-card overflow-hidden ambient-glow-gold">
+    <section id="projects" ref={targetRef} className="relative h-[250vh] bg-[#0f1115] ambient-glow-gold">
+      
+      {/* Sticky container that stays in place while we scroll down */}
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        {/* ── Magic Accents / Ambient Flares ── */}
+        <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-[rgba(10,25,47,0.4)] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[20%] left-[10%] w-[500px] h-[500px] bg-[rgba(10,25,47,0.3)] rounded-full blur-[100px] pointer-events-none" />
 
-      {/* ── Golden flare orbs ── */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: "10%",
-          right: "12%",
-          width: "550px",
-          height: "550px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.10) 0%, rgba(212,168,83,0) 70%)",
-          animation: "flare-breathe 8s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          bottom: "15%",
-          left: "8%",
-          width: "480px",
-          height: "480px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 65%)",
-          animation: "flare-breathe-slow 10s ease-in-out infinite",
-        }}
-      />
+        {/* ── Golden flare orbs ── */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            top: "10%",
+            right: "12%",
+            width: "550px",
+            height: "550px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212,168,83,0.10) 0%, rgba(212,168,83,0) 70%)",
+            animation: "flare-breathe 8s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            bottom: "15%",
+            left: "8%",
+            width: "480px",
+            height: "480px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 65%)",
+            animation: "flare-breathe-slow 10s ease-in-out infinite",
+          }}
+        />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-          <FadeIn>
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-px bg-gold" />
-                <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
-                  Our Worlds
-                </span>
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 z-10 mb-12 shrink-0">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+            <FadeIn>
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-8 h-px bg-gold" />
+                  <span className="text-gold text-sm font-medium tracking-[0.2em] uppercase">
+                    Our Worlds
+                  </span>
+                </div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
+                  Two Worlds.
+                  <br />
+                  <span className="text-gold">One Vision.</span>
+                </h2>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground leading-tight tracking-tight">
-                Two Worlds.
-                <br />
-                <span className="text-gold">One Vision.</span>
-              </h2>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
-              Each Chronyx title is developed independently — with its own mechanics, pacing,
-              and audience. Deep RPG and fast competitive gameplay, built without compromise.
-            </p>
-          </FadeIn>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-muted-foreground max-w-sm text-base leading-relaxed">
+                Each Chronyx title is developed independently — with its own mechanics, pacing,
+                and audience. Deep RPG and fast competitive gameplay, built without compromise.
+              </p>
+            </FadeIn>
+          </div>
         </div>
 
-        {/* World Cards — stacked cinematic */}
-        <div className="flex flex-col gap-6">
-          {worlds.map((world, worldIndex) => {
-            const Icon = world.icon
-            const isReversed = worldIndex % 2 === 1
+        {/* Horizontal scroll container */}
+        <div className="relative w-full z-10 overflow-hidden">
+          <motion.div 
+            style={{ x }} 
+            className="flex gap-8 w-[200vw] px-6 lg:px-12 max-w-[calc(200vw+2*3rem)] lg:max-w-[calc(200vw+2*3rem)]"
+          >
+            {worlds.map((world, worldIndex) => {
+              const Icon = world.icon
 
-            return (
-              <FadeIn key={world.title} delay={worldIndex * 0.15}>
-                <motion.div
-                  className="group relative bg-[#0d0d14] border border-white/[0.06] rounded-xl overflow-hidden hover:border-white/[0.1] transition-all duration-500"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                >
-                  {/* Top accent border */}
-                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
+              return (
+                <div key={world.title} className="w-[100vw] lg:w-[calc(100vw-6rem)] shrink-0 flex items-center pr-6 lg:pr-12">
+                  <motion.div
+                    className="w-full max-w-6xl mx-auto group relative bg-[#0f1115] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] border border-white/[0.05] rounded-xl overflow-hidden hover:border-gold/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,168,83,0.1)]"
+                  >
+                    {/* Top accent border */}
+                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent group-hover:via-gold/50 transition-all duration-500" />
+                    
+                    {/* Hover inner gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} min-h-[380px]`}>
-                    {/* Image side */}
-                    <div className="relative lg:w-[50%] min-h-[260px] lg:min-h-0 overflow-hidden">
-                      <img
-                         src={world.image}
-                        alt={world.title}
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      {/* Directional fade into content */}
-                      <div className={`absolute inset-0 ${isReversed ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-transparent via-[#0d0d14]/50 to-[#0d0d14] hidden lg:block`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/40 to-transparent lg:hidden" />
+                    <div className={`flex flex-col lg:flex-row min-h-[420px]`}>
+                      {/* Image side */}
+                      <div className="relative lg:w-[50%] min-h-[260px] lg:min-h-0 overflow-hidden">
+                        <img
+                          src={world.image}
+                          alt={world.title}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        {/* Directional fade into content */}
+                        <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-[#0f1115]/50 to-[#0f1115] hidden lg:block`} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-[#0f1115]/40 to-transparent lg:hidden" />
 
-                      {/* Accent gradient */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${world.gradient} opacity-40`} />
+                        {/* Accent gradient */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${world.gradient} opacity-40`} />
 
-                      {/* Status badge */}
-                      <div className="absolute top-5 left-5 z-10">
-                        <span className="text-gold/90 text-[10px] font-bold tracking-[0.2em] uppercase bg-gold/[0.12] backdrop-blur-sm px-3 py-1.5 rounded-md border border-gold/20">
-                          {world.status}
-                        </span>
-                      </div>
-
-                      {/* Character overlay */}
-                      {world.characterImage && (
-                        <div className={`absolute bottom-0 ${isReversed ? "left-4" : "right-4"} w-[45%] max-w-[220px] hidden lg:block`}>
-                          <img
-                             src={world.characterImage}
-                            alt=""
-                            loading="lazy"
-                            className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:translate-y-[-4px]"
-                          />
+                        {/* Status badge */}
+                        <div className="absolute top-5 left-5 z-10">
+                          <span className="text-gold/90 text-[10px] font-bold tracking-[0.2em] uppercase bg-gold/[0.12] backdrop-blur-sm px-3 py-1.5 rounded-md border border-gold/20">
+                            {world.status}
+                          </span>
                         </div>
-                      )}
-                    </div>
 
-                    {/* Content side */}
-                    <div className="relative z-10 flex flex-col justify-center p-8 lg:p-12 lg:w-[50%]">
-                      {/* Subtitle + icon */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-8 bg-gold/[0.08] rounded-lg flex items-center justify-center border border-gold/10">
-                          <Icon className="w-4 h-4 text-gold" strokeWidth={1.5} />
-                        </div>
-                        <span className="text-gold/70 text-xs font-medium tracking-wider uppercase">
-                          {world.subtitle}
-                        </span>
-                      </div>
-
-                      <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight mb-2">
-                        {world.title}
-                      </h3>
-
-                      {/* Tagline with animated underline */}
-                      <div className="mb-5">
-                        <p className="text-gold/60 text-sm font-medium tracking-wide italic">
-                          {world.tagline}
-                        </p>
-                        <div className="mt-1.5 h-px w-0 group-hover:w-full bg-gradient-to-r from-gold/40 to-transparent transition-all duration-500 ease-out max-w-[200px]" />
-                      </div>
-
-                      <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-md">
-                        {world.description}
-                      </p>
-
-                      {/* Features grid */}
-                      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8" staggerDelay={0.06}>
-                        {world.features.map((feature) => (
-                          <StaggerItem key={feature.text}>
-                            <div className="flex items-center gap-3">
-                              <div className="w-7 h-7 bg-gold/[0.06] rounded-md flex items-center justify-center shrink-0">
-                                <feature.icon className="w-3.5 h-3.5 text-gold/80" strokeWidth={1.5} />
-                              </div>
-                              <span className="text-foreground/70 text-sm">{feature.text}</span>
-                            </div>
-                          </StaggerItem>
-                        ))}
-                      </StaggerContainer>
-
-                      <div className="flex flex-wrap items-center gap-3">
-                        {world.steamHref && (
-                          <a
-                            href={world.steamHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200 w-fit group/steam hover:shadow-[0_0_30px_rgba(212,168,83,0.2)]"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" />
-                            Wishlist on Steam
-                          </a>
+                        {/* Character overlay */}
+                        {world.characterImage && (
+                          <div className={`absolute bottom-0 right-4 w-[45%] max-w-[220px] hidden lg:block`}>
+                            <img
+                              src={world.characterImage}
+                              alt=""
+                              loading="lazy"
+                              className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:translate-y-[-4px]"
+                            />
+                          </div>
                         )}
-                        <a
-                          href="#contact"
-                          className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 w-fit group/btn"
-                        >
-                          Learn More
-                          <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                        </a>
+                      </div>
+
+                      {/* Content side */}
+                      <div className="relative z-10 flex flex-col justify-center p-8 lg:p-12 lg:w-[50%]">
+                        {/* Subtitle + icon */}
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="w-8 h-8 bg-gold/[0.08] rounded-lg flex items-center justify-center border border-gold/10">
+                            <Icon className="w-4 h-4 text-gold" strokeWidth={1.5} />
+                          </div>
+                          <span className="text-gold/70 text-xs font-medium tracking-wider uppercase">
+                            {world.subtitle}
+                          </span>
+                        </div>
+
+                        <h3 className="text-3xl md:text-4xl font-heading font-bold text-foreground tracking-tight mb-2">
+                          {world.title}
+                        </h3>
+
+                        {/* Tagline with animated underline */}
+                        <div className="mb-5">
+                          <p className="text-gold/60 text-sm font-medium tracking-wide italic">
+                            {world.tagline}
+                          </p>
+                          <div className="mt-1.5 h-px w-0 group-hover:w-full bg-gradient-to-r from-gold/40 to-transparent transition-all duration-500 ease-out max-w-[200px]" />
+                        </div>
+
+                        <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-md">
+                          {world.description}
+                        </p>
+
+                        {/* Features grid */}
+                        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8" staggerDelay={0.06}>
+                          {world.features.map((feature) => (
+                            <StaggerItem key={feature.text}>
+                              <div className="flex items-center gap-3">
+                                <div className="w-7 h-7 bg-gold/[0.06] rounded-md flex items-center justify-center shrink-0">
+                                  <feature.icon className="w-3.5 h-3.5 text-gold/80" strokeWidth={1.5} />
+                                </div>
+                                <span className="text-foreground/70 text-sm">{feature.text}</span>
+                              </div>
+                            </StaggerItem>
+                          ))}
+                        </StaggerContainer>
+
+                        <div className="flex flex-wrap items-center gap-3">
+                          {world.steamHref && (
+                            <a
+                              href={world.steamHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200 w-fit group/steam hover:shadow-[0_0_30px_rgba(212,168,83,0.2)]"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5" />
+                              Wishlist on Steam
+                            </a>
+                          )}
+                          <a
+                            href="#contact"
+                            className="inline-flex items-center gap-2 bg-transparent border border-gold/30 hover:border-gold hover:bg-gold/10 text-gold px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 w-fit group/btn"
+                          >
+                            Learn More
+                            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                          </a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              </FadeIn>
-            )
-          })}
+                  </motion.div>
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
       </div>
     </section>
