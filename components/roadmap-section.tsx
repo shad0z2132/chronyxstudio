@@ -376,10 +376,9 @@ export function RoadmapSection() {
         className="absolute inset-0 opacity-[0.015] pointer-events-none z-[1]" 
         style={{
           backgroundImage: `
-            linear-gradient(to right, #ffffff 1px, transparent 1px),
-            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+            radial-gradient(circle at center, rgba(212,168,83,0.3) 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px'
+          backgroundSize: '24px 24px'
         }}
       />
 
