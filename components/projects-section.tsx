@@ -199,7 +199,7 @@ export function ProjectsSection() {
                             href={world.steamHref}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-[#1b2838] hover:bg-[#2a3f5f] border border-white/10 hover:border-white/20 text-white px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200 w-fit group/steam"
+                            className="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-background px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200 w-fit group/steam hover:shadow-[0_0_30px_rgba(212,168,83,0.2)]"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                             Wishlist on Steam

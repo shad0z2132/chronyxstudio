@@ -187,7 +187,7 @@ export function BlogSection() {
                         href="#"
                         className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
                       >
-                        Read
+                        Read Article
                         <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                       </a>
                     </div>

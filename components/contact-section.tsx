@@ -1,6 +1,6 @@
 "use client"
 
-import { Send, Shield, Gamepad2, Mail } from "lucide-react"
+import { Send, Shield, Gamepad2 } from "lucide-react"
 import { useState, useRef } from "react"
 import { FadeIn } from "@/components/motion"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -109,13 +109,7 @@ export function ContactSection() {
                 </div>
               </motion.div>
 
-              {/* Direct contact */}
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <Mail className="w-4 h-4 text-gold/60" />
-                <a href="mailto:contact@chronyxstudio.com" className="text-sm hover:text-gold transition-colors duration-200">
-                  contact@chronyxstudio.com
-                </a>
-              </div>
+
             </div>
           </FadeIn>
 
@@ -205,15 +199,17 @@ export function ContactSection() {
                     <Send className="w-3.5 h-3.5" />
                     Send Message
                   </motion.button>
-                  <motion.button
-                    type="button"
+                  <motion.a
+                    href="https://discord.gg/y5rFa8vpHH"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 border border-white/[0.1] hover:border-gold/30 text-foreground hover:text-gold px-6 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-all duration-200"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Gamepad2 className="w-3.5 h-3.5" />
                     Join Discord
-                  </motion.button>
+                  </motion.a>
                 </div>
               </form>
             </div>
