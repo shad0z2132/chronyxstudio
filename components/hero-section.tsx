@@ -90,7 +90,6 @@ export function HeroSection() {
             muted
             loop
             playsInline
-            poster="/Anubismonolith.webp"
             className="absolute inset-0 w-full h-full object-cover hidden md:block brightness-[0.85]"
           >
             <source src={heroVideo} type="video/mp4" />

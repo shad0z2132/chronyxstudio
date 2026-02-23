@@ -33,12 +33,12 @@ export default function App() {
 
   return (
     <>
-      {/* OPTIMIZED: Removed CustomCursor for performance - using CSS cursor instead */}
-      <Preloader onComplete={handlePreloaderComplete} />
-
-      <AnimatePresence>
-        {isLoaded && (
+      <AnimatePresence mode="wait">
+        {!isLoaded ? (
+          <Preloader key="preloader" onComplete={handlePreloaderComplete} />
+        ) : (
           <motion.div
+            key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
