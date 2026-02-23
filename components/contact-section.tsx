@@ -25,7 +25,7 @@ export function ContactSection() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold">
+    <section ref={sectionRef} id="contact" className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold bg-background">
       {/* Parallax background image */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
@@ -61,6 +61,11 @@ export function ContactSection() {
           background: "radial-gradient(circle, rgba(212,168,83,0.07) 0%, rgba(212,168,83,0) 65%)",
           animation: "flare-breathe-slow 10s ease-in-out infinite",
         }}
+      />
+
+      {/* Bottom fade into footer */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-[1]"
+        style={{ background: 'linear-gradient(to bottom, transparent, #08080d)' }}
       />
 
       <div className="relative z-[2] max-w-7xl mx-auto px-6 lg:px-12">
