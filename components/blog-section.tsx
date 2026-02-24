@@ -1,46 +1,12 @@
-import { ArrowUpRight, BookOpen, Palette, Trophy, Clock } from "lucide-react"
+import { ArrowUpRight, Clock } from "lucide-react"
 import { Link } from "react-router-dom"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
-
-const posts = [
-  {
-    slug: "building-progression-systems",
-    tag: "Dev Log",
-    icon: BookOpen,
-    date: "Feb 20, 2026",
-    title: "Building Progression Systems That Respect Players' Time",
-    excerpt:
-      "How Sands of Avalon's character advancement is designed around meaningful milestones — not time gates or purchase shortcuts.",
-    readTime: "8 min read",
-    featured: true,
-  },
-  {
-    slug: "designing-allegiance-systems",
-    tag: "Art & Design",
-    icon: Palette,
-    date: "Feb 10, 2026",
-    title: "Designing Allegiance Systems for a Living World",
-    excerpt:
-      "How faction loyalty, territory control, and player-driven politics create emergent narratives in Sands of Avalon.",
-    readTime: "6 min read",
-    featured: false,
-  },
-  {
-    slug: "tournament-ready-fps",
-    tag: "Esports",
-    icon: Trophy,
-    date: "Jan 28, 2026",
-    title: "What Tournament-Ready Actually Means for an FPS",
-    excerpt:
-      "Spectator modes, anti-cheat, ranking frameworks, and event infrastructure — what we're building from day one.",
-    readTime: "7 min read",
-    featured: false,
-  },
-]
+import { getFeaturedPost, getRecentPosts } from "@/lib/devlog-data"
 
 export function BlogSection() {
-  const [featured, ...rest] = posts
+  const featured = getFeaturedPost()
+  const rest = getRecentPosts(2, featured.slug)
 
   return (
     <section id="news" className="relative py-24 lg:py-36 bg-card overflow-hidden">
