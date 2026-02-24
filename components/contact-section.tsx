@@ -117,7 +117,7 @@ export function ContactSection() {
 
           {/* Right: Form */}
           <FadeIn direction="right" delay={0.2}>
-            <div className="bg-card border border-white/[0.06] rounded-xl p-8 lg:p-10">
+            <div className="bg-card border border-white/[0.06] rounded-xl p-6 lg:p-10">
               <h3 className="text-foreground font-heading font-bold text-lg mb-1">Get in Touch</h3>
               <p className="text-muted-foreground text-sm mb-6">
                 Interested in Chronyx? Drop us a message.
@@ -135,7 +135,7 @@ export function ContactSection() {
                       type="text"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-[16px] sm:text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
                       placeholder="Your name"
                     />
                   </div>
@@ -149,7 +149,7 @@ export function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
+                      className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-[16px] sm:text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -164,7 +164,7 @@ export function ContactSection() {
                     name="role"
                     value={formData.role}
                     onChange={handleChange}
-                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 appearance-none"
+                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-[16px] sm:text-sm focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 appearance-none"
                   >
                     <option value="">Select one...</option>
                     <option value="player">Player / Community Member</option>
@@ -186,7 +186,7 @@ export function ContactSection() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 resize-none"
+                    className="bg-muted border border-white/[0.06] rounded-lg px-4 py-3 text-foreground text-[16px] sm:text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200 resize-none"
                     placeholder="Tell us what you're interested in..."
                   />
                 </div>

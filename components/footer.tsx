@@ -219,10 +219,10 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="relative z-10 bg-black/40 border-t border-white/[0.04] backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase">
+          <p className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase text-center md:text-left">
             &copy; {CURRENT_YEAR} Chronyx Studio. All rights reserved.
           </p>
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
             <a href="#" className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase hover:text-gold transition-colors duration-300">
               Privacy Policy
             </a>

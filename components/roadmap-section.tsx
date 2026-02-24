@@ -141,12 +141,12 @@ function MilestoneCard({
         >
           {/* Inner ring */}
           <div className={`absolute inset-1 rounded-full border border-dashed transition-colors duration-300 ${
-            milestone.status === "in-progress" ? "border-gold/80 animate-[spin_10s_linear_infinite]" : "border-white/10"
+            milestone.status === "in-progress" ? "border-gold/80 motion-safe:animate-[spin_10s_linear_infinite]" : "border-white/10"
           }`} />
 
           {/* Outer ring */}
           {milestone.status === "in-progress" && (
-            <div className="absolute -inset-3 rounded-full border border-gold/20 animate-[spin_15s_linear_infinite_reverse]" />
+            <div className="absolute -inset-3 rounded-full border border-gold/20 motion-safe:animate-[spin_15s_linear_infinite_reverse]" />
           )}
 
           <milestone.icon
@@ -205,7 +205,7 @@ function MilestoneCard({
           >
             {/* Inner dashed ring */}
             <div className={`absolute inset-0.5 rounded-full border border-dashed transition-colors duration-300 ${
-              milestone.status === "in-progress" ? "border-gold/80 animate-[spin_10s_linear_infinite]" : "border-white/10"
+              milestone.status === "in-progress" ? "border-gold/80 motion-safe:animate-[spin_10s_linear_infinite]" : "border-white/10"
             }`} />
 
             <milestone.icon
@@ -454,8 +454,8 @@ export function RoadmapSection() {
           <FadeIn delay={0.4}>
             <div className="flex justify-center mt-16 relative z-10">
               <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 rounded-full border border-dashed border-white/20 bg-[#0f1115] flex items-center justify-center animate-[spin_15s_linear_infinite]">
-                  <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center animate-[spin_10s_linear_infinite_reverse]">
+                <div className="w-12 h-12 rounded-full border border-dashed border-white/20 bg-[#0f1115] flex items-center justify-center motion-safe:animate-[spin_15s_linear_infinite]">
+                  <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center motion-safe:animate-[spin_10s_linear_infinite_reverse]">
                     <div className="w-1.5 h-1.5 bg-white/20 rounded-full" />
                   </div>
                 </div>

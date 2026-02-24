@@ -201,7 +201,7 @@ export function DevlogPage() {
           <FadeIn delay={0.2}>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
               {/* Search */}
-              <div className="relative w-full sm:w-72">
+              <div className="relative w-full sm:w-72 shrink-0">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/40 pointer-events-none" />
                 <input
                   type="text"
@@ -212,8 +212,8 @@ export function DevlogPage() {
                 />
               </div>
 
-              {/* Tag pills */}
-              <div className="flex flex-wrap gap-2">
+              {/* Tag pills — horizontally scrollable on mobile */}
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none w-full sm:flex-wrap sm:overflow-visible sm:pb-0">
                 <TagPill
                   tag="All"
                   active={activeTag === "All"}

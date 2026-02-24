@@ -151,11 +151,11 @@ export function HeroSection() {
                   </motion.span>
                 </FadeIn>
                 <FadeIn delay={0.5}>
-                  <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-4 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)] relative z-10">
+                   <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-4 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)] relative z-10">
                     <RotatingWords
                       words={["Legendary", "Enduring", "Competitive"]}
                       interval={3500}
-                      className="min-w-[280px] md:min-w-[460px] lg:min-w-[600px] py-2"
+                      className="min-w-[200px] sm:min-w-[320px] md:min-w-[460px] lg:min-w-[600px] py-2"
                     />
                   </span>
                 </FadeIn>
@@ -189,7 +189,7 @@ export function HeroSection() {
                 <div className="flex flex-wrap items-center gap-4">
                   <motion.a
                     href="#games"
-                    className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
+                    className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-6 sm:px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
@@ -199,7 +199,7 @@ export function HeroSection() {
 
                   <motion.a
                     href="#about"
-                    className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+                    className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-6 sm:px-10 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >

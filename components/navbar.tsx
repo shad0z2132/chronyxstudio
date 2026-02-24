@@ -225,7 +225,7 @@ export function Navbar() {
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden text-foreground w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors"
+              className="lg:hidden text-foreground w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
@@ -329,7 +329,7 @@ export function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={label}
-                        className="w-9 h-9 bg-white/[0.04] border border-white/[0.06] rounded-lg flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/20 hover:bg-gold/[0.06] transition-all duration-300"
+                        className="w-11 h-11 bg-white/[0.04] border border-white/[0.06] rounded-lg flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/20 hover:bg-gold/[0.06] transition-all duration-300"
                       >
                         <Icon className="w-4 h-4" />
                       </a>
