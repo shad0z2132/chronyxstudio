@@ -1,4 +1,5 @@
 import { ArrowUp } from "lucide-react"
+import { Link } from "react-router-dom"
 import { FadeIn } from "@/components/motion"
 import { motion } from "framer-motion"
 
@@ -28,7 +29,7 @@ function YouTubeIcon({ className }: { className?: string }) {
   )
 }
 
-const footerLinks = {
+const footerLinks: Record<string, { label: string; href: string; router?: boolean }[]> = {
   Games: [
     { label: "Sands of Avalon", href: "https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1" },
     { label: "Competitive FPS", href: "#" },
@@ -51,7 +52,7 @@ const footerLinks = {
     { label: "Feedback", href: "#" },
   ],
   Resources: [
-    { label: "Developer Blog", href: "#" },
+    { label: "Developer Blog", href: "/devlog", router: true },
     { label: "Media Gallery", href: "#" },
     { label: "API Documentation", href: "#" },
     { label: "Partner Program", href: "#" },
@@ -184,15 +185,25 @@ export function Footer() {
                 <ul className="flex flex-col gap-3.5">
                   {links.map((link) => (
                     <li key={link.label}>
-                      <a
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="group flex items-center gap-2 text-muted-foreground/60 text-sm hover:text-gold transition-colors duration-300"
-                      >
-                        <span className="w-1.5 h-px bg-gold/50 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
-                        {link.label}
-                      </a>
+                      {link.router ? (
+                        <Link
+                          to={link.href}
+                          className="group flex items-center gap-2 text-muted-foreground/60 text-sm hover:text-gold transition-colors duration-300"
+                        >
+                          <span className="w-1.5 h-px bg-gold/50 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          target={link.href.startsWith("http") ? "_blank" : undefined}
+                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="group flex items-center gap-2 text-muted-foreground/60 text-sm hover:text-gold transition-colors duration-300"
+                        >
+                          <span className="w-1.5 h-px bg-gold/50 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                          {link.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

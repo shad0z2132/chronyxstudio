@@ -1,12 +1,14 @@
 import { ArrowUpRight, BookOpen, Palette, Trophy, Clock } from "lucide-react"
+import { Link } from "react-router-dom"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion } from "framer-motion"
 
 const posts = [
   {
+    slug: "building-progression-systems",
     tag: "Dev Log",
     icon: BookOpen,
-    date: "Coming Soon",
+    date: "Feb 20, 2026",
     title: "Building Progression Systems That Respect Players' Time",
     excerpt:
       "How Sands of Avalon's character advancement is designed around meaningful milestones — not time gates or purchase shortcuts.",
@@ -14,9 +16,10 @@ const posts = [
     featured: true,
   },
   {
+    slug: "designing-allegiance-systems",
     tag: "Art & Design",
     icon: Palette,
-    date: "Coming Soon",
+    date: "Feb 10, 2026",
     title: "Designing Allegiance Systems for a Living World",
     excerpt:
       "How faction loyalty, territory control, and player-driven politics create emergent narratives in Sands of Avalon.",
@@ -24,9 +27,10 @@ const posts = [
     featured: false,
   },
   {
+    slug: "tournament-ready-fps",
     tag: "Esports",
     icon: Trophy,
-    date: "Coming Soon",
+    date: "Jan 28, 2026",
     title: "What Tournament-Ready Actually Means for an FPS",
     excerpt:
       "Spectator modes, anti-cheat, ranking frameworks, and event infrastructure — what we're building from day one.",
@@ -85,13 +89,13 @@ export function BlogSection() {
             </div>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <a
-              href="#"
+            <Link
+              to="/devlog"
               className="group text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
             >
               View All Posts
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </FadeIn>
         </div>
 
@@ -134,15 +138,15 @@ export function BlogSection() {
 
                 <div className="flex items-center justify-between">
                    <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
-                    {featured.date}
+                     {featured.date}
                   </span>
-                  <a
-                    href="#"
+                  <Link
+                    to={`/devlog/${featured.slug}`}
                     className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
                   >
                     Read Article
                     <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.article>
@@ -187,13 +191,13 @@ export function BlogSection() {
                       <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
                         {post.date}
                       </span>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/devlog/${post.slug}`}
                         className="group/link text-gold text-sm font-semibold tracking-wide hover:underline inline-flex items-center gap-1"
                       >
                         Read Article
                         <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </motion.article>

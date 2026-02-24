@@ -1,5 +1,6 @@
 import { ArrowUpRight, Menu, X, ExternalLink } from "lucide-react"
 import { useState, useEffect, useCallback, useRef } from "react"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 
 /* ── Brand SVG icons ─────────────────────────────────────────────────────── */
@@ -34,6 +35,7 @@ const navLinks = [
   { label: "Roadmap", href: "#roadmap" },
   { label: "Technology", href: "#technology" },
   { label: "News", href: "#news" },
+  { label: "Dev Log", href: "/devlog", external: true },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -147,38 +149,54 @@ export function Navbar() {
             className="hidden lg:flex items-center gap-1 relative z-10"
             onMouseLeave={() => setHoveredLink(null)}
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onMouseEnter={() => setHoveredLink(link.href)}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 group rounded-full ${
-                  activeSection === link.href
-                    ? "text-gold"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <span className="relative z-10">{link.label}</span>
-                
-                {/* Magnetic Hover Pill */}
-                {hoveredLink === link.href && (
-                  <motion.div
-                    layoutId="navHoverPill"
-                    className="absolute inset-0 bg-white/5 rounded-full z-0"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                
-                {/* Active indicator */}
-                {activeSection === link.href && !scrolled && (
-                  <motion.div
-                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full z-10"
-                    layoutId="navIndicator"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isRouterLink = link.external
+              const isActive = !isRouterLink && activeSection === link.href
+              const sharedClass = `relative px-4 py-2 text-sm font-medium transition-colors duration-200 group rounded-full ${
+                isActive ? "text-gold" : "text-muted-foreground hover:text-foreground"
+              }`
+
+              return isRouterLink ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onMouseEnter={() => setHoveredLink(link.href)}
+                  className={sharedClass}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  {hoveredLink === link.href && (
+                    <motion.div
+                      layoutId="navHoverPill"
+                      className="absolute inset-0 bg-white/5 rounded-full z-0"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onMouseEnter={() => setHoveredLink(link.href)}
+                  className={sharedClass}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  {hoveredLink === link.href && (
+                    <motion.div
+                      layoutId="navHoverPill"
+                      className="absolute inset-0 bg-white/5 rounded-full z-0"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  {isActive && !scrolled && (
+                    <motion.div
+                      className="absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full z-10"
+                      layoutId="navIndicator"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </a>
+              )
+            })}
           </div>
 
           {/* Right side */}
@@ -242,22 +260,44 @@ export function Navbar() {
 
             <div className="relative z-10 flex flex-col justify-between h-full pt-24 pb-10 px-8">
               <div className="flex flex-col gap-2">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -15 }}
-                    transition={{ delay: i * 0.08 + 0.1, duration: 0.4 }}
-                    className={`py-5 border-b border-white/[0.06] text-3xl font-heading font-bold tracking-wide transition-colors duration-200 ${
-                      activeSection === link.href ? "text-gold" : "text-foreground hover:text-gold"
-                    }`}
-                    onClick={closeMobile}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
+                {navLinks.map((link, i) => {
+                  const isRouterLink = link.external
+                  const isActive = !isRouterLink && activeSection === link.href
+                  const sharedClass = `py-5 border-b border-white/[0.06] text-3xl font-heading font-bold tracking-wide transition-colors duration-200 ${
+                    isActive ? "text-gold" : "text-foreground hover:text-gold"
+                  }`
+
+                  return isRouterLink ? (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -15 }}
+                      transition={{ delay: i * 0.08 + 0.1, duration: 0.4 }}
+                    >
+                      <Link
+                        to={link.href}
+                        className={sharedClass}
+                        onClick={closeMobile}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -15 }}
+                      transition={{ delay: i * 0.08 + 0.1, duration: 0.4 }}
+                      className={sharedClass}
+                      onClick={closeMobile}
+                    >
+                      {link.label}
+                    </motion.a>
+                  )
+                })}
               </div>
 
               <motion.div
