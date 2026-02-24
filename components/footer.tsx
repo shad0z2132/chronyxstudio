@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import { FadeIn } from "@/components/motion"
 import { motion } from "framer-motion"
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 /* ── Brand SVG icons ─────────────────────────────────────────────────────── */
 
 function DiscordIcon({ className }: { className?: string }) {
@@ -82,6 +84,7 @@ export function Footer() {
         <img
           src="/Silver 1.png"
           alt=""
+          loading="lazy"
           className="w-[120vw] max-w-[1200px] object-contain object-center scale-150 transform-gpu"
         />
       </div>
@@ -217,7 +220,7 @@ export function Footer() {
       <div className="relative z-10 bg-black/40 border-t border-white/[0.04] backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase">
-            &copy; {new Date().getFullYear()} Chronyx Studio. All rights reserved.
+            &copy; {CURRENT_YEAR} Chronyx Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-8">
             <a href="#" className="text-muted-foreground/40 text-xs font-medium tracking-wider uppercase hover:text-gold transition-colors duration-300">

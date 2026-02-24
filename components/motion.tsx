@@ -199,11 +199,10 @@ export function TextReveal({
           key={i}
           className="inline-block"
           variants={{
-            hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+            hidden: { opacity: 0, y: 20 },
             visible: {
               opacity: 1,
               y: 0,
-              filter: "blur(0px)",
               transition: {
                 duration: 0.4,
                 ease: [0.25, 0.4, 0.25, 1],
@@ -429,9 +428,9 @@ export function RotatingWords({
         <motion.span
           key={words[currentIndex]}
           className="inline-block"
-          initial={prefersReducedMotion ? { opacity: 0 } : { y: 30, opacity: 0, filter: "blur(6px)" }}
-          animate={prefersReducedMotion ? { opacity: 1 } : { y: 0, opacity: 1, filter: "blur(0px)" }}
-          exit={prefersReducedMotion ? { opacity: 0 } : { y: -30, opacity: 0, filter: "blur(6px)" }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { y: 30, opacity: 0 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
+          exit={prefersReducedMotion ? { opacity: 0 } : { y: -30, opacity: 0 }}
           transition={{
             duration: prefersReducedMotion ? 0.15 : 0.5,
             ease: [0.25, 0.4, 0.25, 1],

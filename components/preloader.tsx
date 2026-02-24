@@ -1,6 +1,4 @@
-"use client"
-
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import { useState, useEffect } from "react"
 
 /**
@@ -26,10 +24,8 @@ export function Preloader({ onComplete, minimumDuration = 3200 }: PreloaderProps
   const [phase, setPhase] = useState<"loading" | "exiting" | "done">("loading")
   const [displayValue, setDisplayValue] = useState("00")
 
-  // Check reduced motion preference
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  // Check reduced motion preference via Framer Motion hook (safe, no window access at render time)
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     if (prefersReducedMotion) {

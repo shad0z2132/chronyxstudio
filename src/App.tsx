@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, lazy, Suspense } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
@@ -17,9 +17,15 @@ import { BlogSection } from "@/components/blog-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { Preloader } from "@/components/preloader"
-import { DevlogPage } from "@/components/devlog-page"
-import { DevlogPostPage } from "@/components/devlog-post-page"
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion"
+
+/* Devlog routes are lazy-loaded — not bundled with the landing page */
+const DevlogPage = lazy(() =>
+  import("@/components/devlog-page").then((m) => ({ default: m.DevlogPage }))
+)
+const DevlogPostPage = lazy(() =>
+  import("@/components/devlog-post-page").then((m) => ({ default: m.DevlogPostPage }))
+)
 
 /* OPTIMIZED: Removed CustomCursor component - using CSS cursor from globals.css instead for better performance */
 
@@ -78,11 +84,13 @@ function LandingPage() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/devlog" element={<DevlogPage />} />
-        <Route path="/devlog/:slug" element={<DevlogPostPage />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/devlog" element={<DevlogPage />} />
+          <Route path="/devlog/:slug" element={<DevlogPostPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

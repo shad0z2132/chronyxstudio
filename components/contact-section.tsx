@@ -1,7 +1,5 @@
-"use client"
-
 import { Send, Shield, Gamepad2 } from "lucide-react"
-import { useState, useRef } from "react"
+import { useState, useRef, useCallback } from "react"
 import { FadeIn } from "@/components/motion"
 import { motion, useScroll, useTransform } from "framer-motion"
 
@@ -13,9 +11,10 @@ export function ContactSection() {
     message: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }, [])
 
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({

@@ -66,9 +66,6 @@ export function HeroSection() {
   })
 
   // Entrance animations for background video
-  const bgScaleInitial = useSpring(useTransform(scrollYProgress, [0, 1], [1.1, 1.05]), { stiffness: 100, damping: 20 })
-  const bgScale = useMotionValue(1.1)
-
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, 60])
@@ -262,7 +259,7 @@ export function HeroSection() {
                     
                     <div className="relative overflow-hidden z-10 pointer-events-none">
                       <img
-                        src="/image (27).png"
+                        src="/image (27).webp"
                         alt="Sands of Avalon"
                         className="w-full h-[220px] object-cover transition-transform duration-700 group-hover:scale-110"
                       />
