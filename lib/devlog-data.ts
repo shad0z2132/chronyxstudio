@@ -30,6 +30,91 @@ export type DevlogContent =
 // ─── Posts ────────────────────────────────────────────────────────────────────
 
 export const devlogPosts: DevlogPost[] = [
+
+{
+  slug: "npc-dialogue-system-world-feels-alive",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Feb 24, 2026",
+  title: "NPC Dialogue Update – Making the World Feel Alive",
+  excerpt: "We rebuilt our NPC dialogue system from scratch to make the world feel reactive, immersive, and alive.",
+  readTime: "5 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One thing that always bothered us in RPGs is how NPCs feel static. They stand in place, repeat one line, and completely ignore the player unless you press interact. It breaks immersion."
+    },
+    {
+      type: "paragraph",
+      text: "So we went back to the drawing board and rebuilt our NPC dialogue system inside Unreal Engine 5 to make characters react naturally to the player's presence."
+    },
+    {
+      type: "heading",
+      text: "What We Are Building"
+    },
+    {
+      type: "list",
+      items: [
+        "NPCs notice when the player enters their proximity",
+        "Idle voice lines trigger dynamically with cooldown control",
+        "Dialogue respects combat state",
+        "Characters no longer spam or overlap constantly",
+        "System built modular for future scaling"
+      ]
+    },
+    {
+      type: "paragraph",
+      text: "Earlier versions felt robotic. Timing was off. Two guards would speak at the same time and it felt chaotic. We implemented a cooldown system using game time checks so dialogue now flows naturally."
+    },
+    {
+      type: "heading",
+      text: "Combat-Aware Dialogue"
+    },
+    {
+      type: "paragraph",
+      text: "If an NPC is in combat state, idle dialogue will not trigger. No more immersion-breaking moments where a guard fighting for his life suddenly comments on the weather."
+    },
+    {
+      type: "paragraph",
+      text: "We check gameplay tags before triggering voice lines to ensure contextual consistency."
+    },
+    {
+      type: "heading",
+      text: "Structured Dialogue Data"
+    },
+    {
+      type: "paragraph",
+      text: "We are using structured dialogue entries so each line can contain text, audio cues, context type, cooldown control, and state requirements."
+    },
+    {
+      type: "paragraph",
+      text: "This makes it easy to expand later into faction-based reactions, reputation-aware dialogue, and story progression responses."
+    },
+    {
+      type: "heading",
+      text: "Guards Are No Longer Silent Statues"
+    },
+    {
+      type: "paragraph",
+      text: "Now when you pass near castle guards, they may greet you, warn you, comment on your presence, or react differently depending on the situation."
+    },
+    {
+      type: "paragraph",
+      text: "The goal is subtle storytelling through ambient dialogue. Not forced cutscenes. Not static lines. Just a living world reacting to the player."
+    },
+    {
+      type: "quote",
+      text: "NPCs should feel like they exist in the world, not like decorative assets placed on a map.",
+      author: "Sands of Avalon Development Team"
+    },
+    {
+      type: "paragraph",
+      text: "Next step is expanding this system to react to time of day and eventually player reputation. We are building everything modular so iteration and scaling remain easy as the world grows."
+    }
+  ]
+},
+
   {
     slug: "building-progression-systems",
     tag: "Dev Log",
