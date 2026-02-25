@@ -101,24 +101,14 @@ export function Navbar() {
       </a>
 
       {/* Mobile-only: burger button fixed top-right */}
-      <div className="lg:hidden fixed top-4 right-4 z-50 pointer-events-auto">
+      <div className="lg:hidden fixed top-4 right-4 z-[9999]">
         <button
           className="text-foreground w-11 h-11 flex items-center justify-center rounded-full bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:bg-white/10 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
         >
-          <AnimatePresence mode="wait">
-            {mobileOpen ? (
-              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <X className="w-6 h-6" />
-              </motion.div>
-            ) : (
-              <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                <Menu className="w-6 h-6" />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
