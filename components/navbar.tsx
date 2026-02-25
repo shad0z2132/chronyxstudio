@@ -118,7 +118,7 @@ export function Navbar() {
           transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
           className={`pointer-events-auto flex items-center justify-between transition-[background,backdrop-filter,border-radius,border-color,box-shadow,width] duration-500 overflow-hidden relative ${
             scrolled
-              ? "bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-full max-w-[1000px] px-6 py-3"
+              ? "bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-full max-w-[960px] px-5 py-3"
               : "bg-transparent border border-transparent w-full max-w-[1400px] px-6 lg:px-12 py-4"
           }`}
         >
@@ -146,13 +146,13 @@ export function Navbar() {
 
           {/* Desktop Nav Links */}
           <div 
-            className="hidden lg:flex items-center gap-1 relative z-10"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1 relative z-10"
             onMouseLeave={() => setHoveredLink(null)}
           >
             {navLinks.map((link) => {
               const isRouterLink = link.external
               const isActive = !isRouterLink && activeSection === link.href
-              const sharedClass = `relative px-4 py-2 text-sm font-medium transition-colors duration-200 group rounded-full ${
+              const sharedClass = `relative px-2.5 xl:px-4 py-2 text-sm font-medium transition-colors duration-200 group rounded-full whitespace-nowrap ${
                 isActive ? "text-gold" : "text-muted-foreground hover:text-foreground"
               }`
 
@@ -206,7 +206,7 @@ export function Navbar() {
               href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
               target="_blank"
               rel="noopener noreferrer"
-              className={`hidden lg:inline-flex items-center gap-2 bg-gold hover:bg-gold-light border border-gold/40 hover:border-gold rounded-full text-background font-semibold tracking-wide uppercase transition-all duration-300 group overflow-hidden relative ${scrolled ? 'px-4 py-1.5 text-xs' : 'px-4 py-2 text-sm'}`}
+              className={`hidden lg:inline-flex items-center gap-2 bg-gold hover:bg-gold-light border border-gold/40 hover:border-gold rounded-full text-background font-semibold tracking-wide uppercase transition-all duration-300 group overflow-hidden relative ${scrolled ? 'px-3 xl:px-4 py-1.5 text-xs' : 'px-3 xl:px-4 py-2 text-xs xl:text-sm'}`}
             >
               {/* Shimmer effect */}
               <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
@@ -217,7 +217,7 @@ export function Navbar() {
             {/* Desktop CTA */}
             <a
               href="#contact"
-              className={`hidden lg:inline-flex items-center gap-2 border border-gold/40 hover:border-gold hover:bg-gold/5 rounded-full text-gold font-semibold tracking-wide uppercase transition-all duration-300 group ${scrolled ? 'px-4 py-1.5 text-xs' : 'px-5 py-2 text-sm'}`}
+              className={`hidden lg:inline-flex items-center gap-2 border border-gold/40 hover:border-gold hover:bg-gold/5 rounded-full text-gold font-semibold tracking-wide uppercase transition-all duration-300 group ${scrolled ? 'px-3 xl:px-4 py-1.5 text-xs' : 'px-3 xl:px-5 py-2 text-xs xl:text-sm'}`}
             >
               Contact
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
