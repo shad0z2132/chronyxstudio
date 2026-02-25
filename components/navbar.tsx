@@ -213,15 +213,6 @@ export function Navbar() {
               Wishlist
             </a>
 
-            {/* Desktop CTA */}
-            <a
-              href="#contact"
-              className={`${scrolled ? 'hidden xl:inline-flex' : 'hidden lg:inline-flex'} items-center gap-2 border border-gold/40 hover:border-gold hover:bg-gold/5 rounded-full text-gold font-semibold tracking-wide uppercase transition-all duration-300 group ${scrolled ? 'px-3 xl:px-4 py-1.5 text-xs' : 'px-3 xl:px-5 py-2 text-xs xl:text-sm'}`}
-            >
-              Contact
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-
             {/* Mobile toggle — shown below lg always, and below xl when scrolled */}
             <button
               className={`${scrolled ? 'xl:hidden' : 'lg:hidden'} text-foreground w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors`}
