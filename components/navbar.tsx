@@ -36,7 +36,6 @@ const navLinks = [
   { label: "Technology", href: "#technology" },
   { label: "News", href: "#news" },
   { label: "Dev Log", href: "/devlog", external: true },
-  { label: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
