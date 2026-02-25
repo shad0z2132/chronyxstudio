@@ -20,7 +20,7 @@ const worlds = [
       { icon: Flame, text: "Evolving threats and rare resources" },
     ],
     description:
-      "A progression-focused ARPG where every step forward is earned. Navigate a world of ancient power, shifting allegiances, and evolving threats.",
+      "A progression-focused RPG set in a medieval fantasy world shaped by ancient power, shifting alliances, and evolving threats. Every step forward is earned.",
     gradient: "from-amber-500/20 via-transparent to-transparent",
   },
   {
