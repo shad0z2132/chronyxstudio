@@ -125,7 +125,7 @@ export function Navbar() {
           <a href="/" className="flex items-center gap-3 group relative z-10 shrink-0">
             <div className="relative">
               <img
-                src="/Silver 1.png"
+                src="/logo.webp"
                 alt="Chronyx Studio logo"
                 width={scrolled ? 36 : 42}
                 height={scrolled ? 36 : 42}

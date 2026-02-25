@@ -157,7 +157,7 @@ export function Preloader({ onComplete, minimumDuration = 3200 }: PreloaderProps
             >
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent opacity-50 rounded-2xl" />
               <img
-                src="/Silver 1.png"
+                src="/logo.webp"
                 alt="Chronyx Studio"
                 className="w-16 h-16 object-contain relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               />

@@ -130,7 +130,7 @@ export function Footer() {
             <div className="lg:col-span-2 flex flex-col gap-6">
               <a href="/" className="flex items-center gap-3 w-fit group">
                 <img
-                  src="/Silver 1.png"
+                  src="/logo.webp"
                   alt="Chronyx Studio logo"
                   width={56}
                   height={56}
