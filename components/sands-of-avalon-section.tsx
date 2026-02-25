@@ -220,8 +220,7 @@ export function SandsOfAvalonSection() {
                   Sands of <span className="text-gold">Avalon</span>
                 </h2>
                 <p className="text-muted-foreground text-base lg:text-lg leading-relaxed max-w-xl">
-                  A progression-focused ARPG set in a world of ancient power, shifting
-                  allegiances, and evolving threats. Every step forward is earned.
+                  A progression-focused RPG set in a medieval fantasy world shaped by ancient power, shifting alliances, and evolving threats. Every step forward is earned.
                 </p>
               </div>
             </div>
