@@ -100,6 +100,29 @@ export function Navbar() {
         Skip to content
       </a>
 
+      {/* Mobile-only: burger button fixed top-right */}
+      <div className="lg:hidden fixed top-4 right-4 z-50 pointer-events-auto">
+        <button
+          className="text-foreground w-11 h-11 flex items-center justify-center rounded-full bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:bg-white/10 transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+        >
+          <AnimatePresence mode="wait">
+            {mobileOpen ? (
+              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <X className="w-6 h-6" />
+              </motion.div>
+            ) : (
+              <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <Menu className="w-6 h-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
+      </div>
+
+      {/* Desktop navbar — hidden on mobile */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ 
@@ -107,7 +130,7 @@ export function Navbar() {
           paddingTop: scrolled ? "1rem" : "0rem"
         }}
         transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none ${
+        className={`hidden lg:flex fixed top-0 left-0 right-0 z-50 justify-center pointer-events-none ${
           scrolled ? "px-3 sm:px-4" : ""
         }`}
       >
@@ -212,9 +235,9 @@ export function Navbar() {
               Wishlist
             </a>
 
-            {/* Mobile toggle — shown below lg always, and below xl when scrolled */}
+            {/* Hamburger for 1024–1279px (scrolled state only) */}
             <button
-              className={`${scrolled ? 'xl:hidden' : 'lg:hidden'} text-foreground w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors`}
+              className={`${scrolled ? 'xl:hidden flex' : 'hidden'} text-foreground w-11 h-11 items-center justify-center rounded-full hover:bg-white/5 transition-colors`}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
