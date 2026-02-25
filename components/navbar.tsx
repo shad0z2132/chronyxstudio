@@ -108,7 +108,7 @@ export function Navbar() {
         }}
         transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none ${
-          scrolled ? "px-4" : ""
+          scrolled ? "px-3 sm:px-4" : ""
         }`}
       >
         <motion.div 
@@ -116,27 +116,27 @@ export function Navbar() {
           transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
           className={`pointer-events-auto flex items-center justify-between transition-[background,backdrop-filter,border-radius,border-color,box-shadow,width] duration-500 overflow-hidden relative ${
             scrolled
-              ? "bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-full max-w-[960px] px-5 py-3"
-              : "bg-transparent border border-transparent w-full max-w-[1400px] px-6 lg:px-12 py-4"
+              ? "bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] w-full max-w-[960px] px-3 sm:px-5 py-2 sm:py-3"
+              : "bg-transparent border border-transparent w-full max-w-[1400px] px-4 sm:px-6 lg:px-12 py-3 sm:py-4"
           }`}
         >
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group relative z-10 shrink-0">
+          <a href="/" className="flex items-center gap-2 sm:gap-3 group relative z-10 shrink-0">
             <div className="relative">
               <img
                 src="/logo.webp"
                 alt="Chronyx Studio logo"
                 width={scrolled ? 48 : 56}
                 height={scrolled ? 48 : 56}
-                className="relative z-10 transition-all duration-500 group-hover:scale-105"
+                className="relative z-10 transition-all duration-500 group-hover:scale-105 w-9 h-9 sm:w-auto sm:h-auto"
                 style={{ width: scrolled ? 48 : 56, height: scrolled ? 48 : 56 }}
               />
             </div>
             <div className={`flex flex-col leading-tight transition-all duration-500 origin-left ${scrolled ? 'scale-90' : 'scale-100'}`}>
-              <span className="text-foreground font-heading font-bold text-lg tracking-[0.15em] transition-colors duration-200 group-hover:text-gold">
+              <span className="text-foreground font-heading font-bold text-base sm:text-lg tracking-[0.15em] transition-colors duration-200 group-hover:text-gold">
                 CHRONYX
               </span>
-              <span className="text-gold text-[11px] font-semibold tracking-[0.3em] uppercase">
+              <span className="text-gold text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase">
                 Studios
               </span>
             </div>
@@ -296,14 +296,26 @@ export function Navbar() {
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.4, duration: 0.4 }}
               >
-                <a
-                  href="#contact"
-                  className="flex items-center justify-center gap-2 border border-gold/40 hover:bg-gold/5 px-8 py-4 rounded-lg text-gold text-sm font-semibold tracking-wide uppercase transition-all duration-200 w-full"
-                  onClick={closeMobile}
-                >
-                  Get in Touch
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
+                <div className="flex flex-col gap-3">
+                  <a
+                    href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-gold hover:bg-gold-light px-8 py-4 rounded-lg text-background text-sm font-semibold tracking-wide uppercase transition-all duration-200 w-full"
+                    onClick={closeMobile}
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Wishlist on Steam
+                  </a>
+                  <a
+                    href="#contact"
+                    className="flex items-center justify-center gap-2 border border-gold/40 hover:bg-gold/5 px-8 py-4 rounded-lg text-gold text-sm font-semibold tracking-wide uppercase transition-all duration-200 w-full"
+                    onClick={closeMobile}
+                  >
+                    Get in Touch
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </div>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
