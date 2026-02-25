@@ -132,9 +132,9 @@ export function Footer() {
                 <img
                   src="/logo.webp"
                   alt="Chronyx Studio logo"
-                  width={56}
-                  height={56}
-                  className="w-14 h-14 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(212,168,83,0.3)]"
+                  width={72}
+                  height={72}
+                  className="w-20 h-20 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(212,168,83,0.3)]"
                 />
                 <div className="flex flex-col leading-tight">
                   <span className="text-foreground font-heading font-bold text-2xl tracking-[0.15em] drop-shadow-md">

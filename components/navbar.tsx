@@ -127,10 +127,10 @@ export function Navbar() {
               <img
                 src="/logo.webp"
                 alt="Chronyx Studio logo"
-                width={scrolled ? 36 : 42}
-                height={scrolled ? 36 : 42}
+                width={scrolled ? 48 : 56}
+                height={scrolled ? 48 : 56}
                 className="relative z-10 transition-all duration-500 group-hover:scale-105"
-                style={{ width: scrolled ? 36 : 42, height: scrolled ? 36 : 42 }}
+                style={{ width: scrolled ? 48 : 56, height: scrolled ? 48 : 56 }}
               />
             </div>
             <div className={`flex flex-col leading-tight transition-all duration-500 origin-left ${scrolled ? 'scale-90' : 'scale-100'}`}>

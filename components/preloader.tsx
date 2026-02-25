@@ -153,13 +153,13 @@ export function Preloader({ onComplete, minimumDuration = 3200 }: PreloaderProps
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-              className="relative flex items-center justify-center w-24 h-24 rounded-2xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+              className="relative flex items-center justify-center w-32 h-32 rounded-2xl bg-white/[0.02] border border-white/[0.05] backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent opacity-50 rounded-2xl" />
               <img
                 src="/logo.webp"
                 alt="Chronyx Studio"
-                className="w-16 h-16 object-contain relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                className="w-24 h-24 object-contain relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               />
             </motion.div>
 
