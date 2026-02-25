@@ -34,7 +34,6 @@ const navLinks = [
   { label: "Studio", href: "#about" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Technology", href: "#technology" },
-  { label: "News", href: "#news" },
   { label: "Dev Log", href: "/devlog", external: true },
 ]
 
