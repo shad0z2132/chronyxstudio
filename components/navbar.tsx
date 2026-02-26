@@ -100,15 +100,43 @@ export function Navbar() {
         Skip to content
       </a>
 
-      {/* Mobile-only: burger button fixed top-right */}
-      <div className="lg:hidden fixed top-4 right-4 z-[9999]">
+      {/* Mobile-only: top bar with logo left + burger right */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-[9999] flex items-center justify-between px-4 py-3 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/[0.06]">
+        {/* Logo + name */}
+        <a href="/" className="flex items-center gap-2.5 group" onClick={() => mobileOpen && closeMobile()}>
+          <img
+            src="/logo.webp"
+            alt="Chronyx Studio logo"
+            className="w-9 h-9 drop-shadow-[0_0_10px_rgba(212,168,83,0.3)] group-hover:scale-105 transition-transform duration-300"
+          />
+          <div className="flex flex-col leading-tight">
+            <span className="text-foreground font-heading font-bold text-sm tracking-[0.15em] group-hover:text-gold transition-colors duration-200">
+              CHRONYX
+            </span>
+            <span className="text-gold text-[9px] font-bold tracking-[0.3em] uppercase">
+              Studios
+            </span>
+          </div>
+        </a>
+
+        {/* Burger */}
         <button
-          className="text-foreground w-11 h-11 flex items-center justify-center rounded-full bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:bg-white/10 transition-colors"
+          className="text-foreground w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.05] border border-white/10 hover:bg-white/10 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <AnimatePresence mode="wait">
+            {mobileOpen ? (
+              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <X className="w-5 h-5" />
+              </motion.div>
+            ) : (
+              <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <Menu className="w-5 h-5" />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
 
@@ -260,32 +288,7 @@ export function Navbar() {
           >
             <div className="absolute inset-0 mobile-menu-backdrop" />
 
-            <div className="relative z-10 flex flex-col justify-between h-full pt-8 pb-10 px-8">
-              {/* Logo & studio name */}
-              <motion.a
-                href="/"
-                className="flex items-center gap-3 mb-8 w-fit"
-                initial={{ opacity: 0, y: -16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
-                onClick={closeMobile}
-              >
-                <img
-                  src="/logo.webp"
-                  alt="Chronyx Studio logo"
-                  className="w-12 h-12 drop-shadow-[0_0_12px_rgba(212,168,83,0.35)]"
-                />
-                <div className="flex flex-col leading-tight">
-                  <span className="text-foreground font-heading font-bold text-xl tracking-[0.15em]">
-                    CHRONYX
-                  </span>
-                  <span className="text-gold text-[11px] font-bold tracking-[0.3em] uppercase">
-                    Studios
-                  </span>
-                </div>
-              </motion.a>
-
+            <div className="relative z-10 flex flex-col justify-between h-full pt-20 pb-10 px-8">
               <div className="flex flex-col gap-2">
                 {navLinks.map((link, i) => {
                   const isRouterLink = link.external
