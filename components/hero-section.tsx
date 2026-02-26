@@ -209,28 +209,28 @@ export function HeroSection() {
 
         {/* ── Main content ── */}
         <motion.div
-          className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20 w-full"
+          className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-14 sm:pt-32 sm:pb-16 lg:py-20 w-full"
           style={{ opacity: contentOpacity, y: contentY }}
         >
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
 
             {/* ── Left column ── */}
-            <div className="flex-1 max-w-2xl">
+            <div className="flex-1 w-full min-w-0">
 
               {/* Eyebrow — 1 Game · 2 Worlds badge */}
               <FadeIn delay={0.2}>
-                <div className="inline-flex items-center gap-0 bg-black/40 border border-white/10 rounded-full overflow-hidden mb-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                  <div className="flex items-center gap-1.5 px-3.5 py-1.5 border-r border-white/10">
+                <div className="inline-flex items-center gap-0 bg-black/40 border border-white/10 rounded-full overflow-hidden mb-5 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] max-w-full">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 border-r border-white/10 shrink-0">
                     <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
                     <span className="text-gold text-[10px] font-bold tracking-widest uppercase">Sands</span>
-                    <span className="text-white/30 text-[10px] tracking-wide">Ancient</span>
+                    <span className="text-white/30 text-[10px] tracking-wide hidden xs:inline">Ancient</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 shrink-0">
                     <Globe className="w-3 h-3 text-white/30" />
                     <span className="text-white/30 text-[10px] font-semibold tracking-widest uppercase whitespace-nowrap">1 Game · 2 Worlds</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-3.5 py-1.5 border-l border-white/10">
-                    <span className="text-[#4FC3C3]/60 text-[10px] tracking-wide">Medieval</span>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 border-l border-white/10 shrink-0">
+                    <span className="text-[#4FC3C3]/60 text-[10px] tracking-wide hidden xs:inline">Medieval</span>
                     <span className="text-[#4FC3C3] text-[10px] font-bold tracking-widest uppercase">Avalon</span>
                     <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3] animate-pulse" />
                   </div>
@@ -238,10 +238,10 @@ export function HeroSection() {
               </FadeIn>
 
               {/* Main headline — letter-by-letter animation */}
-              <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7" aria-label="Sands of Avalon">
+              <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-5 sm:mb-7" aria-label="Sands of Avalon">
 
                 {/* "Sands of" — gold, letters stagger in from below */}
-                <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-3 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)]" aria-hidden="true">
+                <span className="block text-[3.25rem] sm:text-7xl lg:text-[6.5rem] text-gold mb-2 sm:mb-3 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)]" aria-hidden="true">
                   {["S","a","n","d","s"," ","o","f"].map((char, i) => (
                     <motion.span
                       key={i}
@@ -260,7 +260,7 @@ export function HeroSection() {
                 </span>
 
                 {/* "Avalon" — white, letters stagger in slightly after */}
-                <span className="block text-4xl md:text-5xl lg:text-6xl text-foreground" aria-hidden="true">
+                <span className="block text-[2.5rem] sm:text-5xl lg:text-6xl text-foreground" aria-hidden="true">
                   {["A","v","a","l","o","n"].map((char, i) => (
                     <motion.span
                       key={i}
@@ -280,16 +280,16 @@ export function HeroSection() {
               </h1>
 
               {/* Two-world tagline — both eras with sword separator */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-3 sm:gap-4 mb-4">
                 <motion.div
                   className="flex items-center gap-2"
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
                   <motion.span
-                    className="text-gold text-sm font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(212,168,83,0.7)]"
+                    className="text-gold text-xs sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(212,168,83,0.7)]"
                     animate={{ opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                   >
@@ -302,7 +302,7 @@ export function HeroSection() {
                   animate={{ opacity: 1, scaleY: 1 }}
                   transition={{ duration: 0.4, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Swords className="w-3.5 h-3.5 text-white/25" />
+                  <Swords className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/25 shrink-0" />
                 </motion.div>
 
                 <motion.div
@@ -312,19 +312,19 @@ export function HeroSection() {
                   transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <motion.span
-                    className="text-[#4FC3C3] text-sm font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(79,195,195,0.7)]"
+                    className="text-[#4FC3C3] text-xs sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(79,195,195,0.7)]"
                     animate={{ opacity: [1, 0.7, 1] }}
                     transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                   >
                     Medieval Era
                   </motion.span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3] shrink-0" />
                 </motion.div>
               </div>
 
               {/* Sub-headline */}
               <motion.p
-                className="text-white/70 text-xl lg:text-2xl font-semibold tracking-wide mb-6 leading-snug"
+                className="text-white/70 text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide mb-4 sm:mb-6 leading-snug"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.45, ease: [0.22, 1, 0.36, 1] }}
@@ -333,13 +333,13 @@ export function HeroSection() {
                   animate={{ opacity: [0.6, 1, 0.6] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
                 >
-                  One world was never enough.
+                  Forge Your Legend Across the Ages.
                 </motion.span>
               </motion.p>
 
               {/* Genre badge pills */}
               <motion.div
-                className="flex flex-wrap items-center gap-2 mb-6"
+                className="flex flex-wrap items-center gap-2 mb-5 sm:mb-6"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
@@ -364,7 +364,7 @@ export function HeroSection() {
 
               {/* Description with highlighted keywords */}
               <motion.p
-                className="text-white/55 text-base lg:text-lg leading-relaxed max-w-lg mb-9"
+                className="text-white/55 text-sm sm:text-base lg:text-lg leading-relaxed mb-7 sm:mb-9"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.75, ease: [0.22, 1, 0.36, 1] }}
@@ -381,7 +381,7 @@ export function HeroSection() {
 
               {/* CTAs */}
               <motion.div
-                className="flex flex-row flex-wrap items-center gap-3"
+                className="flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center gap-3"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.9, ease: [0.22, 1, 0.36, 1] }}
@@ -390,7 +390,7 @@ export function HeroSection() {
                   href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
+                  className="relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-gold hover:bg-gold-light text-background px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -401,7 +401,7 @@ export function HeroSection() {
 
                 <motion.a
                   href="#sands-of-avalon"
-                  className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+                  className="inline-flex items-center justify-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -412,12 +412,12 @@ export function HeroSection() {
 
               {/* Stats */}
               <motion.div
-                className="mt-10 pt-8 border-t border-white/[0.06]"
+                className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/[0.06]"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 2.05, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-8 gap-y-3">
                   {[
                     { target: 2, suffix: "", label: "Worlds" },
                     { target: 15, suffix: "+", label: "Team Members" },
@@ -429,22 +429,22 @@ export function HeroSection() {
                         <Counter
                           target={stat.target}
                           suffix={stat.suffix}
-                          className="text-gold font-heading font-bold text-2xl drop-shadow-[0_0_12px_rgba(212,168,83,0.6)]"
+                          className="text-gold font-heading font-bold text-xl sm:text-2xl drop-shadow-[0_0_12px_rgba(212,168,83,0.6)]"
                         />
-                        <span className="text-white/40 text-[11px] uppercase tracking-wider">
+                        <span className="text-white/40 text-[10px] sm:text-[11px] uppercase tracking-wider">
                           {stat.label}
                         </span>
                       </div>
                     </div>
                   ))}
                   <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2">
                     <img
                       src="/unreal-engine-xwo7bd8vu6fzpnkcifgtu.webp"
                       alt="Unreal Engine"
-                      className="w-5 h-5 rounded-full object-cover invert opacity-70"
+                      className="w-4 h-4 sm:w-5 sm:h-5 rounded-full object-cover invert opacity-70"
                     />
-                    <span className="text-white/40 text-[11px] font-medium tracking-wider uppercase">
+                    <span className="text-white/40 text-[10px] sm:text-[11px] font-medium tracking-wider uppercase">
                       Powered by UE5
                     </span>
                   </div>
@@ -453,16 +453,16 @@ export function HeroSection() {
 
               {/* Mobile world preview strip */}
               <FadeIn delay={1.3}>
-                <div className="lg:hidden grid grid-cols-2 gap-3 mt-10">
+                <div className="lg:hidden grid grid-cols-2 gap-3 mt-8">
                   {/* Sands mini card */}
                   <a
                     href="#sands-of-avalon"
                     className="relative rounded-xl overflow-hidden border border-gold/30 group"
                   >
                     <img
-                       src="/HighresScreenshot00108.webp"
+                      src="/HighresScreenshot00108.webp"
                       alt="Sands — Ancient Era"
-                      className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
+                      className="w-full h-[100px] sm:h-[120px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-2.5">
@@ -477,9 +477,9 @@ export function HeroSection() {
                     className="relative rounded-xl overflow-hidden border border-[#4FC3C3]/30 group"
                   >
                     <img
-                       src="/new medieval/HighresScreenshot00021 (1).webp"
+                      src="/new medieval/HighresScreenshot00021 (1).webp"
                       alt="Avalon — Medieval Era"
-                      className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
+                      className="w-full h-[100px] sm:h-[120px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-2.5">
