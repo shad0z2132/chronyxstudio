@@ -8,7 +8,7 @@ const worlds = [
     title: "Sands of Avalon",
     subtitle: "1 Game · 2 Worlds",
     image: "/HighresScreenshot00108.webp",
-    secondImage: "/medieval/photo_2026-02-26_03-38-38.webp",
+    secondImage: "/new medieval/HighresScreenshot00002 (1).webp",
     characterImage: "/SETH 1.webp",
     icon: Globe,
     tagline: "Forge Your Legend",

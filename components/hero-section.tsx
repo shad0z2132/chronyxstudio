@@ -259,7 +259,7 @@ export function HeroSection() {
                   ))}
                 </span>
 
-                {/* "Avalon" — white, letters stagger in slightly after, then glow pulses */}
+                {/* "Avalon" — white, letters stagger in slightly after */}
                 <span className="block text-4xl md:text-5xl lg:text-6xl text-foreground" aria-hidden="true">
                   {["A","v","a","l","o","n"].map((char, i) => (
                     <motion.span
@@ -276,107 +276,180 @@ export function HeroSection() {
                       {char}
                     </motion.span>
                   ))}
-                  {/* Glow underline that draws in after letters land */}
-                  <motion.span
-                    className="block h-[3px] mt-1 rounded-full bg-gradient-to-r from-gold/60 via-[#4FC3C3]/40 to-transparent"
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{ scaleX: 1, opacity: 1 }}
-                    transition={{ duration: 0.9, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ transformOrigin: "left" }}
-                  />
                 </span>
               </h1>
 
-              {/* Two-world tagline */}
-              <FadeIn delay={0.65}>
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="text-gold/80 text-sm font-semibold tracking-[0.15em] uppercase">Ancient Era</span>
-                  <div className="w-1 h-1 rounded-full bg-white/20" />
-                  <span className="text-[#4FC3C3]/80 text-sm font-semibold tracking-[0.15em] uppercase">Medieval Era</span>
-                </div>
-              </FadeIn>
+              {/* Two-world tagline — both eras with sword separator */}
+              <div className="flex items-center gap-4 mb-4">
+                <motion.div
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                  <motion.span
+                    className="text-gold text-sm font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(212,168,83,0.7)]"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  >
+                    Ancient Era
+                  </motion.span>
+                </motion.div>
 
-              {/* Accent line */}
-              <FadeIn delay={0.75}>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-px bg-gradient-to-r from-gold to-gold/20" />
-                  <span className="text-white/50 text-sm italic tracking-wide">
-                    One world was never enough.
-                  </span>
-                </div>
-              </FadeIn>
+                <motion.div
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  animate={{ opacity: 1, scaleY: 1 }}
+                  transition={{ duration: 0.4, delay: 1.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Swords className="w-3.5 h-3.5 text-white/25" />
+                </motion.div>
 
-              {/* Description */}
-              <FadeIn delay={0.85}>
-                <p className="text-white/60 text-base lg:text-lg leading-relaxed max-w-lg mb-9">
-                  A progression-focused ARPG spanning two distinct worlds. Explore the ancient sands of Egypt or forge your legend across medieval kingdoms — both await within a single game.
-                </p>
-              </FadeIn>
+                <motion.div
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <motion.span
+                    className="text-[#4FC3C3] text-sm font-bold tracking-[0.2em] uppercase drop-shadow-[0_0_10px_rgba(79,195,195,0.7)]"
+                    animate={{ opacity: [1, 0.7, 1] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  >
+                    Medieval Era
+                  </motion.span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3]" />
+                </motion.div>
+              </div>
+
+              {/* Sub-headline */}
+              <motion.p
+                className="text-white/70 text-xl lg:text-2xl font-semibold tracking-wide mb-6 leading-snug"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.45, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <motion.span
+                  animate={{ opacity: [0.6, 1, 0.6] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                >
+                  One world was never enough.
+                </motion.span>
+              </motion.p>
+
+              {/* Genre badge pills */}
+              <motion.div
+                className="flex flex-wrap items-center gap-2 mb-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {[
+                  { label: "ARPG", color: "text-gold/80 border-gold/25 bg-gold/5" },
+                  { label: "Multiplayer", color: "text-[#4FC3C3]/80 border-[#4FC3C3]/25 bg-[#4FC3C3]/5" },
+                  { label: "Open World", color: "text-white/50 border-white/10 bg-white/[0.03]" },
+                  { label: "UE5", color: "text-white/50 border-white/10 bg-white/[0.03]" },
+                ].map((badge, i) => (
+                  <motion.span
+                    key={badge.label}
+                    className={`inline-flex items-center px-3 py-1 rounded-full border text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm ${badge.color}`}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35, delay: 1.65 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {badge.label}
+                  </motion.span>
+                ))}
+              </motion.div>
+
+              {/* Description with highlighted keywords */}
+              <motion.p
+                className="text-white/55 text-base lg:text-lg leading-relaxed max-w-lg mb-9"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.75, ease: [0.22, 1, 0.36, 1] }}
+              >
+                A{" "}
+                <span className="text-gold/90 font-semibold">multiplayer</span>{" "}
+                fantasy ARPG inspired by{" "}
+                <span className="text-gold/80 font-medium">ancient civilizations</span>{" "}
+                and{" "}
+                <span className="text-[#4FC3C3]/80 font-medium">medieval kingdoms</span>.
+                {" "}Explore mythic sands and war-torn realms within a{" "}
+                <span className="text-white/80 font-medium">single evolving world</span>.
+              </motion.p>
 
               {/* CTAs */}
-              <FadeIn delay={1.0}>
-                <div className="flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center gap-3 xs:gap-4">
-                  <motion.a
-                    href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-gold hover:bg-gold-light text-background px-7 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
-                    <span className="relative z-10">Wishlist on Steam</span>
-                    <ExternalLink className="relative z-10 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </motion.a>
+              <motion.div
+                className="flex flex-row flex-wrap items-center gap-3"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.9, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <motion.a
+                  href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
+                  <span className="relative z-10">Wishlist on Steam</span>
+                  <ExternalLink className="relative z-10 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </motion.a>
 
-                  <motion.a
-                    href="#sands-of-avalon"
-                    className="inline-flex items-center justify-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-7 py-4 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Explore Both Worlds
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </motion.a>
-                </div>
-              </FadeIn>
+                <motion.a
+                  href="#sands-of-avalon"
+                  className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-6 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Explore Both Worlds
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </motion.a>
+              </motion.div>
 
               {/* Stats */}
-              <FadeIn delay={1.2}>
-                <div className="mt-12 pt-8 border-t border-white/[0.06]">
-                  <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-                    {[
-                      { target: 2, suffix: "", label: "Worlds" },
-                      { target: 15, suffix: "+", label: "Team Members" },
-                      { target: 18, suffix: "", label: "Months In Dev" },
-                    ].map((stat, i) => (
-                      <div key={stat.label} className="flex items-center gap-3">
-                        {i > 0 && <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />}
-                        <div className="flex items-baseline gap-1.5">
-                          <Counter
-                            target={stat.target}
-                            suffix={stat.suffix}
-                            className="text-gold font-heading font-bold text-2xl"
-                          />
-                          <span className="text-white/50 text-[11px] uppercase tracking-wider">
-                            {stat.label}
-                          </span>
-                        </div>
+              <motion.div
+                className="mt-10 pt-8 border-t border-white/[0.06]"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 2.05, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                  {[
+                    { target: 2, suffix: "", label: "Worlds" },
+                    { target: 15, suffix: "+", label: "Team Members" },
+                    { target: 18, suffix: "", label: "Months In Dev" },
+                  ].map((stat, i) => (
+                    <div key={stat.label} className="flex items-center gap-3">
+                      {i > 0 && <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />}
+                      <div className="flex items-baseline gap-1.5">
+                        <Counter
+                          target={stat.target}
+                          suffix={stat.suffix}
+                          className="text-gold font-heading font-bold text-2xl drop-shadow-[0_0_12px_rgba(212,168,83,0.6)]"
+                        />
+                        <span className="text-white/40 text-[11px] uppercase tracking-wider">
+                          {stat.label}
+                        </span>
                       </div>
-                    ))}
-                    <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />
-                    <div className="flex items-center gap-2.5">
-                      <img
-                        src="/unreal-engine-xwo7bd8vu6fzpnkcifgtu.webp"
-                        alt="Unreal Engine"
-                        className="w-5 h-5 rounded-full object-cover invert opacity-70"
-                      />
-                      <span className="text-white/50 text-[11px] font-medium tracking-wider uppercase">
-                        Powered by UE5
-                      </span>
                     </div>
+                  ))}
+                  <div className="w-px h-4 bg-white/[0.08] hidden sm:block" />
+                  <div className="flex items-center gap-2.5">
+                    <img
+                      src="/unreal-engine-xwo7bd8vu6fzpnkcifgtu.webp"
+                      alt="Unreal Engine"
+                      className="w-5 h-5 rounded-full object-cover invert opacity-70"
+                    />
+                    <span className="text-white/40 text-[11px] font-medium tracking-wider uppercase">
+                      Powered by UE5
+                    </span>
                   </div>
                 </div>
-              </FadeIn>
+              </motion.div>
 
               {/* Mobile world preview strip */}
               <FadeIn delay={1.3}>
@@ -404,7 +477,7 @@ export function HeroSection() {
                     className="relative rounded-xl overflow-hidden border border-[#4FC3C3]/30 group"
                   >
                     <img
-                       src="/medieval/photo_2026-02-26_03-38-38.webp"
+                       src="/new medieval/HighresScreenshot00021 (1).webp"
                       alt="Avalon — Medieval Era"
                       className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
@@ -432,14 +505,13 @@ export function HeroSection() {
                 borderColor="border-gold/25"
                 badgeBg="bg-gold/10"
                 glowColor="shadow-[0_0_50px_rgba(212,168,83,0.2)]"
-                steamUrl="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
                 delay={1.0}
                 tall
               />
 
               {/* Avalon card */}
               <WorldPreviewCard
-                image="/medieval/photo_2026-02-26_03-38-38.webp"
+                 image="/new medieval/HighresScreenshot00021 (1).webp"
                 name="Avalon"
                 subtitle="Medieval Era"
                 tag="In Development"
@@ -451,16 +523,19 @@ export function HeroSection() {
                 tall={false}
               />
 
-              {/* "1 Game · 2 Worlds" label between cards */}
+              {/* Steam pill — one game, between both world cards */}
               <FadeIn delay={1.35}>
                 <div className="flex items-center gap-3 px-1">
                   <div className="flex-1 h-px bg-gradient-to-r from-gold/30 to-transparent" />
-                  <div className="flex items-center gap-1.5">
-                    <Globe className="w-3 h-3 text-white/25" />
-                    <span className="text-white/25 text-[10px] font-semibold tracking-widest uppercase whitespace-nowrap">
-                      1 Game · 2 Worlds
-                    </span>
-                  </div>
+                  <a
+                    href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 bg-[#1b2838]/80 border border-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full hover:border-white/40 hover:bg-[#1b2838] transition-all duration-200"
+                  >
+                    <ExternalLink className="w-3 h-3 text-white/60" />
+                    <span className="text-white/70 text-[10px] font-semibold tracking-widest uppercase">Wishlist on Steam</span>
+                  </a>
                   <div className="flex-1 h-px bg-gradient-to-l from-[#4FC3C3]/30 to-transparent" />
                 </div>
               </FadeIn>

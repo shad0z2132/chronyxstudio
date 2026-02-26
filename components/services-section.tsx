@@ -12,7 +12,7 @@ const games = [
       "A progression-focused ARPG spanning two distinct eras. Conquer the Ancient Era of forgotten temples and desert gods — or forge your legend across Medieval kingdoms torn by shifting alliances. One game, two worlds to master.",
     icon: Globe,
     image: "/HighresScreenshot00108.webp",
-    secondImage: "/medieval/photo_2026-02-26_03-38-38.webp",
+    secondImage: "/new medieval/HighresScreenshot00002 (1).webp",
     href: "#sands-of-avalon",
     status: "In Development",
     statusActive: true,
