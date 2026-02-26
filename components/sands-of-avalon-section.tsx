@@ -64,7 +64,7 @@ const worlds = [
     hoverBorderClass: "group-hover:border-gold/60",
     gradientFrom: "from-[#D4A853]",
     screenshots: [
-      { src: "/image (27).webp", alt: "Sands of Avalon — ancient landscape" },
+      { src: "/HighresScreenshot00108.webp", alt: "Sands of Avalon — ancient landscape" },
       { src: "/HighresScreenshot00081.webp", alt: "Ancient temple environment" },
       { src: "/HighresScreenshot00084.webp", alt: "Desert exploration gameplay" },
       { src: "/HighresScreenshot00105.webp", alt: "Combat encounter" },
@@ -86,7 +86,7 @@ const worlds = [
     hoverBorderClass: "group-hover:border-[#4FC3C3]/60",
     gradientFrom: "from-[#4FC3C3]",
     screenshots: [
-      { src: "/medieval/photo_2026-02-26_03-39-24.webp", alt: "Avalon — medieval world" },
+      { src: "/medieval/photo_2026-02-26_03-38-38.webp", alt: "Avalon — medieval world" },
       { src: "/medieval/photo_2026-02-26_03-38-32.webp", alt: "Medieval castle environment" },
       { src: "/medieval/photo_2026-02-26_03-38-43.webp", alt: "Forest exploration" },
       { src: "/medieval/photo_2026-02-26_03-38-56.webp", alt: "Medieval combat" },

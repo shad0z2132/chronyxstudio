@@ -79,7 +79,7 @@ const milestones = [
     ],
     phase: "Phase 5",
     status: "planned" as const,
-    image: "/image (27).webp",
+    image: "/HighresScreenshot00108.webp",
   },
 ]
 

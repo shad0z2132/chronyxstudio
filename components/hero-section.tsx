@@ -387,7 +387,7 @@ export function HeroSection() {
                     className="relative rounded-xl overflow-hidden border border-gold/30 group"
                   >
                     <img
-                      src="/image (27).webp"
+                       src="/HighresScreenshot00108.webp"
                       alt="Sands — Ancient Era"
                       className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
@@ -404,7 +404,7 @@ export function HeroSection() {
                     className="relative rounded-xl overflow-hidden border border-[#4FC3C3]/30 group"
                   >
                     <img
-                      src="/medieval/photo_2026-02-26_03-39-24.webp"
+                       src="/medieval/photo_2026-02-26_03-38-38.webp"
                       alt="Avalon — Medieval Era"
                       className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
@@ -424,7 +424,7 @@ export function HeroSection() {
 
               {/* Sands card */}
               <WorldPreviewCard
-                image="/image (27).webp"
+                image="/HighresScreenshot00108.webp"
                 name="Sands"
                 subtitle="Ancient Era"
                 tag="In Development"
@@ -439,7 +439,7 @@ export function HeroSection() {
 
               {/* Avalon card */}
               <WorldPreviewCard
-                image="/medieval/photo_2026-02-26_03-39-24.webp"
+                image="/medieval/photo_2026-02-26_03-38-38.webp"
                 name="Avalon"
                 subtitle="Medieval Era"
                 tag="In Development"
