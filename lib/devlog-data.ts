@@ -32,6 +32,73 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "faction-system-dynamic-ai-conflicts",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Feb 26, 2026",
+  title: "Faction System and Dynamic AI Conflicts",
+  excerpt: "We introduced a faction system where groups can be friendly or hostile toward each other, creating unscripted world conflicts.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "This week we focused on expanding the world simulation by introducing a faction system combined with improved AI behaviours."
+    },
+    {
+      type: "paragraph",
+      text: "The goal is simple but powerful. The world should not revolve around the player. It should feel alive even when you are not involved."
+    },
+    {
+      type: "heading",
+      text: "Faction Relationships"
+    },
+    {
+      type: "paragraph",
+      text: "Factions can now be either friendly or hostile toward one another. These relationships define how AI groups react when they encounter each other in the world."
+    },
+    {
+      type: "list",
+      items: [
+        "Friendly factions ignore or support each other",
+        "Hostile factions attack on sight",
+        "Territories can become active conflict zones",
+        "Encounters are behaviour driven, not scripted"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Emergent Combat Encounters"
+    },
+    {
+      type: "paragraph",
+      text: "You might be traveling across the map and suddenly witness two rival factions fighting. These battles are not pre scripted events. They happen because their relationship logic tells them they are enemies."
+    },
+    {
+      type: "paragraph",
+      text: "This creates dynamic moments where the player can intervene, assist a faction, exploit the chaos, or simply observe the world unfolding naturally."
+    },
+    {
+      type: "heading",
+      text: "Why This Matters"
+    },
+    {
+      type: "paragraph",
+      text: "A believable world needs internal conflict. When factions fight, defend territory, or cooperate without player input, it makes the environment feel reactive and alive."
+    },
+    {
+      type: "quote",
+      text: "The world should not wait for the player to act. It should evolve on its own.",
+      author: "Sands of Avalon Development"
+    },
+    {
+      type: "paragraph",
+      text: "Next step is tying this system into reputation and long term world reactions so the player's choices influence faction relationships over time."
+    }
+  ]
+},
+
+{
   slug: "npc-dialogue-system-world-feels-alive",
   tag: "Game Design",
   icon: BookOpen,
