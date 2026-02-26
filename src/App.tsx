@@ -45,37 +45,41 @@ function LandingPage() {
       {!isLoaded ? (
         <Preloader key="preloader" onComplete={handlePreloaderComplete} />
       ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-        >
-          {/* Scroll progress bar */}
-          <motion.div
-            className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left pointer-events-none"
-            style={{ scaleX }}
-          />
+        <>
+          {/* Navbar renders immediately — outside the fade so the mobile burger is always visible */}
+          <Navbar />
 
-          <main>
-            <Navbar />
-            <HeroSection />
-            <AboutSection />
-            <PartnersSection />
-            <SandsOfAvalonSection />
-            <RoadmapSection />
-            <WhyChooseUs />
-            <ServicesSection />
-            <PlatformsSection />
-            <ProjectsSection />
-            <CooperationSection />
-            <TestimonialsSection />
-            <AwardsSection />
-            <BlogSection />
-            <ContactSection />
-            <Footer />
-          </main>
-        </motion.div>
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            {/* Scroll progress bar */}
+            <motion.div
+              className="fixed top-0 left-0 right-0 h-[2px] bg-gold z-[60] origin-left pointer-events-none"
+              style={{ scaleX }}
+            />
+
+            <main>
+              <HeroSection />
+              <AboutSection />
+              <PartnersSection />
+              <SandsOfAvalonSection />
+              <RoadmapSection />
+              <WhyChooseUs />
+              <ServicesSection />
+              <PlatformsSection />
+              <ProjectsSection />
+              <CooperationSection />
+              <TestimonialsSection />
+              <AwardsSection />
+              <BlogSection />
+              <ContactSection />
+              <Footer />
+            </main>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   )
