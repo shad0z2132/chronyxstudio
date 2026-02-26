@@ -1,32 +1,38 @@
 import { useRef } from "react"
-import { ArrowUpRight, Swords, Crosshair, Shield, Map, Users, Trophy, Flame, ExternalLink } from "lucide-react"
+import { ArrowUpRight, Swords, Crosshair, Shield, Map, Users, Trophy, Flame, ExternalLink, Globe } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 const worlds = [
   {
     title: "Sands of Avalon",
-    subtitle: "Action RPG",
-    image: "/Anubismonolith.webp",
+    subtitle: "1 Game · 2 Worlds",
+    image: "/image (27).webp",
+    secondImage: "/medieval/photo_2026-02-26_03-39-24.webp",
     characterImage: "/SETH 1.webp",
-    icon: Swords,
+    icon: Globe,
     tagline: "Forge Your Legend",
     status: "In Development",
     steamHref: "https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1",
     features: [
-      { icon: Map, text: "Vast world shaped by exploration" },
+      { icon: Map,    text: "Ancient Era — forgotten temples & desert power" },
+      { icon: Swords, text: "Medieval Era — warring kingdoms & mystic forests" },
       { icon: Shield, text: "Deep progression — earned, never bought" },
-      { icon: Users, text: "Allegiance systems define your path" },
-      { icon: Flame, text: "Evolving threats and rare resources" },
+      { icon: Users,  text: "Allegiance systems define your path" },
     ],
     description:
-      "A progression-focused RPG set in a medieval fantasy world shaped by ancient power, shifting alliances, and evolving threats. Every step forward is earned.",
+      "A progression-focused ARPG spanning two distinct worlds. Conquer the ancient era of forgotten temples and desert gods, or forge your legend across medieval kingdoms torn by shifting alliances. One game — two worlds to master.",
+    worldBadges: [
+      { label: "Ancient Era", color: "gold" as const },
+      { label: "Medieval Era", color: "teal" as const },
+    ],
     gradient: "from-amber-500/20 via-transparent to-transparent",
   },
   {
     title: "Competitive FPS",
     subtitle: "Tournament-Ready Shooter",
     image: "/photo_2026-02-18_02-54-03.jpg",
+    secondImage: null,
     characterImage: "/alien-planet-building.webp",
     icon: Crosshair,
     tagline: "Prove Your Skill",
@@ -34,12 +40,13 @@ const worlds = [
     steamHref: null,
     features: [
       { icon: Crosshair, text: "Precision gunplay, high skill ceiling" },
-      { icon: Trophy, text: "Ranked ladders & tournament infra" },
-      { icon: Users, text: "Team-based tactics & coordination" },
-      { icon: Shield, text: "Competitive integrity — no P2W" },
+      { icon: Trophy,    text: "Ranked ladders & tournament infra" },
+      { icon: Users,     text: "Team-based tactics & coordination" },
+      { icon: Shield,    text: "Competitive integrity — no P2W" },
     ],
     description:
       "Built from the ground up for esports. Every mechanic serves competitive clarity, with spectator systems and event frameworks for thriving communities.",
+    worldBadges: null,
     gradient: "from-sky-500/20 via-transparent to-transparent",
   },
 ]
@@ -141,21 +148,66 @@ function WorldCard({ world }: { world: (typeof worlds)[0] }) {
       <div className="flex flex-col lg:flex-row min-h-[420px]">
         {/* Image side */}
         <div className="relative lg:w-[50%] min-h-[220px] lg:min-h-0 overflow-hidden">
-          <img
-            src={world.image}
-            alt={world.title}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+
+          {/* Split image for Sands of Avalon, single for others */}
+          {world.secondImage ? (
+            <>
+              {/* Left half — Ancient */}
+              <div className="absolute inset-0 w-1/2 overflow-hidden">
+                <img
+                  src={world.image}
+                  alt="Sands — Ancient Era"
+                  loading="lazy"
+                  className="absolute inset-0 w-[200%] h-full object-cover object-left transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0f1115]/60" />
+              </div>
+              {/* Right half — Medieval */}
+              <div className="absolute inset-0 left-1/2 overflow-hidden">
+                <img
+                  src={world.secondImage}
+                  alt="Avalon — Medieval Era"
+                  loading="lazy"
+                  className="absolute inset-0 w-[200%] h-full object-cover object-right right-0 transition-transform duration-700 group-hover:scale-105"
+                  style={{ left: "auto" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0f1115]/60" />
+              </div>
+              {/* Center divider line */}
+              <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent z-10" />
+              {/* World era labels on image */}
+              <div className="absolute bottom-4 left-0 w-1/2 flex justify-center z-10">
+                <span className="text-gold text-[10px] font-bold tracking-widest uppercase bg-black/50 backdrop-blur-sm border border-gold/20 px-2.5 py-1 rounded-full">
+                  Ancient Era
+                </span>
+              </div>
+              <div className="absolute bottom-4 right-0 w-1/2 flex justify-center z-10">
+                <span className="text-[#4FC3C3] text-[10px] font-bold tracking-widest uppercase bg-black/50 backdrop-blur-sm border border-[#4FC3C3]/20 px-2.5 py-1 rounded-full">
+                  Medieval Era
+                </span>
+              </div>
+            </>
+          ) : (
+            <img
+              src={world.image}
+              alt={world.title}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
+
           <div className="absolute top-0 bottom-0 right-0 w-3/4 bg-gradient-to-r from-transparent to-[#0f1115] hidden lg:block" />
           <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0f1115] to-transparent lg:hidden" />
           <div className={`absolute inset-0 bg-gradient-to-br ${world.gradient} opacity-40`} />
+
+          {/* Status badge */}
           <div className="absolute top-4 left-4 z-10">
             <span className="text-gold/90 text-[10px] font-bold tracking-[0.2em] uppercase bg-gold/[0.12] backdrop-blur-sm px-3 py-1.5 rounded-md border border-gold/20">
               {world.status}
             </span>
           </div>
-          {world.characterImage && (
+
+          {world.characterImage && !world.secondImage && (
             <div className="absolute bottom-0 right-4 w-[45%] max-w-[220px] hidden lg:block">
               <img src={world.characterImage} alt="" loading="lazy" className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-700 group-hover:translate-y-[-4px]" />
             </div>
@@ -164,6 +216,8 @@ function WorldCard({ world }: { world: (typeof worlds)[0] }) {
 
         {/* Content side */}
         <div className="relative z-10 flex flex-col justify-center p-6 lg:p-12 lg:w-[50%]">
+
+          {/* Subtitle row */}
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 bg-gold/[0.08] rounded-lg flex items-center justify-center border border-gold/10">
               <Icon className="w-4 h-4 text-gold" strokeWidth={1.5} />
@@ -171,9 +225,27 @@ function WorldCard({ world }: { world: (typeof worlds)[0] }) {
             <span className="text-gold/70 text-xs font-medium tracking-wider uppercase">{world.subtitle}</span>
           </div>
 
+          {/* Title */}
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground tracking-tight mb-2">
             {world.title}
           </h3>
+
+          {/* World badges for Sands of Avalon */}
+          {world.worldBadges && (
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-1.5 bg-gold/10 border border-gold/20 px-2.5 py-1 rounded-full">
+                <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                <span className="text-gold text-[10px] font-bold tracking-widest uppercase">Sands</span>
+                <span className="text-gold/50 text-[10px]">Ancient</span>
+              </div>
+              <span className="text-muted-foreground/30 text-xs">·</span>
+              <div className="flex items-center gap-1.5 bg-[#4FC3C3]/10 border border-[#4FC3C3]/20 px-2.5 py-1 rounded-full">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3]" />
+                <span className="text-[#4FC3C3] text-[10px] font-bold tracking-widest uppercase">Avalon</span>
+                <span className="text-[#4FC3C3]/50 text-[10px]">Medieval</span>
+              </div>
+            </div>
+          )}
 
           <div className="mb-5">
             <p className="text-gold/60 text-sm font-medium tracking-wide italic">{world.tagline}</p>
@@ -210,10 +282,10 @@ function WorldCard({ world }: { world: (typeof worlds)[0] }) {
               </a>
             )}
             <a
-              href="#contact"
+              href="#sands-of-avalon"
               className="inline-flex items-center gap-2 bg-transparent border border-gold/30 hover:border-gold hover:bg-gold/10 text-gold px-5 py-3 rounded-lg font-semibold text-sm tracking-wide uppercase transition-colors duration-200 w-fit group/btn"
             >
-              Learn More
+              Explore Both Worlds
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </a>
           </div>
