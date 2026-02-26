@@ -1,6 +1,6 @@
-import { ArrowUpRight, Swords, Shield, Map, Users, Clock, Sparkles, ExternalLink } from "lucide-react"
+import { ArrowUpRight, Swords, Shield, Map, Users, Clock, Sparkles, ExternalLink, Globe } from "lucide-react"
 import { motion, useInView, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { FadeIn, StaggerContainer, StaggerItem, Counter } from "@/components/motion"
 
 /* ─── Data ────────────────────────────────────────────────────────────────── */
@@ -48,11 +48,51 @@ const devStats = [
   { target: 4, suffix: "", label: "Major Milestones" },
 ]
 
-const screenshots = [
-  { src: "/HighresScreenshot00081.webp", alt: "Ancient temple environment" },
-  { src: "/HighresScreenshot00084.webp", alt: "Desert exploration gameplay" },
-  { src: "/HighresScreenshot00105.webp", alt: "Combat encounter" },
-  { src: "/HighresScreenshot00108.webp", alt: "World atmosphere" },
+const worlds = [
+  {
+    id: "sands",
+    name: "Sands",
+    subtitle: "The Ancient World",
+    era: "Ancient Egypt",
+    description:
+      "Traverse sun-scorched deserts and forgotten temples, where ancient gods still hold dominion. Unearth relics of a lost civilization and battle the divine forces that guard their secrets.",
+    color: "gold" as const,
+    accentClass: "text-gold",
+    borderClass: "border-gold/30",
+    bgClass: "bg-gold/10",
+    glowClass: "shadow-[0_0_40px_rgba(212,168,83,0.15)]",
+    hoverBorderClass: "group-hover:border-gold/60",
+    gradientFrom: "from-[#D4A853]",
+    screenshots: [
+      { src: "/image (27).webp", alt: "Sands of Avalon — ancient landscape" },
+      { src: "/HighresScreenshot00081.webp", alt: "Ancient temple environment" },
+      { src: "/HighresScreenshot00084.webp", alt: "Desert exploration gameplay" },
+      { src: "/HighresScreenshot00105.webp", alt: "Combat encounter" },
+    ],
+    tag: "Ancient Egypt",
+  },
+  {
+    id: "avalon",
+    name: "Avalon",
+    subtitle: "The Medieval World",
+    era: "Medieval Fantasy",
+    description:
+      "Enter a realm of stone fortresses, mystic forests, and warring kingdoms. Forge alliances, claim territories, and rise through the ranks of a world on the brink of legend.",
+    color: "teal" as const,
+    accentClass: "text-[#4FC3C3]",
+    borderClass: "border-[#4FC3C3]/30",
+    bgClass: "bg-[#4FC3C3]/10",
+    glowClass: "shadow-[0_0_40px_rgba(79,195,195,0.15)]",
+    hoverBorderClass: "group-hover:border-[#4FC3C3]/60",
+    gradientFrom: "from-[#4FC3C3]",
+    screenshots: [
+      { src: "/medieval/photo_2026-02-26_03-39-24.webp", alt: "Avalon — medieval world" },
+      { src: "/medieval/photo_2026-02-26_03-38-32.webp", alt: "Medieval castle environment" },
+      { src: "/medieval/photo_2026-02-26_03-38-43.webp", alt: "Forest exploration" },
+      { src: "/medieval/photo_2026-02-26_03-38-56.webp", alt: "Medieval combat" },
+    ],
+    tag: "Medieval Fantasy",
+  },
 ]
 
 /* ─── Progress Bar ────────────────────────────────────────────────────────── */
@@ -103,6 +143,85 @@ function ProgressBar({ label, progress, status, delay }: {
   )
 }
 
+/* ─── World Card ──────────────────────────────────────────────────────────── */
+
+function WorldCard({ world, index }: { world: typeof worlds[0]; index: number }) {
+  const [activeShot, setActiveShot] = useState(0)
+  const isSands = world.id === "sands"
+
+  return (
+    <FadeIn delay={index * 0.15}>
+      <div className={`group relative bg-[#0f1115] border ${world.borderClass} rounded-2xl overflow-hidden transition-all duration-500 hover:${world.glowClass} flex flex-col h-full`}>
+
+        {/* Top accent line */}
+        <div className={`absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent ${world.gradientFrom}/40 to-transparent z-10`} />
+
+        {/* Hero image */}
+        <div className="relative h-[220px] sm:h-[260px] md:h-[300px] overflow-hidden flex-shrink-0">
+          <img
+            src={world.screenshots[activeShot].src}
+            alt={world.screenshots[activeShot].alt}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+          />
+          {/* Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1115] via-[#0f1115]/30 to-transparent" />
+          <div className={`absolute inset-0 bg-gradient-to-br ${isSands ? "from-[#D4A853]/10" : "from-[#4FC3C3]/10"} to-transparent`} />
+
+          {/* Era badge */}
+          <div className="absolute top-4 left-4">
+            <div className={`flex items-center gap-1.5 ${world.bgClass} border ${world.borderClass} backdrop-blur-sm px-3 py-1.5 rounded-full`}>
+              <div className={`w-1.5 h-1.5 rounded-full ${isSands ? "bg-gold" : "bg-[#4FC3C3]"} animate-pulse`} />
+              <span className={`${world.accentClass} text-[10px] font-semibold tracking-wider uppercase`}>
+                {world.tag}
+              </span>
+            </div>
+          </div>
+
+          {/* World name overlaid */}
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className={`${world.accentClass} text-xs font-semibold tracking-[0.2em] uppercase mb-1`}>
+              {world.subtitle}
+            </p>
+            <h3 className="text-3xl font-heading font-bold text-foreground leading-none tracking-tight">
+              {world.name}
+            </h3>
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="p-6 flex flex-col flex-1">
+          <p className="text-muted-foreground/70 text-sm leading-relaxed mb-6">
+            {world.description}
+          </p>
+
+          {/* Thumbnail strip */}
+          <div className="grid grid-cols-4 gap-2 mt-auto">
+            {world.screenshots.map((shot, i) => (
+              <button
+                key={shot.src}
+                onClick={() => setActiveShot(i)}
+                className={`relative rounded-lg overflow-hidden aspect-[4/3] sm:aspect-[16/10] transition-all duration-300 ${
+                  activeShot === i
+                    ? `ring-2 ${isSands ? "ring-gold/60" : "ring-[#4FC3C3]/60"}`
+                    : "opacity-50 hover:opacity-80 active:opacity-100"
+                }`}
+              >
+                <img
+                  src={shot.src}
+                  alt={shot.alt}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </FadeIn>
+  )
+}
+
 /* ─── Main Section ────────────────────────────────────────────────────────── */
 
 export function SandsOfAvalonSection() {
@@ -117,9 +236,9 @@ export function SandsOfAvalonSection() {
     <section
       ref={sectionRef}
       id="sands-of-avalon"
-      className="relative py-24 lg:py-36 overflow-hidden ambient-glow-gold"
+      className="relative py-16 sm:py-24 lg:py-36 overflow-hidden ambient-glow-gold"
     >
-      {/* ── Golden & Teal flare orbs ── */}
+      {/* ── Ambient orbs ── */}
       <div
         className="absolute pointer-events-none z-[1]"
         style={{
@@ -128,7 +247,7 @@ export function SandsOfAvalonSection() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.12) 0%, rgba(212,168,83,0) 70%)",
+          background: "radial-gradient(circle, rgba(212,168,83,0.10) 0%, rgba(212,168,83,0) 70%)",
           animation: "flare-breathe 8s ease-in-out infinite",
         }}
       />
@@ -140,7 +259,7 @@ export function SandsOfAvalonSection() {
           width: "600px",
           height: "600px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(10,25,47,0.5) 0%, rgba(10,25,47,0) 65%)",
+          background: "radial-gradient(circle, rgba(79,195,195,0.07) 0%, rgba(79,195,195,0) 65%)",
           animation: "flare-breathe-slow 10s ease-in-out infinite",
         }}
       />
@@ -152,15 +271,15 @@ export function SandsOfAvalonSection() {
           width: "450px",
           height: "450px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(212,168,83,0.08) 0%, rgba(212,168,83,0) 70%)",
+          background: "radial-gradient(circle, rgba(212,168,83,0.06) 0%, rgba(212,168,83,0) 70%)",
           animation: "flare-breathe 12s ease-in-out infinite",
         }}
       />
 
-      {/* Parallax background image — very faint */}
+      {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
-           src="/Anubismonolith.webp"
+          src="/Anubismonolith.webp"
           alt=""
           aria-hidden="true"
           loading="lazy"
@@ -170,81 +289,69 @@ export function SandsOfAvalonSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
 
-        {/* ── Cinematic Hero Banner ──────────────────────────────────────── */}
+        {/* ── Section Header ─────────────────────────────────────────────── */}
         <FadeIn>
-          <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_30px_rgba(0,0,0,0.5)] mb-16 group">
-            {/* Large showcase image */}
-            <div className="relative h-[360px] md:h-[440px] lg:h-[500px] overflow-hidden">
-              <img
-                src="/image (27).webp"
-                alt="Sands of Avalon — ancient Egyptian landscape"
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-              />
-              {/* Gradient overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent h-2/3 mt-auto" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/80 to-transparent w-2/3" />
+          <div className="text-center mb-12 md:mb-16">
+            {/* Eyebrow */}
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-gold/60" />
+              <div className="flex items-center gap-1.5 bg-gold/10 border border-gold/20 px-3 py-1.5 rounded-full">
+                <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                <span className="text-gold text-[11px] font-semibold tracking-wider uppercase">
+                  Flagship Title
+                </span>
+              </div>
+              <div className="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-gold/60" />
+            </div>
 
-              {/* Content overlay */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">
-                {/* Badges row */}
-                <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <div className="flex items-center gap-1.5 bg-gold/10 border border-gold/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-                    <span className="text-gold text-[11px] font-semibold tracking-wider uppercase">
-                      In Development
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <Swords className="w-3 h-3 text-muted-foreground/60" />
-                    <span className="text-muted-foreground/70 text-[11px] font-semibold tracking-wider uppercase">
-                      Action RPG
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <Sparkles className="w-3 h-3 text-muted-foreground/60" />
-                    <span className="text-muted-foreground/70 text-[11px] font-semibold tracking-wider uppercase">
-                      Unreal Engine 5
-                    </span>
-                  </div>
-                </div>
+            {/* Title */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-[0.95] tracking-tight mb-4">
+              Sands of <span className="text-gold">Avalon</span>
+            </h2>
 
-                {/* Title */}
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-px bg-gold" />
-                  <span className="text-gold text-xs font-medium tracking-[0.2em] uppercase">
-                    Flagship Title
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-[0.95] tracking-tight mb-4">
-                  Sands of <span className="text-gold">Avalon</span>
-                </h2>
-                <p className="text-muted-foreground text-base lg:text-lg leading-relaxed max-w-xl">
-                  A progression-focused RPG set in a medieval fantasy world shaped by ancient power, shifting alliances, and evolving threats. Every step forward is earned.
-                </p>
+            {/* "1 Game · 2 Worlds" pill — stacks on very small screens */}
+            <div className="inline-flex flex-col xs:flex-row items-center gap-0 bg-[#0f1115] border border-white/10 rounded-2xl xs:rounded-full overflow-hidden mt-2 mb-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] w-full max-w-[320px] xs:max-w-none xs:w-auto">
+              <div className="flex items-center justify-center gap-2 px-4 py-2.5 border-b xs:border-b-0 xs:border-r border-white/10 w-full xs:w-auto">
+                <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
+                <span className="text-gold text-xs font-bold tracking-widest uppercase">Sands</span>
+                <span className="text-muted-foreground/40 text-[10px] tracking-wide">Ancient</span>
+              </div>
+              <div className="px-4 py-2.5 flex items-center justify-center gap-1.5 w-full xs:w-auto">
+                <Globe className="w-3.5 h-3.5 text-muted-foreground/40 shrink-0" />
+                <span className="text-muted-foreground/40 text-[10px] font-semibold tracking-widest uppercase whitespace-nowrap">1 Game · 2 Worlds</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 px-4 py-2.5 border-t xs:border-t-0 xs:border-l border-white/10 w-full xs:w-auto">
+                <span className="text-[#4FC3C3]/70 text-[10px] tracking-wide">Medieval</span>
+                <span className="text-[#4FC3C3] text-xs font-bold tracking-widest uppercase">Avalon</span>
+                <div className="w-2 h-2 rounded-full bg-[#4FC3C3] shrink-0" />
               </div>
             </div>
+
+            <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl sm:max-w-2xl mx-auto">
+              One game. Two distinct worlds. Master the sands of Ancient Egypt or forge your legend across Medieval kingdoms — your journey, your realm.
+            </p>
           </div>
         </FadeIn>
 
-        {/* ── Screenshot Gallery ─────────────────────────────────────────── */}
-        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-16" staggerDelay={0.06}>
-          {screenshots.map((shot) => (
-            <StaggerItem key={shot.src}>
-              <div className="relative rounded-xl overflow-hidden border border-white/[0.06] aspect-[16/10] group cursor-pointer">
-                <img
-                  src={shot.src}
-                  alt={shot.alt}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
-                {/* Hover border glow */}
-                <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-gold/20 transition-colors duration-300" />
-              </div>
-            </StaggerItem>
+        {/* ── World Divider Banner ────────────────────────────────────────── */}
+        <FadeIn delay={0.1}>
+          <div className="relative flex items-center gap-3 sm:gap-4 mb-10 sm:mb-12">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/30 to-white/10" />
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <span className="text-gold text-[11px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.25em] uppercase">Ancient</span>
+              <span className="text-muted-foreground/30 text-xs">×</span>
+              <span className="text-[#4FC3C3] text-[11px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.25em] uppercase">Medieval</span>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#4FC3C3]/30 to-white/10" />
+          </div>
+        </FadeIn>
+
+        {/* ── 2 World Cards ──────────────────────────────────────────────── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+          {worlds.map((world, i) => (
+            <WorldCard key={world.id} world={world} index={i} />
           ))}
-        </StaggerContainer>
+        </div>
 
         {/* ── Progress + Stats ───────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-16">
@@ -254,37 +361,37 @@ export function SandsOfAvalonSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-7">
-                <div className="flex items-center gap-2.5">
-                  <Clock className="w-4 h-4 text-gold/60" />
-                  <span className="text-foreground font-heading font-semibold text-base tracking-tight">
-                    Development Progress
+                  <div className="flex items-center gap-2.5">
+                    <Clock className="w-4 h-4 text-gold/60" />
+                    <span className="text-foreground font-heading font-semibold text-base tracking-tight">
+                      Development Progress
+                    </span>
+                  </div>
+                  <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
+                    Q1 2026
                   </span>
                 </div>
-                <span className="text-muted-foreground/50 text-xs tracking-wider uppercase">
-                  Q1 2026
-                </span>
-              </div>
 
-              <div className="flex flex-col gap-5 flex-1">
-                {milestones.map((m, i) => (
-                  <ProgressBar
-                    key={m.label}
-                    label={m.label}
-                    progress={m.progress}
-                    status={m.status}
-                    delay={i}
-                  />
-                ))}
-              </div>
+                <div className="flex flex-col gap-5 flex-1">
+                  {milestones.map((m, i) => (
+                    <ProgressBar
+                      key={m.label}
+                      label={m.label}
+                      progress={m.progress}
+                      status={m.status}
+                      delay={i}
+                    />
+                  ))}
+                </div>
 
-              {/* Overall */}
-              <div className="mt-7 pt-5 border-t border-white/[0.06] relative z-10">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground/50 text-sm">Overall Completion</span>
-                  <span className="text-gold font-heading font-bold text-xl">~51%</span>
+                {/* Overall */}
+                <div className="mt-7 pt-5 border-t border-white/[0.06] relative z-10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground/50 text-sm">Overall Completion</span>
+                    <span className="text-gold font-heading font-bold text-xl">~51%</span>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </FadeIn>
 
@@ -300,7 +407,7 @@ export function SandsOfAvalonSection() {
                   <Counter
                     target={stat.target}
                     suffix={stat.suffix}
-                    className="text-gold font-heading font-bold text-3xl lg:text-4xl block mb-1 relative z-10"
+                    className="text-gold font-heading font-bold text-2xl sm:text-3xl lg:text-4xl block mb-1 relative z-10"
                   />
                   <span className="text-muted-foreground/50 text-[10px] tracking-wider uppercase relative z-10">
                     {stat.label}
@@ -316,10 +423,7 @@ export function SandsOfAvalonSection() {
           {features.map((feature) => (
             <StaggerItem key={feature.title}>
               <div className="group relative bg-[#0f1115] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl p-7 h-full hover:border-gold/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_10px_30px_rgba(212,168,83,0.1)] transition-all duration-500 overflow-hidden flex flex-col">
-                {/* Background glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-b from-gold/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Top accent border */}
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent group-hover:via-gold/60 transition-all duration-500" />
 
                 <div className="mb-5 relative z-10">
@@ -334,7 +438,6 @@ export function SandsOfAvalonSection() {
                   {feature.description}
                 </p>
 
-                {/* Bottom metric */}
                 <div className="mt-5 pt-4 border-t border-white/[0.04] group-hover:border-gold/20 transition-colors duration-500 relative z-10">
                   <div className="flex items-baseline gap-2">
                     <span className="text-gold font-heading font-bold text-lg">{feature.stat.value}</span>
@@ -353,7 +456,7 @@ export function SandsOfAvalonSection() {
               href="https://store.steampowered.com/app/4052670/Sands_Of_Avalon_Forge_Your_Legend/?beta=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative overflow-hidden inline-flex items-center gap-2.5 bg-gold hover:bg-gold-light text-background px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
+              className="relative overflow-hidden inline-flex items-center justify-center gap-2.5 bg-gold hover:bg-gold-light text-background w-full sm:w-auto px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-300 group shadow-[0_0_20px_rgba(212,168,83,0.15)] hover:shadow-[0_0_40px_rgba(212,168,83,0.4)]"
               whileTap={{ scale: 0.98 }}
             >
               <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
@@ -363,7 +466,7 @@ export function SandsOfAvalonSection() {
 
             <motion.a
               href="#contact"
-              className="inline-flex items-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
+              className="inline-flex items-center justify-center gap-2.5 border border-white/20 hover:border-gold/30 hover:bg-white/[0.04] text-foreground w-full sm:w-auto px-8 py-3.5 rounded-lg font-bold text-sm tracking-wide uppercase transition-all duration-200 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
