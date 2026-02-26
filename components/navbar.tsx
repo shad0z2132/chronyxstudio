@@ -260,7 +260,32 @@ export function Navbar() {
           >
             <div className="absolute inset-0 mobile-menu-backdrop" />
 
-            <div className="relative z-10 flex flex-col justify-between h-full pt-24 pb-10 px-8">
+            <div className="relative z-10 flex flex-col justify-between h-full pt-8 pb-10 px-8">
+              {/* Logo & studio name */}
+              <motion.a
+                href="/"
+                className="flex items-center gap-3 mb-8 w-fit"
+                initial={{ opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+                onClick={closeMobile}
+              >
+                <img
+                  src="/logo.webp"
+                  alt="Chronyx Studio logo"
+                  className="w-12 h-12 drop-shadow-[0_0_12px_rgba(212,168,83,0.35)]"
+                />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-foreground font-heading font-bold text-xl tracking-[0.15em]">
+                    CHRONYX
+                  </span>
+                  <span className="text-gold text-[11px] font-bold tracking-[0.3em] uppercase">
+                    Studios
+                  </span>
+                </div>
+              </motion.a>
+
               <div className="flex flex-col gap-2">
                 {navLinks.map((link, i) => {
                   const isRouterLink = link.external
