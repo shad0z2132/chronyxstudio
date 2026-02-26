@@ -237,18 +237,54 @@ export function HeroSection() {
                 </div>
               </FadeIn>
 
-              {/* Main headline */}
-              <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7">
-                <FadeIn delay={0.3}>
-                  <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-3 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)]">
-                    Sands of
-                  </span>
-                </FadeIn>
-                <FadeIn delay={0.5}>
-                  <span className="block text-4xl md:text-5xl lg:text-6xl text-foreground">
-                    Avalon
-                  </span>
-                </FadeIn>
+              {/* Main headline — letter-by-letter animation */}
+              <h1 className="font-heading font-bold leading-[0.92] tracking-tight mb-7" aria-label="Sands of Avalon">
+
+                {/* "Sands of" — gold, letters stagger in from below */}
+                <span className="block text-5xl md:text-7xl lg:text-[6.5rem] text-gold mb-3 drop-shadow-[0_0_40px_rgba(212,168,83,0.4)]" aria-hidden="true">
+                  {["S","a","n","d","s"," ","o","f"].map((char, i) => (
+                    <motion.span
+                      key={i}
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 48, filter: "blur(8px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 0.55,
+                        delay: 0.3 + i * 0.055,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </motion.span>
+                  ))}
+                </span>
+
+                {/* "Avalon" — white, letters stagger in slightly after, then glow pulses */}
+                <span className="block text-4xl md:text-5xl lg:text-6xl text-foreground" aria-hidden="true">
+                  {["A","v","a","l","o","n"].map((char, i) => (
+                    <motion.span
+                      key={i}
+                      className="inline-block relative"
+                      initial={{ opacity: 0, y: 56, filter: "blur(10px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.75 + i * 0.07,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                  {/* Glow underline that draws in after letters land */}
+                  <motion.span
+                    className="block h-[3px] mt-1 rounded-full bg-gradient-to-r from-gold/60 via-[#4FC3C3]/40 to-transparent"
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ duration: 0.9, delay: 1.35, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ transformOrigin: "left" }}
+                  />
+                </span>
               </h1>
 
               {/* Two-world tagline */}
