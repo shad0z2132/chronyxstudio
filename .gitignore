@@ -8,3 +8,11 @@ node_modules/
 .next/
 .env*.local
 .DS_Storenul
+
+# Build output
+dist/
+
+# Editor / OS
+nul
+tsconfig.tsbuildinfo
+
