@@ -53,7 +53,7 @@ const worlds = [
     id: "sands",
     name: "Sands",
     subtitle: "The Ancient World",
-    era: "Ancient Egypt",
+    era: "Ancient Era",
     description:
       "Traverse sun-scorched deserts and forgotten temples, where ancient gods still hold dominion. Unearth relics of a lost civilization and battle the divine forces that guard their secrets.",
     color: "gold" as const,
@@ -69,13 +69,13 @@ const worlds = [
       { src: "/HighresScreenshot00084.webp", alt: "Desert exploration gameplay" },
       { src: "/HighresScreenshot00105.webp", alt: "Combat encounter" },
     ],
-    tag: "Ancient Egypt",
+    tag: "Ancient Era",
   },
   {
     id: "avalon",
     name: "Avalon",
     subtitle: "The Medieval World",
-    era: "Medieval Fantasy",
+    era: "Medieval Era",
     description:
       "Enter a realm of stone fortresses, mystic forests, and warring kingdoms. Forge alliances, claim territories, and rise through the ranks of a world on the brink of legend.",
     color: "teal" as const,
@@ -91,7 +91,7 @@ const worlds = [
       { src: "/medieval/photo_2026-02-26_03-38-43.webp", alt: "Forest exploration" },
       { src: "/medieval/photo_2026-02-26_03-38-56.webp", alt: "Medieval combat" },
     ],
-    tag: "Medieval Fantasy",
+    tag: "Medieval Era",
   },
 ]
 
@@ -328,7 +328,7 @@ export function SandsOfAvalonSection() {
             </div>
 
             <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl sm:max-w-2xl mx-auto">
-              One game. Two distinct worlds. Master the sands of Ancient Egypt or forge your legend across Medieval kingdoms — your journey, your realm.
+              One game. Two distinct worlds. Master the ancient era or forge your legend across medieval kingdoms — your journey, your realm.
             </p>
           </div>
         </FadeIn>

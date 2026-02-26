@@ -254,9 +254,9 @@ export function HeroSection() {
               {/* Two-world tagline */}
               <FadeIn delay={0.65}>
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-gold/80 text-sm font-semibold tracking-[0.15em] uppercase">Ancient Egypt</span>
+                  <span className="text-gold/80 text-sm font-semibold tracking-[0.15em] uppercase">Ancient Era</span>
                   <div className="w-1 h-1 rounded-full bg-white/20" />
-                  <span className="text-[#4FC3C3]/80 text-sm font-semibold tracking-[0.15em] uppercase">Medieval Fantasy</span>
+                  <span className="text-[#4FC3C3]/80 text-sm font-semibold tracking-[0.15em] uppercase">Medieval Era</span>
                 </div>
               </FadeIn>
 
@@ -352,7 +352,7 @@ export function HeroSection() {
                   >
                     <img
                       src="/image (27).webp"
-                      alt="Sands — Ancient Egypt"
+                      alt="Sands — Ancient Era"
                       className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/20 to-transparent" />
@@ -369,7 +369,7 @@ export function HeroSection() {
                   >
                     <img
                       src="/medieval/photo_2026-02-26_03-39-24.webp"
-                      alt="Avalon — Medieval Fantasy"
+                      alt="Avalon — Medieval Era"
                       className="w-full h-[110px] object-cover transition-transform duration-500 group-hover:scale-105 brightness-75 group-hover:brightness-90"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/20 to-transparent" />
@@ -390,7 +390,7 @@ export function HeroSection() {
               <WorldPreviewCard
                 image="/image (27).webp"
                 name="Sands"
-                subtitle="Ancient Egypt"
+                subtitle="Ancient Era"
                 tag="In Development"
                 accentColor="text-gold"
                 borderColor="border-gold/25"
@@ -405,7 +405,7 @@ export function HeroSection() {
               <WorldPreviewCard
                 image="/medieval/photo_2026-02-26_03-39-24.webp"
                 name="Avalon"
-                subtitle="Medieval Fantasy"
+                subtitle="Medieval Era"
                 tag="In Development"
                 accentColor="text-[#4FC3C3]"
                 borderColor="border-[#4FC3C3]/25"
