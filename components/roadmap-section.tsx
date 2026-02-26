@@ -34,7 +34,7 @@ const milestones = [
     ],
     phase: "Phase 2",
     status: "upcoming" as const,
-    image: "/Anubismonolith.webp",
+    image: "/new medieval/HighresScreenshot00026 (1).webp",
   },
   {
     id: "npcs",
@@ -49,7 +49,7 @@ const milestones = [
     ],
     phase: "Phase 3",
     status: "upcoming" as const,
-    image: "/SETH 1.webp",
+    image: "/new medieval/HighresScreenshot00022 (1).webp",
   },
   {
     id: "multiplayer",
@@ -64,7 +64,7 @@ const milestones = [
     ],
     phase: "Phase 4",
     status: "planned" as const,
-    image: "/alien-planet-building.webp",
+    image: "/new medieval/HighresScreenshot00038 (1).webp",
   },
   {
     id: "mounts",

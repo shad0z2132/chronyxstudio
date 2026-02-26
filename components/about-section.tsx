@@ -54,7 +54,7 @@ export function AboutSection() {
               <div className="relative p-2 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
                 <div className="relative rounded-xl overflow-hidden bg-black group">
                   <img
-                    src="/HighresScreenshot00084.webp"
+                    src="/new medieval/HighresScreenshot00035 (1).webp"
                     alt="Chronyx Studio — in-engine screenshot"
                     loading="lazy"
                     className="w-full aspect-[4/3] object-cover transition-transform duration-[3s] ease-out group-hover:scale-110 opacity-80 group-hover:opacity-100"
