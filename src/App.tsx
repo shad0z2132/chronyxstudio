@@ -9,7 +9,6 @@ import { RoadmapSection } from "@/components/roadmap-section"
 import { WhyChooseUs } from "@/components/why-choose-us"
 import { ServicesSection } from "@/components/services-section"
 import { PlatformsSection } from "@/components/platforms-section"
-import { ProjectsSection } from "@/components/projects-section"
 import { CooperationSection } from "@/components/cooperation-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { AwardsSection } from "@/components/awards-section"
@@ -70,7 +69,6 @@ function LandingPage() {
               <WhyChooseUs />
               <ServicesSection />
               <PlatformsSection />
-              <ProjectsSection />
               <CooperationSection />
               <TestimonialsSection />
               <AwardsSection />
