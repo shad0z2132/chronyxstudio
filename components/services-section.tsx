@@ -7,15 +7,17 @@ import { motion } from "framer-motion"
 const games = [
   {
     title: "Sands of Avalon",
-    subtitle: "Flagship ARPG",
+    subtitle: "1 Game · 2 Worlds",
     description:
-      "A progression-focused ARPG centered on exploration, character development, and long-term advancement. Players navigate a rich world shaped by allegiance, rare resources, and evolving challenges.",
-    icon: Swords,
-    image: "/Anubismonolith.webp",
+      "A progression-focused ARPG spanning two distinct eras. Conquer the Ancient Era of forgotten temples and desert gods — or forge your legend across Medieval kingdoms torn by shifting alliances. One game, two worlds to master.",
+    icon: Globe,
+    image: "/image (27).webp",
+    secondImage: "/medieval/photo_2026-02-26_03-39-24.webp",
     href: "#sands-of-avalon",
     status: "In Development",
     statusActive: true,
-    highlights: ["Deep progression", "Allegiance systems", "Evolving world"],
+    highlights: ["Ancient Era world", "Medieval Era world", "Deep progression", "Allegiance systems"],
+    worldBadges: true,
   },
   {
     title: "Competitive FPS",
@@ -24,10 +26,12 @@ const games = [
       "A competitive first-person shooter designed for tournaments and esports. Built around skill expression, team play, and competitive integrity — serving as a high-frequency engagement layer.",
     icon: Crosshair,
     image: "/photo_2026-02-18_02-54-03.jpg",
+    secondImage: null,
     href: "#competitive-fps",
     status: "Coming Soon",
     statusActive: false,
     highlights: ["Precision gunplay", "Ranked infrastructure", "Esports-ready"],
+    worldBadges: false,
   },
 ]
 
@@ -91,20 +95,57 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
           <div className={`relative overflow-hidden ${
             isFirst ? "lg:w-[55%] min-h-[260px] lg:min-h-0" : "min-h-[220px]"
           }`}>
-            <img
-               src={game.image}
-              alt={game.title}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-            />
-            {/* Gradients */}
-            {isFirst ? (
+            {/* Split 50/50 image for Sands of Avalon */}
+            {game.secondImage ? (
               <>
+                {/* Left half — Ancient Era */}
+                <div className="absolute inset-0 w-1/2 overflow-hidden">
+                  <img
+                    src={game.image}
+                    alt="Sands — Ancient Era"
+                    loading="lazy"
+                    className="absolute inset-0 w-[200%] h-full object-cover object-left transition-transform duration-[1.2s] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0f1115]/60" />
+                </div>
+                {/* Right half — Medieval Era */}
+                <div className="absolute inset-0 left-1/2 overflow-hidden">
+                  <img
+                    src={game.secondImage}
+                    alt="Avalon — Medieval Era"
+                    loading="lazy"
+                    className="absolute inset-0 w-[200%] h-full object-cover object-right right-0 transition-transform duration-[1.2s] group-hover:scale-105"
+                    style={{ left: "auto" }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0f1115]/60" />
+                </div>
+                {/* Center divider */}
+                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent z-10" />
+                {/* Era labels */}
+                <div className="absolute bottom-4 left-0 w-1/2 flex justify-center z-10">
+                  <span className="text-gold text-[10px] font-bold tracking-widest uppercase bg-black/50 backdrop-blur-sm border border-gold/20 px-2.5 py-1 rounded-full">
+                    Ancient Era
+                  </span>
+                </div>
+                <div className="absolute bottom-4 right-0 w-1/2 flex justify-center z-10">
+                  <span className="text-[#4FC3C3] text-[10px] font-bold tracking-widest uppercase bg-black/50 backdrop-blur-sm border border-[#4FC3C3]/20 px-2.5 py-1 rounded-full">
+                    Medieval Era
+                  </span>
+                </div>
+                {/* Gradients toward content */}
                 <div className="absolute top-0 bottom-0 right-0 w-1/2 bg-gradient-to-r from-transparent to-[#0a0a0f] hidden lg:block" />
                 <div className="absolute left-0 right-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0a0f] to-transparent lg:hidden" />
               </>
             ) : (
-              <div className="absolute left-0 right-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
+              <>
+                <img
+                  src={game.image}
+                  alt={game.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105"
+                />
+                <div className="absolute left-0 right-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0a0a0f] to-transparent" />
+              </>
             )}
 
             {/* Status badge */}
@@ -145,6 +186,23 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
               {game.title}
             </h3>
 
+            {/* World badges for Sands of Avalon */}
+            {game.worldBadges && (
+              <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-1.5 bg-gold/10 border border-gold/20 px-2.5 py-1 rounded-full">
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                  <span className="text-gold text-[10px] font-bold tracking-widest uppercase">Sands</span>
+                  <span className="text-gold/50 text-[10px]">Ancient</span>
+                </div>
+                <span className="text-muted-foreground/30 text-xs">·</span>
+                <div className="flex items-center gap-1.5 bg-[#4FC3C3]/10 border border-[#4FC3C3]/20 px-2.5 py-1 rounded-full">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#4FC3C3]" />
+                  <span className="text-[#4FC3C3] text-[10px] font-bold tracking-widest uppercase">Avalon</span>
+                  <span className="text-[#4FC3C3]/50 text-[10px]">Medieval</span>
+                </div>
+              </div>
+            )}
+
             {/* Description */}
             <p className="text-muted-foreground text-sm lg:text-base leading-relaxed mb-6 max-w-md">
               {game.description}
@@ -164,7 +222,7 @@ function FeaturedGameCard({ game, index }: { game: typeof games[0]; index: numbe
 
             {/* CTA */}
             <div className="inline-flex items-center gap-2 text-gold text-sm font-semibold tracking-wide uppercase group-hover:gap-3 transition-all duration-300 w-fit">
-              Explore
+              {game.worldBadges ? "Explore Both Worlds" : "Explore"}
               <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
           </div>
