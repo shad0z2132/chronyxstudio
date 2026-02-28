@@ -126,12 +126,12 @@ export function AwardsSection() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08 + 0.2 }}
                     >
-                      <div className="w-2 h-2 rounded-full bg-gold/60 group-hover:bg-gold transition-colors duration-200" />
-                      <span className="text-foreground text-sm font-medium group-hover:text-gold transition-colors duration-200">
+                      <div className="w-2 h-2 rounded-full bg-gold/60 group-hover:bg-gold transition-colors duration-200 shrink-0" />
+                      <span className="text-foreground text-sm font-medium group-hover:text-gold transition-colors duration-200 min-w-0 truncate">
                         {pillar}
                       </span>
-                      <div className="h-px flex-1 bg-white/[0.04] group-hover:bg-gold/10 transition-colors duration-300" />
-                      <span className="text-gold/40 text-xs font-heading font-bold tabular-nums">
+                      <div className="h-px flex-1 bg-white/[0.04] group-hover:bg-gold/10 transition-colors duration-300 min-w-[8px]" />
+                      <span className="text-gold/40 text-xs font-heading font-bold tabular-nums shrink-0">
                         0{i + 1}
                       </span>
                     </motion.div>
@@ -140,13 +140,13 @@ export function AwardsSection() {
 
                 {/* Stats */}
                 <div className="mt-8 pt-6 border-t border-white/[0.06] relative z-10">
-                  <div className="grid grid-cols-3 gap-6 text-center">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-6 text-center">
                     {stats.map((stat) => (
-                      <div key={stat.label}>
-                        <div className="text-gold text-3xl font-heading font-bold">
+                      <div key={stat.label} className="min-w-0">
+                        <div className="text-gold text-2xl sm:text-3xl font-heading font-bold leading-none">
                           <Counter target={stat.target} suffix={stat.suffix} />
                         </div>
-                        <div className="text-muted-foreground text-xs mt-1 tracking-wide uppercase">
+                        <div className="text-muted-foreground text-[10px] sm:text-xs mt-1 tracking-wide uppercase leading-tight">
                           {stat.label}
                         </div>
                       </div>
