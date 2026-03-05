@@ -32,6 +32,69 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "chronyx-game-launcher-client",
+  tag: "Engineering",
+  icon: BookOpen,
+  date: "March 05, 2026",
+  title: "Our Own Game Launcher and Client",
+  excerpt: "We built our own launcher to manage updates, testing builds, and future ecosystem features across our games.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One important step for our development infrastructure has been building our own game launcher and client."
+    },
+    {
+      type: "paragraph",
+      text: "Instead of relying entirely on external platforms during development, we now have a dedicated launcher that allows us to distribute builds, manage updates, and test features much more efficiently."
+    },
+    {
+      type: "heading",
+      text: "Why Build Our Own Launcher"
+    },
+    {
+      type: "paragraph",
+      text: "When developing multiplayer games and live systems, iteration speed is extremely important. Having our own launcher allows us to control how builds are delivered and tested internally and with early players."
+    },
+    {
+      type: "list",
+      items: [
+        "Faster internal testing and build distribution",
+        "Controlled access for early testers",
+        "Patch and update management",
+        "Foundation for future ecosystem tools"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Built for Development and Community Testing"
+    },
+    {
+      type: "paragraph",
+      text: "The launcher allows us to share early versions of the game with testers without needing to push every iteration through external storefront pipelines."
+    },
+    {
+      type: "paragraph",
+      text: "This makes it easier to gather feedback, test new features, and fix issues faster during development."
+    },
+    {
+      type: "heading",
+      text: "Looking Ahead"
+    },
+    {
+      type: "paragraph",
+      text: "This launcher will continue evolving as development progresses. It will eventually support additional tools, updates, and systems needed for the broader Chronyx ecosystem."
+    },
+    {
+      type: "quote",
+      text: "Strong infrastructure behind the scenes allows us to move faster and build better games.",
+      author: "Chronyx Studios"
+    }
+  ]
+},
+
+{
   slug: "faction-system-dynamic-ai-conflicts",
   tag: "Game Design",
   icon: BookOpen,
