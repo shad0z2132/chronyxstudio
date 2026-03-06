@@ -45,7 +45,7 @@ const footerLinks: Record<string, { label: string; href: string; router?: boolea
     { label: "Competitive FPS", href: "#" },
     { label: "Game Updates", href: "#" },
     { label: "Patch Notes", href: "#" },
-    { label: "Roadmap", href: "#roadmap" },
+    { label: "Roadmap", href: "/#roadmap" },
   ],
   Studio: [
     { label: "About Chronyx", href: "#about" },

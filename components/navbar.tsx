@@ -35,6 +35,7 @@ const navLinks = [
   { label: "Roadmap", href: "#roadmap" },
   { label: "Technology", href: "#technology" },
   { label: "Dev Log", href: "/devlog", external: true },
+  { label: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
