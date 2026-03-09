@@ -32,6 +32,81 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "gas-ability-system-multiplayer",
+  tag: "Engineering",
+  icon: BookOpen,
+  date: "Mar 9, 2026",
+  title: "Building Our Ability System with GAS",
+  excerpt: "We implemented a new class-based ability system using Unreal Engine's Gameplay Ability System with full multiplayer replication.",
+  readTime: "5 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the systems we worked on recently is our new ability framework built using Unreal Engine’s Gameplay Ability System, commonly known as GAS."
+    },
+    {
+      type: "paragraph",
+      text: "Abilities are the core of combat identity in our game. Each class needs to feel distinct, powerful, and responsive while still remaining scalable as we expand the roster of characters."
+    },
+    {
+      type: "heading",
+      text: "Class Based Abilities"
+    },
+    {
+      type: "paragraph",
+      text: "Each character or class has its own unique ability set. Instead of using a generic skill system, we designed the framework so abilities can be tailored specifically to the playstyle of each archetype."
+    },
+    {
+      type: "list",
+      items: [
+        "Melee combat abilities focused on close range combat and impact",
+        "Ranged archery abilities for precision and distance control",
+        "Spell casting abilities for mage style gameplay",
+        "Expandable framework for future class archetypes"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Why We Chose GAS"
+    },
+    {
+      type: "paragraph",
+      text: "Unreal Engine’s Gameplay Ability System provides a powerful architecture for handling abilities, cooldowns, effects, and gameplay tags in a structured way."
+    },
+    {
+      type: "paragraph",
+      text: "Using GAS allows us to build abilities that are modular, scalable, and easy to expand as the project grows."
+    },
+    {
+      type: "heading",
+      text: "Multiplayer Replication"
+    },
+    {
+      type: "paragraph",
+      text: "Since the game is designed around multiplayer experiences, we ensured the ability system works correctly across the network."
+    },
+    {
+      type: "paragraph",
+      text: "All abilities are fully replicated so their activation, effects, and results are synchronized between players and the server."
+    },
+    {
+      type: "paragraph",
+      text: "This ensures that combat interactions remain consistent and fair regardless of how many players are involved in a fight."
+    },
+    {
+      type: "quote",
+      text: "Abilities define how players express their combat style, so building a strong and scalable ability framework was essential for us.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "With the core ability framework now in place, we can begin expanding the system with more unique abilities, effects, and class identities as development continues."
+    }
+  ]
+},
+
+{
   slug: "chronyx-game-launcher-client",
   tag: "Engineering",
   icon: BookOpen,
