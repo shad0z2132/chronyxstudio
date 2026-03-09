@@ -6,6 +6,10 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion"
 import { Footer } from "@/components/footer"
 import { devlogPosts, ALL_TAGS, type DevlogTag } from "@/lib/devlog-data"
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}
+
 // ─── Tag Pill ─────────────────────────────────────────────────────────────────
 function TagPill({
   tag,
@@ -207,7 +211,7 @@ export function DevlogPage() {
                   type="text"
                   placeholder="Search posts..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => { setSearchQuery(e.target.value); scrollToTop() }}
                   className="w-full bg-[#0f1115] border border-white/[0.07] rounded-lg pl-9 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-all duration-200"
                 />
               </div>
@@ -217,14 +221,14 @@ export function DevlogPage() {
                 <TagPill
                   tag="All"
                   active={activeTag === "All"}
-                  onClick={() => setActiveTag("All")}
+                  onClick={() => { setActiveTag("All"); scrollToTop() }}
                 />
                 {ALL_TAGS.map((tag) => (
                   <TagPill
                     key={tag}
                     tag={tag}
                     active={activeTag === tag}
-                    onClick={() => setActiveTag(tag)}
+                    onClick={() => { setActiveTag(tag); scrollToTop() }}
                   />
                 ))}
               </div>
