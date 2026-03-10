@@ -32,6 +32,77 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "sorceress-spell-system-gas",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Mar 10, 2026",
+  title: "Sorceress Spell System Powered by GAS",
+  excerpt: "We are building a powerful spell framework for the Sorceress class using Unreal Engine’s Gameplay Ability System.",
+  readTime: "5 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the most exciting systems we are currently building is the spell framework for the Sorceress class."
+    },
+    {
+      type: "paragraph",
+      text: "Spellcasting should feel powerful, responsive, and visually satisfying. The Sorceress is designed to be a high impact class capable of shaping the battlefield through destructive magic and tactical abilities."
+    },
+    {
+      type: "heading",
+      text: "Built on Unreal Engine GAS"
+    },
+    {
+      type: "paragraph",
+      text: "The entire spell system is built using Unreal Engine’s Gameplay Ability System. This allows us to create modular spells with cooldowns, effects, gameplay tags, and scalable logic."
+    },
+    {
+      type: "paragraph",
+      text: "Each spell is structured as an ability, meaning it can control damage logic, visual effects, casting time, and interactions with other gameplay systems."
+    },
+    {
+      type: "heading",
+      text: "Powerful Magical Abilities"
+    },
+    {
+      type: "paragraph",
+      text: "The Sorceress will have access to a wide range of magical abilities designed to dominate the battlefield."
+    },
+    {
+      type: "list",
+      items: [
+        "Area of effect spells that damage multiple enemies",
+        "Projectile based magic attacks",
+        "Elemental abilities that control space and positioning",
+        "Future expansion into advanced spell combinations"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Multiplayer Ready"
+    },
+    {
+      type: "paragraph",
+      text: "All spells are fully multiplayer replicated through the GAS framework. This ensures that casting, damage effects, and visual feedback are synchronized for all players in combat."
+    },
+    {
+      type: "paragraph",
+      text: "Whether fighting enemies or other players, spell interactions will behave consistently across the network."
+    },
+    {
+      type: "quote",
+      text: "Magic should feel dangerous, powerful, and impactful. The Sorceress embodies that philosophy.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "With the spell framework now taking shape, we can begin expanding the Sorceress arsenal with new spells, visual effects, and deeper gameplay interactions."
+    }
+  ]
+},
+
+{
   slug: "gas-ability-system-multiplayer",
   tag: "Engineering",
   icon: BookOpen,
