@@ -32,6 +32,77 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "starting-area-environment-worldbuilding",
+  tag: "Art & Design",
+  icon: Palette,
+  date: "Mar 24, 2026",
+  title: "Shaping the Starting Area and World Atmosphere",
+  excerpt: "We have been refining one of our early starting areas with a focus on terrain, natural paths, and a more grounded sense of place.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "Lately we have been focusing on one of our early starting areas, not just from a gameplay perspective, but from a worldbuilding one as well."
+    },
+    {
+      type: "paragraph",
+      text: "This area is meant to be one of the first impressions players get, so it needs to feel grounded and believable. You are not arriving as a hero, you are arriving as a recruit, and the world should reflect that."
+    },
+    {
+      type: "heading",
+      text: "Building a More Natural Environment"
+    },
+    {
+      type: "paragraph",
+      text: "We worked on terrain shaping, road placement, vegetation density, and elevation changes to move away from a test map feel and toward something that feels like a real location."
+    },
+    {
+      type: "paragraph",
+      text: "Small details matter more than they seem. The way a path curves, how grass breaks up the terrain, and how the environment frames the player all contribute to immersion."
+    },
+    {
+      type: "heading",
+      text: "Early Progression Starts Here"
+    },
+    {
+      type: "paragraph",
+      text: "This area ties directly into early progression. You arrive, get your bearings, and start proving your worth before being sent further into the conflict."
+    },
+    {
+      type: "paragraph",
+      text: "It is meant to feel like the calm before things escalate. A grounded entry point before the world opens up."
+    },
+    {
+      type: "heading",
+      text: "Lighting and Atmosphere"
+    },
+    {
+      type: "paragraph",
+      text: "We are also iterating on lighting to achieve a softer and more natural look. The goal is to avoid harsh contrasts and create an environment that feels immersive during exploration."
+    },
+    {
+      type: "list",
+      items: [
+        "Improved terrain composition and path readability",
+        "Better vegetation blending and density",
+        "More natural environment framing",
+        "Ongoing lighting and atmosphere improvements"
+      ]
+    },
+    {
+      type: "quote",
+      text: "A world is not built only through big moments, but through the quiet spaces in between.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "There is still a lot to improve, especially materials and lighting polish, but this is the direction we are pushing toward. We want the world to feel real from the very first steps."
+    }
+  ]
+},
+
+{
   slug: "sorceress-spell-system-gas",
   tag: "Game Design",
   icon: BookOpen,
