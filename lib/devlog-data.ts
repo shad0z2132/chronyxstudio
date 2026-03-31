@@ -32,6 +32,73 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "enemy-behaviour-faction-reactivity",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Mar 13, 2026",
+  title: "Enemy Behaviour and Faction Reactivity",
+  excerpt: "Enemies react based on faction relationships and player actions, creating dynamic and believable encounters.",
+  readTime: "3 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "We have been working on improving enemy behaviour to make encounters feel more natural and less predictable."
+    },
+    {
+      type: "paragraph",
+      text: "Instead of every enemy attacking the player on sight, behaviour is now driven by faction relationships and player actions."
+    },
+    {
+      type: "heading",
+      text: "Faction Based Behaviour"
+    },
+    {
+      type: "paragraph",
+      text: "Enemies belong to factions, and those factions determine how they react to both the player and other NPCs."
+    },
+    {
+      type: "list",
+      items: [
+        "Some enemies will ignore the player if there is no hostility",
+        "Hostile factions will attack on sight",
+        "Neutral factions may observe before reacting",
+        "Faction relationships influence world interactions"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Player Triggered Reactions"
+    },
+    {
+      type: "paragraph",
+      text: "Even if enemies are not initially hostile, attacking one will trigger a reaction from nearby enemies."
+    },
+    {
+      type: "paragraph",
+      text: "Once combat starts, enemies in the vicinity will retaliate, creating more intense and reactive encounters."
+    },
+    {
+      type: "heading",
+      text: "Why This Matters"
+    },
+    {
+      type: "paragraph",
+      text: "This system creates more believable scenarios where not every interaction leads to immediate combat, but your actions still have consequences."
+    },
+    {
+      type: "quote",
+      text: "The world should react to the player, not just exist around them.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "We will continue expanding this system with deeper behaviours, including coordination, reactions to faction wars, and more advanced AI responses."
+    }
+  ]
+},
+
+{
   slug: "ui-ux-importance-player-experience",
   tag: "Art & Design",
   icon: BookOpen,
