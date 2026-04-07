@@ -32,6 +32,85 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "procedural-dungeon-generator-system",
+  tag: "Engineering",
+  icon: BookOpen,
+  date: "Mar 14, 2026",
+  title: "Our Custom Dungeon Generator System",
+  excerpt: "We built a custom system that generates dungeons based on seeds and rules, allowing us to scale content efficiently.",
+  readTime: "5 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the core systems we have been developing is our custom dungeon generator, designed to create scalable and replayable content."
+    },
+    {
+      type: "paragraph",
+      text: "Instead of manually building every dungeon, we created a system that can generate them based on a seed and a set of rules."
+    },
+    {
+      type: "heading",
+      text: "Seed Based Generation"
+    },
+    {
+      type: "paragraph",
+      text: "Each dungeon is generated from a seed value. This allows us to recreate the same dungeon layout when needed, while still enabling a wide variety of unique experiences."
+    },
+    {
+      type: "paragraph",
+      text: "By changing the seed, we can instantly produce different layouts, paths, and encounters."
+    },
+    {
+      type: "heading",
+      text: "Rule Driven Design"
+    },
+    {
+      type: "paragraph",
+      text: "The generator is not purely random. It follows a set of rules that define how rooms are connected, where enemies spawn, and how progression flows through the dungeon."
+    },
+    {
+      type: "list",
+      items: [
+        "Controlled room placement and connections",
+        "Enemy and encounter distribution",
+        "Loot placement rules",
+        "Progression flow from start to boss"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Scalable Content Creation"
+    },
+    {
+      type: "paragraph",
+      text: "This system allows us to create a large number of dungeons without manually designing each one from scratch."
+    },
+    {
+      type: "paragraph",
+      text: "It gives us the flexibility to release new content faster while maintaining quality and structure."
+    },
+    {
+      type: "heading",
+      text: "Why This Matters"
+    },
+    {
+      type: "paragraph",
+      text: "For a game focused on replayability and progression, having a scalable dungeon system is essential. Players should always have something new to explore."
+    },
+    {
+      type: "quote",
+      text: "A good dungeon is not just designed once. It is a system that can evolve and generate endless experiences.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "We will continue expanding this system with more complex rules, unique room types, and varied encounters to keep dungeon runs fresh and engaging."
+    }
+  ]
+},
+
+{
   slug: "enemy-behaviour-faction-reactivity",
   tag: "Game Design",
   icon: BookOpen,
