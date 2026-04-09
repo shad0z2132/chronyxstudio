@@ -32,6 +32,85 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "world-map-design-sands-of-avalon",
+  tag: "Art & Design",
+  icon: BookOpen,
+  date: "Mar 15, 2026",
+  title: "Designing the World of Sands of Avalon",
+  excerpt: "A look into the world map and how we are shaping diverse regions, biomes, and exploration paths.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the most important aspects of any RPG is the world itself. It is not just a backdrop, but the foundation for exploration, progression, and storytelling."
+    },
+    {
+      type: "paragraph",
+      text: "We have been working on defining the world map of Sands of Avalon, shaping regions that feel distinct, memorable, and connected."
+    },
+    {
+      type: "heading",
+      text: "A World of Contrasts"
+    },
+    {
+      type: "paragraph",
+      text: "Our world is designed to bring together different environments, each with its own identity, atmosphere, and gameplay opportunities."
+    },
+    {
+      type: "list",
+      items: [
+        "Vast desert regions filled with ancient ruins and hidden secrets",
+        "Dense forests and cursed lands with darker tones and dangers",
+        "Mountain ranges that create natural barriers and strategic paths",
+        "Islands and distant regions waiting to be explored"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Designed for Exploration"
+    },
+    {
+      type: "paragraph",
+      text: "The map is not just about scale, but about how players move through it. We focus on creating natural routes, meaningful locations, and areas that invite curiosity."
+    },
+    {
+      type: "paragraph",
+      text: "Every region is designed with intention, guiding players through different experiences while still allowing freedom of exploration."
+    },
+    {
+      type: "heading",
+      text: "Zones With Purpose"
+    },
+    {
+      type: "paragraph",
+      text: "Each area on the map serves a role, whether it is tied to progression, faction presence, resources, or encounters."
+    },
+    {
+      type: "paragraph",
+      text: "This allows us to connect systems like factions, dungeons, and quests directly into the world, making it feel cohesive rather than segmented."
+    },
+    {
+      type: "heading",
+      text: "A Living World"
+    },
+    {
+      type: "paragraph",
+      text: "As we continue development, this world will evolve with dynamic systems such as faction conflicts, NPC behaviours, and events that react to player actions."
+    },
+    {
+      type: "quote",
+      text: "The world is not just where the game happens. It is part of the gameplay itself.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "This map is only the beginning. We will continue expanding it with new regions, deeper lore, and systems that bring every part of the world to life."
+    }
+  ]
+},
+
+{
   slug: "procedural-dungeon-generator-system",
   tag: "Engineering",
   icon: BookOpen,
