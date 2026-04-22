@@ -32,6 +32,89 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "dungeon-generation-system-endless-content",
+  tag: "Engineering",
+  icon: BookOpen,
+  date: "Mar 16, 2026",
+  title: "Dungeon Generation and What Lies Beneath",
+  excerpt: "Our custom system generates dungeons using seeds and rules, creating endless replayable experiences filled with danger and rewards.",
+  readTime: "5 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "Dungeons are at the core of progression and exploration in our game. They are not just places to fight enemies, but spaces filled with tension, mystery, and rewards."
+    },
+    {
+      type: "paragraph",
+      text: "Instead of building every dungeon manually, we developed a custom generation system that allows us to create endless variations based on seeds and rules."
+    },
+    {
+      type: "heading",
+      text: "Seed Based Generation"
+    },
+    {
+      type: "paragraph",
+      text: "Each dungeon is generated using a seed value. This allows us to recreate specific layouts while still offering a massive variety of unique runs."
+    },
+    {
+      type: "paragraph",
+      text: "By simply changing the seed, we can generate entirely new paths, structures, and encounters without rebuilding everything from scratch."
+    },
+    {
+      type: "heading",
+      text: "Rule Driven Structure"
+    },
+    {
+      type: "paragraph",
+      text: "The system is not purely random. It follows carefully designed rules that define how rooms connect, how players progress, and where encounters take place."
+    },
+    {
+      type: "list",
+      items: [
+        "Structured room connections and flow",
+        "Controlled enemy placement and difficulty",
+        "Loot distribution based on progression",
+        "Clear pathing from entrance to final encounter"
+      ]
+    },
+    {
+      type: "heading",
+      text: "What Lies in the Shadows"
+    },
+    {
+      type: "paragraph",
+      text: "Dungeons are designed to feel unpredictable. Darkness, narrow corridors, and hidden spaces create tension as players move deeper into the unknown."
+    },
+    {
+      type: "paragraph",
+      text: "Not every encounter is visible at first glance. Some dangers wait in the shadows, reacting only when the player steps too close."
+    },
+    {
+      type: "heading",
+      text: "Risk and Reward"
+    },
+    {
+      type: "paragraph",
+      text: "With danger comes reward. The deeper the dungeon, the greater the potential riches."
+    },
+    {
+      type: "paragraph",
+      text: "Players who explore, take risks, and survive will find valuable loot, rare items, and progression opportunities that make each run meaningful."
+    },
+    {
+      type: "quote",
+      text: "Every dungeon is a new story. The question is whether you make it out alive.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "This system allows us to scale content efficiently while keeping each experience fresh. As we expand it further, we will introduce new room types, mechanics, and encounters to deepen the experience."
+    }
+  ]
+},
+
+{
   slug: "world-map-design-sands-of-avalon",
   tag: "Art & Design",
   icon: BookOpen,
