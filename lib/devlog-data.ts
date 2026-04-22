@@ -35,7 +35,7 @@ export const devlogPosts: DevlogPost[] = [
   slug: "dungeon-generation-system-endless-content",
   tag: "Engineering",
   icon: BookOpen,
-  date: "Mar 16, 2026",
+  date: "Apr 22, 2026",
   title: "Dungeon Generation and What Lies Beneath",
   excerpt: "Our custom system generates dungeons using seeds and rules, creating endless replayable experiences filled with danger and rewards.",
   readTime: "5 min read",
