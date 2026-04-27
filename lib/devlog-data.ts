@@ -32,6 +32,89 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "stylized-vs-realistic-graphics-performance",
+  tag: "Art & Design",
+  icon: BookOpen,
+  date: "Apr 27, 2026",
+  title: "Stylized vs Realistic Graphics and Player Accessibility",
+  excerpt: "We are exploring different visual approaches to balance high quality graphics with performance across a wide range of PCs.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the ongoing discussions in development is the balance between stylized and realistic graphics."
+    },
+    {
+      type: "paragraph",
+      text: "While high fidelity visuals can look impressive, not every player has access to high end hardware. Our goal is to make the game both visually appealing and accessible."
+    },
+    {
+      type: "heading",
+      text: "Visual Direction vs Performance"
+    },
+    {
+      type: "paragraph",
+      text: "Realistic graphics often come with higher performance costs, especially when using detailed materials, lighting systems, and high resolution textures."
+    },
+    {
+      type: "paragraph",
+      text: "Stylized visuals, on the other hand, can provide a unique identity while being more flexible in terms of performance."
+    },
+    {
+      type: "heading",
+      text: "Supporting Different Hardware"
+    },
+    {
+      type: "paragraph",
+      text: "We are exploring ways to support a wide range of systems without compromising the overall experience."
+    },
+    {
+      type: "list",
+      items: [
+        "High quality HD textures for players with powerful hardware",
+        "Optimized texture sets for mid and lower end systems",
+        "Potential stylized options for improved clarity and performance",
+        "Scalable settings that adapt to different configurations"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Texture Selection During Install"
+    },
+    {
+      type: "paragraph",
+      text: "To make this process smoother for players, we are planning to allow texture selection during installation."
+    },
+    {
+      type: "paragraph",
+      text: "Players will be able to choose between higher quality textures or more optimized versions based on their hardware, ensuring better performance without needing to manually adjust everything later."
+    },
+    {
+      type: "heading",
+      text: "Player First Approach"
+    },
+    {
+      type: "paragraph",
+      text: "Our priority is not just how the game looks, but how it feels to play. Smooth performance and clarity are just as important as visual quality."
+    },
+    {
+      type: "paragraph",
+      text: "We want players to enjoy the game regardless of their setup, whether they are playing on high end hardware or more modest systems."
+    },
+    {
+      type: "quote",
+      text: "A great game should be playable by as many people as possible, not just those with the most powerful machines.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "We will continue experimenting with different visual approaches and optimization techniques to find the right balance between quality and accessibility."
+    }
+  ]
+},
+
+{
   slug: "dungeon-generation-system-endless-content",
   tag: "Engineering",
   icon: BookOpen,
