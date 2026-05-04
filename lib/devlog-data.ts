@@ -32,6 +32,77 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "basic-character-creator-system",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "May 04, 2026",
+  title: "Building Our Character Creator",
+  excerpt: "We implemented the first version of our character creator, focusing on clarity, simplicity, and future scalability.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the important steps in shaping the player experience is the character creator. It is the first real interaction players have with the world and their identity within it."
+    },
+    {
+      type: "paragraph",
+      text: "We have implemented the first version of our character creator, focusing on simplicity, clarity, and a solid foundation we can expand over time."
+    },
+    {
+      type: "heading",
+      text: "A Clean Starting Point"
+    },
+    {
+      type: "paragraph",
+      text: "Instead of building an overly complex system from the start, we focused on creating a clean and functional character creation flow."
+    },
+    {
+      type: "list",
+      items: [
+        "Character name selection",
+        "Class selection based on archetypes",
+        "Basic visual setup",
+        "Simple and intuitive UI flow"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Designed for Expansion"
+    },
+    {
+      type: "paragraph",
+      text: "This is only the first iteration. The system is designed to be modular so we can expand it with more customization options as development progresses."
+    },
+    {
+      type: "paragraph",
+      text: "Future updates will include more detailed appearance customization, additional options tied to races and classes, and deeper visual identity systems."
+    },
+    {
+      type: "heading",
+      text: "Player Identity Matters"
+    },
+    {
+      type: "paragraph",
+      text: "In a game built around progression, factions, and long term play, the character is more than just a model. It represents the player’s journey through the world."
+    },
+    {
+      type: "paragraph",
+      text: "This is especially important as systems like classes, races, and progression paths define how players interact with the world :contentReference[oaicite:0]{index=0}."
+    },
+    {
+      type: "quote",
+      text: "The first choice a player makes should feel simple, but meaningful.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "We will continue improving the character creator with more depth, customization, and visual options while keeping the experience intuitive and accessible."
+    }
+  ]
+},
+
+{
   slug: "stylized-vs-realistic-graphics-performance",
   tag: "Art & Design",
   icon: BookOpen,
