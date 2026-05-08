@@ -32,6 +32,77 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "development-iteration-and-going-back-to-the-drawing-board",
+  tag: "Dev Log",
+  icon: BookOpen,
+  date: "Apr 28, 2026",
+  title: "Going Back to the Drawing Board",
+  excerpt: "Not every system works perfectly the first time. Sometimes the best decision is rebuilding something until it truly feels right.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "One of the most important parts of development is knowing when something does not feel right."
+    },
+    {
+      type: "paragraph",
+      text: "A system can technically work, but still fail to deliver the feeling, immersion, or gameplay experience we want. When that happens, we would rather step back, rethink the design, and rebuild it properly instead of forcing it into the game."
+    },
+    {
+      type: "heading",
+      text: "Iteration Is Part of Development"
+    },
+    {
+      type: "paragraph",
+      text: "Many of the systems we are building have gone through multiple iterations before reaching a state we are happy with."
+    },
+    {
+      type: "list",
+      items: [
+        "Reworking NPC dialogue because interactions felt robotic",
+        "Adjusting combat flow to improve responsiveness",
+        "Changing UI layouts for better readability",
+        "Refining dungeon generation to create more meaningful exploration"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Feel Matters More Than Features"
+    },
+    {
+      type: "paragraph",
+      text: "Game development is not only about functionality. It is about how systems feel in the hands of the player."
+    },
+    {
+      type: "paragraph",
+      text: "A feature can look good on paper and still feel wrong during gameplay. Sometimes small details such as timing, animation flow, sound feedback, or pacing completely change the experience."
+    },
+    {
+      type: "heading",
+      text: "Building for the Long Term"
+    },
+    {
+      type: "paragraph",
+      text: "We try to avoid rushing systems just to move forward quickly. Taking time to revisit and improve mechanics early can prevent much larger issues later in development."
+    },
+    {
+      type: "paragraph",
+      text: "This approach also helps us build stronger foundations for systems that will continue expanding over time."
+    },
+    {
+      type: "quote",
+      text: "Sometimes progress means deleting work and starting again until it finally feels right.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "Development is rarely a straight line. Every iteration teaches us something new, and each rebuild moves the game closer to the experience we want players to have."
+    }
+  ]
+},
+
+{
   slug: "basic-character-creator-system",
   tag: "Game Design",
   icon: BookOpen,
