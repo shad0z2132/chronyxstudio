@@ -32,6 +32,97 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "player-journey-dungeons-and-preservation",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Apr 28, 2026",
+  title: "The Player Journey, Dungeons, and Preserving the Experience",
+  excerpt: "We want dungeon exploration and looting to feel meaningful while ensuring players can continue experiencing the game both online and offline.",
+  readTime: "6 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "At the core of the experience is the player’s journey through dangerous dungeons, forgotten ruins, and hostile lands filled with risk and reward."
+    },
+    {
+      type: "paragraph",
+      text: "We want players to feel like adventurers entering places that are dangerous, mysterious, and worth exploring rather than simply running repetitive content for numbers."
+    },
+    {
+      type: "heading",
+      text: "The Feeling of Exploration"
+    },
+    {
+      type: "paragraph",
+      text: "A dungeon should create tension and curiosity. Darkness, atmosphere, distant sounds, hidden paths, and uncertainty all contribute to the feeling that something valuable or dangerous may be waiting deeper inside."
+    },
+    {
+      type: "paragraph",
+      text: "We want players to constantly ask themselves whether they should keep going deeper or leave with what they already found."
+    },
+    {
+      type: "heading",
+      text: "Loot Should Feel Exciting"
+    },
+    {
+      type: "paragraph",
+      text: "Loot is not just about statistics. It is about emotion and anticipation."
+    },
+    {
+      type: "paragraph",
+      text: "Finding rare equipment, hidden treasures, or valuable resources should feel rewarding because of the journey and risk involved in obtaining them."
+    },
+    {
+      type: "list",
+      items: [
+        "Dungeons designed around risk versus reward",
+        "Rare loot hidden behind dangerous encounters",
+        "Exploration driven discovery",
+        "Meaningful progression tied to adventure"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Designed for Both Online and Offline Play"
+    },
+    {
+      type: "paragraph",
+      text: "One important philosophy for us as a studio is ensuring players can continue experiencing the game even beyond live online services."
+    },
+    {
+      type: "paragraph",
+      text: "We strongly support the idea that games should remain playable and preserved rather than disappearing entirely once servers eventually shut down."
+    },
+    {
+      type: "paragraph",
+      text: "Because of this, we are building the game with both online and offline gameplay in mind whenever possible."
+    },
+    {
+      type: "heading",
+      text: "Supporting Game Preservation"
+    },
+    {
+      type: "paragraph",
+      text: "As developers and players ourselves, we understand the frustration of seeing games become inaccessible over time."
+    },
+    {
+      type: "paragraph",
+      text: "We believe players should still be able to explore the world, experience dungeons, and enjoy the core gameplay even years later."
+    },
+    {
+      type: "quote",
+      text: "A game should not disappear simply because online infrastructure eventually changes.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "As development continues, we will keep refining the balance between online systems, offline accessibility, exploration, and meaningful progression to create a world players can truly lose themselves in."
+    }
+  ]
+},
+
+{
   slug: "building-natural-open-world-environments",
   tag: "Art & Design",
   icon: BookOpen,
