@@ -32,6 +32,78 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+slug: "gender-selection-coming-alpha-1",
+tag: "Game Design",
+icon: BookOpen,
+date: "June 02, 2026",
+title: "Gender Selection Coming to Alpha 1",
+excerpt: "Players will be able to choose between male and female characters as part of the first iteration of our character creation system.",
+readTime: "3 min read",
+featured: true,
+content: [
+{
+type: "paragraph",
+text: "As development continues, we are excited to introduce gender selection as part of the upcoming Alpha 1 character creation experience."
+},
+{
+type: "paragraph",
+text: "While our character creator is still in its early stages, this addition represents another step toward allowing players to shape their identity before beginning their adventure."
+},
+{
+type: "heading",
+text: "Male and Female Character Selection"
+},
+{
+type: "paragraph",
+text: "Players will be able to choose between male and female characters during character creation, allowing them to begin their journey with the character they feel best represents them."
+},
+{
+type: "list",
+items: [
+"Male character selection",
+"Female character selection",
+"Dedicated character previews",
+"Integrated into the character creation flow"
+]
+},
+{
+type: "heading",
+text: "The Beginning of Character Customization"
+},
+{
+type: "paragraph",
+text: "This is the first step toward a much deeper customization system planned for future updates."
+},
+{
+type: "paragraph",
+text: "As development progresses, we plan to expand customization with additional hairstyles, facial features, armor appearances, and other visual options that allow players to create unique heroes."
+},
+{
+type: "heading",
+text: "Building the Foundation"
+},
+{
+type: "paragraph",
+text: "Our goal with Alpha 1 is to establish a solid and intuitive character creation experience that can continue evolving alongside the rest of the game."
+},
+{
+type: "paragraph",
+text: "Every feature we introduce today is built with future expansion in mind, ensuring that we can continue adding more depth without rebuilding core systems later."
+},
+{
+type: "quote",
+text: "Every great adventure begins with the first choice: who you want to become.",
+author: "Chronyx Studios"
+},
+{
+type: "paragraph",
+text: "We look forward to sharing more updates as the character creator continues to grow and become an even bigger part of the player experience."
+}
+]
+},
+
+
+{
   slug: "character-body-selection-alpha-1",
   tag: "Game Design",
   icon: BookOpen,
