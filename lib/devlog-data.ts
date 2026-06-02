@@ -32,6 +32,77 @@ export type DevlogContent =
 export const devlogPosts: DevlogPost[] = [
 
 {
+  slug: "character-body-selection-alpha-1",
+  tag: "Game Design",
+  icon: BookOpen,
+  date: "Apr 28, 2026",
+  title: "Character Body Selection Coming in Alpha 1",
+  excerpt: "The first version of character body selection will be available in Alpha 1, giving players more control over their identity from the very beginning.",
+  readTime: "4 min read",
+  featured: true,
+  content: [
+    {
+      type: "paragraph",
+      text: "As we continue expanding the character creator, one of the next features arriving in Alpha 1 is character body selection."
+    },
+    {
+      type: "paragraph",
+      text: "Creating a character is one of the first and most important interactions players have with the game. We want players to feel connected to their character from the moment they enter the world."
+    },
+    {
+      type: "heading",
+      text: "The First Step Toward Deeper Customization"
+    },
+    {
+      type: "paragraph",
+      text: "The upcoming Alpha 1 implementation focuses on providing a solid foundation that we can continue expanding throughout development."
+    },
+    {
+      type: "list",
+      items: [
+        "Male and female body selection",
+        "Updated character presentation",
+        "Improved character creation flow",
+        "Foundation for future customization options"
+      ]
+    },
+    {
+      type: "heading",
+      text: "Built for Future Expansion"
+    },
+    {
+      type: "paragraph",
+      text: "While this is an early implementation, the system has been designed with future growth in mind."
+    },
+    {
+      type: "paragraph",
+      text: "As development progresses, we plan to expand customization options with additional appearance features, hairstyles, facial customization, armor variations, and more ways for players to create a unique identity."
+    },
+    {
+      type: "heading",
+      text: "Your Journey Starts Here"
+    },
+    {
+      type: "paragraph",
+      text: "Every adventure begins with a character. Whether you choose the path of a warrior, ranger, or mage, your character represents your journey through the world."
+    },
+    {
+      type: "paragraph",
+      text: "As we continue developing Sands of Avalon, we want character creation to become a meaningful part of that experience rather than simply a menu players rush through."
+    },
+    {
+      type: "quote",
+      text: "The first choice a player makes should feel like the beginning of their story.",
+      author: "Chronyx Studios"
+    },
+    {
+      type: "paragraph",
+      text: "This is only the beginning for the character creator. Alpha 1 will introduce the foundation, and future updates will continue expanding the ways players can shape their heroes."
+    }
+  ]
+},
+
+{
   slug: "player-journey-dungeons-and-preservation",
   tag: "Game Design",
   icon: BookOpen,
