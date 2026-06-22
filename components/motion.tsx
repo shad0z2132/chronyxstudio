@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView, useMotionValue, useSpring, useReducedMotion, AnimatePresence, type Variants } from "framer-motion"
+import { motion, useInView, useMotionValue, animate, useReducedMotion, AnimatePresence, type Variants } from "framer-motion"
 import { useRef, useEffect, useState, type ReactNode } from "react"
 
 // ─── Fade In on Scroll ───────────────────────────────────────────────────────
@@ -239,39 +239,37 @@ export function Counter({
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once, margin: "-80px" })
   const prefersReducedMotion = useReducedMotion()
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, {
-    damping: 40,
-    stiffness: 100,
-    duration: duration * 1000,
-  })
+  const [displayValue, setDisplayValue] = useState(target)
+  const hasAnimated = useRef(false)
 
   useEffect(() => {
-    if (isInView) {
-      if (prefersReducedMotion) {
-        // Skip animation — show final value immediately
-        if (ref.current) {
-          ref.current.textContent = `${prefix}${target}${suffix}`
-        }
-      } else {
-        motionValue.set(target)
-      }
+    // Respect reduced motion and avoid re-running animation when target changes.
+    if (!isInView || prefersReducedMotion) {
+      setDisplayValue(target)
+      return
     }
-  }, [isInView, target, motionValue, prefersReducedMotion, prefix, suffix])
 
-  useEffect(() => {
-    if (prefersReducedMotion) return
-    const unsubscribe = springValue.on("change", (latest) => {
-      if (ref.current) {
-        ref.current.textContent = `${prefix}${Math.round(latest)}${suffix}`
-      }
+    // If we've already animated once, keep the final value.
+    if (hasAnimated.current) {
+      setDisplayValue(target)
+      return
+    }
+
+    hasAnimated.current = true
+    setDisplayValue(0)
+
+    const controls = animate(0, target, {
+      duration,
+      ease: "easeOut",
+      onUpdate: (latest) => setDisplayValue(Math.round(latest)),
     })
-    return unsubscribe
-  }, [springValue, prefix, suffix, prefersReducedMotion])
+
+    return () => controls.stop()
+  }, [isInView, target, duration, prefersReducedMotion])
 
   return (
     <span ref={ref} className={className} aria-live="polite">
-      {prefix}0{suffix}
+      {prefix}{displayValue}{suffix}
     </span>
   )
 }
